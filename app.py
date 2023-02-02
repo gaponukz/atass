@@ -18,12 +18,5 @@ logging.basicConfig(
 def main_page():
     return jsonify({ "status": "ok" })
 
-@app.get('/get_aviable_routes')
-def get_all_routes_page():
-    return jsonify({
-        "from": [],
-        "to": []
-    })
-
 if __name__ == '__main__':
     app.run()
