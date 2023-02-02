@@ -1,0 +1,24 @@
+[
+    {
+        "move_from": "Kaniv",
+        "move_to": "Kiyv",
+        "date": "2023-01-31 21:34:21.800972",
+        "travel_time": 10,
+        "driver": {
+            "first_name": "John",
+            "last_name": "Nut",
+            "phone_number": "+324243523"
+        }
+    },
+    {
+        "move_from": "Kiyv",
+        "move_to": "Ivano Frankivsk",
+        "date": "2023-01-31 21:36:21.060444",
+        "travel_time": 100,
+        "driver": {
+            "first_name": "John",
+            "last_name": "Nut",
+            "phone_number": "+324243523"
+        }
+    }
+]

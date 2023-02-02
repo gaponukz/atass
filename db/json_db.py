@@ -1,3 +1,4 @@
+import dateutil.parser
 import datetime
 import dataclasses
 import typing
@@ -7,6 +8,16 @@ import os
 from db import IRouteDataBase
 from entities import Route, Driver
 
+def datetime_parser(json_dict):
+    for key, value in json_dict.items():
+        try:
+            json_dict[key] = dateutil.parser.parse(value)
+
+        except (ValueError, AttributeError, TypeError):
+            pass
+
+    return json_dict
+
 class EnhancedJSONEncoder(json.JSONEncoder):
     def default(self, obj):
         if dataclasses.is_dataclass(obj):
@@ -14,14 +25,14 @@ class EnhancedJSONEncoder(json.JSONEncoder):
 
         return super().default(obj)
 
-class RouteDataBaseJson(IRouteDataBase):
+class JsonRouteDataBase(IRouteDataBase):
     def __init__(self, filename = "db.json"):
         self._filename = filename
         self.routes = []
 
         if os.path.exists(self._filename):
             with open(self._filename, 'r', encoding='utf-8') as out:
-                self.routes = json.load(out)
+                self.routes = json.load(out, object_hook=datetime_parser)
         
         self._update_file()
     
@@ -32,18 +43,19 @@ class RouteDataBaseJson(IRouteDataBase):
         finded_objects = [route for route in self.routes if self.__to_object(route).id == route_hash]
 
         if finded_objects:
-            return finded_objects[0]   
+            return self.__to_object(finded_objects[0])   
 
     def add_one(self, route: Route):
         self.routes.append(self.__from_object(route))
         self._update_file()
 
     def remove_one(self, route_hash: str):
-        finded_objects = [route for route in self.routes if self.__to_object(route).id == route_hash]
+        for route in self.routes:
+            if self.__to_object(route).id == route_hash:
+                self.routes.remove(route)
+                self._update_file()
 
-        if finded_objects:
-            self.routes.remove(finded_objects[0])
-            self._update_file()
+                return
     
     def change_one(self, route_hash: str, **fields) -> Route:
         for route in self.routes:
@@ -100,10 +112,8 @@ if __name__ == '__main__':
         )
     )
 
-    db = RouteDataBaseJson()
+    db = JsonRouteDataBase()
 
     # db.add_one(route)
 
     print(db.get_all(lambda route: route.move_from == "Kiyv")[0])
-
-    print(db.change_one("45d0fb88069f5efb70cbe3e0dcb5412f1628d75b387cb8dec04dc05cadae9726", **{"move_to": "Ivano Frankivsk"}))
