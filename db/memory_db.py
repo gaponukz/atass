@@ -1,8 +1,7 @@
-import datetime
 import typing
 
 from db import IRouteDataBase
-from entities import Route, Driver
+from entities import Route
 
 class MemoryRouteDataBase(IRouteDataBase):
     def __init__(self):
@@ -50,22 +49,3 @@ class MemoryRouteDataBase(IRouteDataBase):
                 changed.append(route)
         
         return changed
-
-if __name__ == "__main__":
-    route = Route(
-        move_from = "Kiyv",
-        move_to = "Lviv",
-        date = datetime.datetime.now(),
-        travel_time = 100,
-        driver = Driver(
-            first_name = "John",
-            last_name = "Nut",
-            phone_number = "+324243523"
-        )
-    )
-
-    db = MemoryRouteDataBase()
-
-    db.add_one(route)
-
-    print(db.get_all(lambda route: route.move_from == "Kiyv")[0])

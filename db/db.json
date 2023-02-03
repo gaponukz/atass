@@ -1,24 +1,33 @@
 [
     {
-        "move_from": "Kaniv",
-        "move_to": "Kiyv",
-        "date": "2023-01-31 21:34:21.800972",
-        "travel_time": 10,
-        "driver": {
-            "first_name": "John",
-            "last_name": "Nut",
-            "phone_number": "+324243523"
-        }
-    },
-    {
         "move_from": "Kiyv",
-        "move_to": "Ivano Frankivsk",
-        "date": "2023-01-31 21:36:21.060444",
+        "move_to": "Warsaw",
+        "date": "2023-02-03 10:19:20.909153",
         "travel_time": 100,
-        "driver": {
-            "first_name": "John",
-            "last_name": "Nut",
-            "phone_number": "+324243523"
-        }
+        "price": 1200,
+        "passengers_number": 20,
+        "spots": [
+            {
+                "name": "Bucha",
+                "price_from_start": 100,
+                "date": "2023-02-03 10:19:20.909159"
+            },
+            {
+                "name": "Rivne",
+                "price_from_start": 500,
+                "date": "2023-02-03 10:19:20.909160"
+            },
+            {
+                "name": "Lutsk",
+                "price_from_start": 600,
+                "date": "2023-02-03 10:19:20.909161"
+            },
+            {
+                "name": "Lviv",
+                "price_from_start": 800,
+                "date": "2023-02-03 10:19:20.909162"
+            }
+        ],
+        "id": "b0594fa11bcbb2e37f27d15a6d608af76076587894eadf984c91d5f7d1621bed"
     }
 ]

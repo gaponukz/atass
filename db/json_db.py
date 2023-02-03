@@ -1,12 +1,11 @@
 import dateutil.parser
-import datetime
 import dataclasses
 import typing
 import json
 import os
 
 from db import IRouteDataBase
-from entities import Route, Driver
+from entities import Route
 
 def datetime_parser(json_dict):
     for key, value in json_dict.items():
@@ -37,21 +36,21 @@ class JsonRouteDataBase(IRouteDataBase):
         self._update_file()
     
     def get_all(self, _filter: typing.Callable[[Route], bool] = lambda _: True) -> list[Route]:
-        return [self.__to_object(route) for route in self.routes if _filter(self.__to_object(route))]
+        return [Route.from_dict(route) for route in self.routes if _filter(Route.from_dict(route))]
 
     def get_one(self, route_hash: str) -> Route:
-        finded_objects = [route for route in self.routes if self.__to_object(route).id == route_hash]
+        finded_objects = [route for route in self.routes if Route.from_dict(route).id == route_hash]
 
         if finded_objects:
-            return self.__to_object(finded_objects[0])   
+            return Route.from_dict(finded_objects[0])   
 
     def add_one(self, route: Route):
-        self.routes.append(self.__from_object(route))
+        self.routes.append(route.to_dict())
         self._update_file()
 
     def remove_one(self, route_hash: str):
         for route in self.routes:
-            if self.__to_object(route).id == route_hash:
+            if Route.from_dict(route).id == route_hash:
                 self.routes.remove(route)
                 self._update_file()
 
@@ -59,15 +58,15 @@ class JsonRouteDataBase(IRouteDataBase):
     
     def change_one(self, route_hash: str, **fields) -> Route:
         for route in self.routes:
-            if self.__to_object(route).id == route_hash:
+            if Route.from_dict(route).id == route_hash:
                 route.update(fields)
                 self._update_file()
                 
-                return self.__to_object(route)
+                return Route.from_dict(route)
 
     def remove_many(self, _filter: typing.Callable[[Route], bool]):
         for route in self.routes:
-            if _filter(self.__to_object(route)):
+            if _filter(Route.from_dict(route)):
                 self.routes.remove(route)
         
         self._update_file()
@@ -76,7 +75,7 @@ class JsonRouteDataBase(IRouteDataBase):
         changed = []
 
         for route in self.routes:
-            route_obj = self.__to_object(route)
+            route_obj = Route.from_dict(route)
 
             if _filter(route_obj):
                 route.update(fields)
@@ -89,31 +88,3 @@ class JsonRouteDataBase(IRouteDataBase):
     def _update_file(self):
         with open(self._filename, 'w', encoding='utf-8') as out:
             json.dump(self.routes, out, indent=4, cls=EnhancedJSONEncoder, default=str)
-
-    def __to_object(self, route: dict) -> Route:
-        return Route(**route)
-    
-    def __from_object(self, route: Route) -> dict:
-        dictionary = dataclasses.asdict(route)
-        dictionary.update({"id": route.id})
-
-        return dictionary
-
-if __name__ == '__main__':
-    route = Route(
-        move_from = "Kiyv",
-        move_to = "Lviv",
-        date = datetime.datetime.now(),
-        travel_time = 100,
-        driver = Driver(
-            first_name = "John",
-            last_name = "Nut",
-            phone_number = "+324243523"
-        )
-    )
-
-    db = JsonRouteDataBase()
-
-    # db.add_one(route)
-
-    print(db.get_all(lambda route: route.move_from == "Kiyv")[0])
