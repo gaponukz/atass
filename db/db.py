@@ -59,3 +59,7 @@ class IRouteDataBase(abc.ABC):
         Change many routes by filter with given fields to change, returning changed routes
         '''
         pass
+    
+    @abc.abstractmethod
+    def __len__(self):
+        pass

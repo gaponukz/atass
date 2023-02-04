@@ -11,10 +11,9 @@ class MemoryRouteDataBase(IRouteDataBase):
         return [route for route in self.routes if _filter(route)]
 
     def get_one(self, route_hash: str) -> Route:
-        finded_objects = [route for route in self.routes if route.id == route_hash]
-
-        if finded_objects:
-            return finded_objects[0]   
+        for route in self.routes:
+            if route.id == route_hash:
+                return route
 
     def add_one(self, route: Route):
         self.routes.append(route)
@@ -49,3 +48,6 @@ class MemoryRouteDataBase(IRouteDataBase):
                 changed.append(route)
         
         return changed
+
+    def __len__(self):
+        return len(self.routes)

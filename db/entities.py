@@ -51,8 +51,8 @@ class Driver(DictAble):
 @dataclasses.dataclass
 class Spot(DictAble):
     name: str
-    price_from_start: int
     date: datetime.datetime
+    price_from_start: int = None
 
     @property
     def id(self) -> str:
@@ -64,19 +64,16 @@ class Spot(DictAble):
 
 @dataclasses.dataclass
 class Route(DictAble):
-    move_from: str
-    move_to: str
-    date: datetime.datetime
-    travel_time: int
-    price: int
+    move_from: Spot
+    move_to: Spot
     passengers_number: int
-    spots: list[Spot]
+    sub_spots: list[Spot]
 
     @property
     def id(self) -> str:
         return hashlib.sha256((
-            self.move_from \
-            + self.move_to \
+            self.move_from.id \
+            + self.move_to.id \
             + str(self.date)\
         ).encode('utf-8')).hexdigest()
 

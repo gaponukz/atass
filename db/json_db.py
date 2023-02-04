@@ -88,3 +88,6 @@ class JsonRouteDataBase(IRouteDataBase):
     def _update_file(self):
         with open(self._filename, 'w', encoding='utf-8') as out:
             json.dump(self.routes, out, indent=4, cls=EnhancedJSONEncoder, default=str)
+
+    def __len__(self):
+        return len(self.routes)

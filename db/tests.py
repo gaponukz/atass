@@ -2,18 +2,14 @@ import unittest
 import datetime
 from entities import Route, Spot
 from memory_db import MemoryRouteDataBase
-from json_db import JsonRouteDataBase
 
 class DataBasesTests(unittest.TestCase):
     def memory_db_test(self):
         route = Route(
-            move_from = "Kiyv",
-            move_to = "Warsaw",
-            date = datetime.datetime.now(),
-            travel_time = 100,
-            price = 1200,
+            move_from = Spot(name="Kiyv", price_from_start=0, date=datetime.datetime.now()),
+            move_to = Spot(name="Warsaw", price_from_start=1200, date=datetime.datetime.now()),
             passengers_number = 20,
-            spots = [
+            sub_spots = [
                 Spot(name="Bucha", price_from_start=100, date=datetime.datetime.now()),
                 Spot(name="Rivne", price_from_start=500, date=datetime.datetime.now()),
                 Spot(name="Lutsk", price_from_start=600, date=datetime.datetime.now()),
@@ -26,27 +22,12 @@ class DataBasesTests(unittest.TestCase):
 
         db.add_one(route)
 
-        print(db.get_all(lambda route: route.move_from == "Kiyv")[0])
-    
-    def json_db_tests(self):
-        route = Route(
-            move_from = "Kiyv",
-            move_to = "Warsaw",
-            date = datetime.datetime.now(),
-            travel_time = 100,
-            price = 1200,
-            passengers_number = 20,
-            spots = [
-                Spot(name="Bucha", price_from_start=100, date=datetime.datetime.now()),
-                Spot(name="Rivne", price_from_start=500, date=datetime.datetime.now()),
-                Spot(name="Lutsk", price_from_start=600, date=datetime.datetime.now()),
-                Spot(name="Lviv", price_from_start=800, date=datetime.datetime.now())
+        self.assertEqual(len(db), 1)
 
-            ]
-        )
+        db.add_one(route)
+        db.add_one(route)
 
-        db = JsonRouteDataBase('db/db.json')
+        self.assertEqual(len(db), 3)
 
-        # db.add_one(route)
-
-        print(db.get_all(lambda route: route.move_from == "Kiyv")[0])
+if __name__ == "__main__":
+    unittest.main()
