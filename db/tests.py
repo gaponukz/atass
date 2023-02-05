@@ -15,7 +15,8 @@ class DataBasesTests(unittest.TestCase):
                 Spot(name="Lutsk", price_from_start=600, date=datetime.datetime.now()),
                 Spot(name="Lviv", price_from_start=800, date=datetime.datetime.now())
 
-            ]
+            ],
+            passengers = []
         )
 
         db = MemoryRouteDataBase()
