@@ -38,7 +38,7 @@ class Spot(DictAble):
     date: datetime.datetime
     is_active: bool = True
     price_from_start: int = 0
-    description: MultiLanguages = enpty_languages.copy()
+    description: MultiLanguages = dataclasses.field(default_factory = lambda: enpty_languages.copy())
 
     def archive(self):
         self.is_active = False
@@ -78,10 +78,10 @@ class Route(DictAble):
     '''
     move_from: Spot
     move_to: Spot
-    _passengers_number: int
     sub_spots: list[Spot]
+    _passengers_number: int = dataclasses.field(init=False, repr=False, default=0)
     passengers: list[Passenger] = dataclasses.field(default_factory = lambda: [])
-    description: MultiLanguages = enpty_languages.copy()
+    description: MultiLanguages = dataclasses.field(default_factory = lambda: enpty_languages.copy() )
 
     def app_sub_spot(self, spot: Spot):
         self.sub_spots.append(spot)
