@@ -28,17 +28,15 @@ class Spot(DictAble):
     '''
     Spot is a class representing stop or final point for Route\n
     NOTE: If `price_from_start` if zero it is start point\n\n
-
     Example:
         `Spot(name="Lviv", price_from_start=800, date=datetime.datetime(2023, 1, 21, 14, 0))`\n\n
-
         So we know that we have a stop at 2023-01-21 14:00:00 in Lviv and it costs 800 from start point\n
     '''
     name: str
     date: datetime.datetime
-    is_active: bool = True
     price_from_start: int = 0
-    description: MultiLanguages = enpty_languages.copy()
+    is_active: bool = True
+    description: MultiLanguages = dataclasses.field(default_factory = lambda: enpty_languages.copy())
 
     def archive(self):
         self.is_active = False
@@ -78,12 +76,13 @@ class Route(DictAble):
     '''
     move_from: Spot
     move_to: Spot
-    _passengers_number: int
+    passengers_number: int
     sub_spots: list[Spot]
+    is_active: bool = True
     passengers: list[Passenger] = dataclasses.field(default_factory = lambda: [])
-    description: MultiLanguages = enpty_languages.copy()
+    description: MultiLanguages = dataclasses.field(default_factory = lambda: enpty_languages.copy() )
 
-    def app_sub_spot(self, spot: Spot):
+    def add_sub_spot(self, spot: Spot):
         self.sub_spots.append(spot)
     
     def remove_sub_spot(self, spot_id: str):
@@ -107,17 +106,18 @@ class Route(DictAble):
                 return
         
         raise PassengerNotFoundError()
-    
-    @property
-    def passengers_number(self):
-        return self._passengers_number
 
-    @passengers_number.setter
-    def passenger_number(self, max_passengers_number: int):
+    def set_passenger_number(self, max_passengers_number: int):
         if len(self.passengers) > max_passengers_number:
             raise CannotKillPassengersError(len(self.passengers))
         
-        self._passengers_number = max_passengers_number
+        self.passengers_number = max_passengers_number
+
+    def archive(self):
+        self.is_active = False
+    
+    def unarchive(self):
+        self.is_active = True
 
     @property
     def id(self) -> str:
