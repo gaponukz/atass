@@ -10,4 +10,8 @@ class CannotKillPassengersError(Exception):
 
 class PassengerNotFoundError(Exception):
     def __init__(self):
-         super().__init__("Can not find passenger with that identifier")
+        super().__init__("Can not find passenger with that identifier")
+
+class SpotNotFoundError(Exception):
+    def __init__(self):
+        super().__init__("Can not find spot with that identifier")

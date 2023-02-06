@@ -4,10 +4,11 @@ import datetime
 import hashlib
 
 from errors import *
+from languages import MultiLanguages, enpty_languages
 
 class DictAble(object):
     @classmethod
-    def from_dict(cls, dict_obj):      
+    def from_dict(cls, dict_obj):
         return cls(**{
             key: value for key, value in dict_obj.items() 
             if key in inspect.signature(cls).parameters
@@ -25,18 +26,19 @@ class DictAble(object):
 @dataclasses.dataclass
 class Spot(DictAble):
     '''
-    Spot is a class representing stop or final point for Route 
-    NOTE: If `price_from_start` if zero it is start point
+    Spot is a class representing stop or final point for Route\n
+    NOTE: If `price_from_start` if zero it is start point\n\n
 
     Example:
-        `Spot(name="Lviv", price_from_start=800, date=datetime.datetime(2023, 1, 21, 14, 0))`
+        `Spot(name="Lviv", price_from_start=800, date=datetime.datetime(2023, 1, 21, 14, 0))`\n\n
 
-        So we know that we have a stop at 2023-01-21 14:00:00 in Lviv and it costs 800 from start point
+        So we know that we have a stop at 2023-01-21 14:00:00 in Lviv and it costs 800 from start point\n
     '''
     name: str
     date: datetime.datetime
     is_active: bool = True
     price_from_start: int = 0
+    description: MultiLanguages = enpty_languages.copy()
 
     def archive(self):
         self.is_active = False
@@ -68,14 +70,29 @@ class Passenger(DictAble):
 
 @dataclasses.dataclass
 class Route(DictAble):
+    '''
+    Main class to describe the route.\n
+    On created passengers and sub_spots is enpty, you will add them later.\n
+    `_passengers_number` - limit of route passengers, can be changed very often\n
+    `description` - multi languages description of the route
+    '''
     move_from: Spot
     move_to: Spot
     _passengers_number: int
     sub_spots: list[Spot]
-    passengers: list[Passenger]
+    passengers: list[Passenger] = dataclasses.field(default_factory = lambda: [])
+    description: MultiLanguages = enpty_languages.copy()
 
     def app_sub_spot(self, spot: Spot):
         self.sub_spots.append(spot)
+    
+    def remove_sub_spot(self, spot_id: str):
+        for spot in self.sub_spots:
+            if spot.id == spot_id:
+                self.sub_spots.remove(spot)
+                return
+        
+        raise SpotNotFoundError()
 
     def add_passenger(self, passenger: Passenger):
         if len(self.passengers) == self.passengers_number:
