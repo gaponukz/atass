@@ -91,18 +91,29 @@ class Route(DictAble):
     passengers: list[Passenger] = dataclasses.field(default_factory = lambda: [])
     description: MultiLanguages = dataclasses.field(default_factory = lambda: enpty_languages.copy() )
     id: HashId = dataclasses.field(default_factory = lambda: str(uuid.uuid4()))
-    # TODO: provide a prices functionality
     
     def add_sub_spot(self, spot: Spot):
+        self.prices[spot.id] = [
+            {"place": another_spot.id, "price": None}
+            for another_spot in self.sub_spots + [self.move_from, self.move_to]
+        ]
+
         self.sub_spots.append(spot)
     
     def remove_sub_spot(self, spot_id: HashId):
         for spot in self.sub_spots:
             if spot.id == spot_id:
                 self.sub_spots.remove(spot)
+                self.prices.pop(spot_id, None)
                 return
         
         raise SpotNotFoundError()
+
+    def set_spot_price(self, spot_from_id: HashId, spot_to_id: HashId, price: int):
+        for item in self.prices[spot_from_id]:
+            if item['place'] == spot_to_id:
+                item["price"] = price
+                return
 
     def add_passenger(self, passenger: Passenger):
         if len(self.passengers) == self.passengers_number:
