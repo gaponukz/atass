@@ -6,7 +6,7 @@ from memory_db import MemoryRouteDataBase
 
 class EntitiesTest(unittest.TestCase):
     def test_spot(self):
-        spot = Spot(name="Lviv", price_from_start=800, date=datetime.datetime(2023, 1, 21, 14, 0))
+        spot = Spot(place=Place("Ukraine", "Lviv", "Franko 24"), date=datetime.datetime(2023, 1, 21, 14, 0))
 
         '''
         Check if we can make route active/unactive
@@ -19,8 +19,8 @@ class EntitiesTest(unittest.TestCase):
 
     def test_route(self):
         route = Route(
-            move_from = Spot(name="Kiyv", price_from_start=0, date=datetime.datetime(2023, 1, 21, 14, 0)),
-            move_to = Spot(name="Warsaw", price_from_start=1200, date=datetime.datetime(2023, 1, 23, 10, 30)),
+            move_from = Spot(place=Place("Ukraine", "Kiyv", "Shevchenko 21"), date=datetime.datetime(2023, 1, 21, 14, 0)),
+            move_to = Spot(place=Place("Poland", "Warsaw", "Gabal 10"), date=datetime.datetime(2023, 1, 23, 10, 30)),
             passengers_number = 20,
             sub_spots = [],
             passengers = []
@@ -75,24 +75,24 @@ class DataBaseTests(unittest.TestCase):
         db = MemoryRouteDataBase()
 
         db.add_one(route := Route(
-            move_from = Spot(name="Kiyv", price_from_start=0, date=datetime.datetime(2023, 1, 21, 14, 0)),
-            move_to = Spot(name="Warsaw", price_from_start=1200, date=datetime.datetime(2023, 1, 23, 10, 30)),
+            move_from = Spot(place=Place("Ukraine", "Kiyv", "Shevchenko 21"), date=datetime.datetime(2023, 1, 21, 14, 0)),
+            move_to = Spot(place=Place("Poland", "Warsaw", "Gabal 10"), date=datetime.datetime(2023, 1, 23, 10, 30)),
             passengers_number = 20,
             sub_spots = [],
             passengers = []
         ))
 
         db.add_one(Route(
-            move_from = Spot(name="Kiyv", price_from_start=0, date=datetime.datetime(2023, 2, 1, 12, 40)),
-            move_to = Spot(name="Warsaw", price_from_start=1200, date=datetime.datetime(2023, 2, 3, 16, 0)),
+            move_from = Spot(place=Place("Ukraine", "Kiyv", "Shevchenko 21"), date=datetime.datetime(2023, 2, 1, 12, 40)),
+            move_to = Spot(place=Place("Poland", "Warsaw", "Gabal 10"), date=datetime.datetime(2023, 2, 3, 16, 0)),
             passengers_number = 15,
             sub_spots = [],
             passengers = []
         ))
 
         db.add_one(Route(
-            move_from = Spot(name="Warsaw", price_from_start=0, date=datetime.datetime(2023, 1, 24, 14, 0)),
-            move_to = Spot(name="Kiyv", price_from_start=1200, date=datetime.datetime(2023, 1, 26, 10, 30)),
+            move_from = Spot(place=Place("Poland", "Warsaw", "Gabal 10"), date=datetime.datetime(2023, 1, 24, 14, 0)),
+            move_to = Spot(place=Place("Ukraine", "Kiyv", "Shevchenko 21"), date=datetime.datetime(2023, 1, 26, 10, 30)),
             passengers_number = 20,
             sub_spots = [],
             passengers = []
@@ -109,8 +109,8 @@ class DataBaseTests(unittest.TestCase):
         Check if we correct added route
         '''
         filtered = db.get_all(lambda _route: (
-            _route.move_from.name == "Kiyv"
-            and _route.move_to.name == "Warsaw"
+            _route.move_from.place.city == "Kiyv"
+            and _route.move_to.place.city == "Warsaw"
             and _route.move_from.date == datetime.datetime(2023, 1, 21, 14, 0)
         ))
         
@@ -124,24 +124,24 @@ class DataBaseTests(unittest.TestCase):
         db = MemoryRouteDataBase()
 
         db.add_one(route := Route(
-            move_from = Spot(name="Kiyv", price_from_start=0, date=datetime.datetime(2023, 1, 21, 14, 0)),
-            move_to = Spot(name="Warsaw", price_from_start=1200, date=datetime.datetime(2023, 1, 23, 10, 30)),
+            move_from = Spot(place=Place("Ukraine", "Kiyv", "Shevchenko 21"), date=datetime.datetime(2023, 1, 21, 14, 0)),
+            move_to = Spot(place=Place("Poland", "Warsaw", "Gabal 10"), date=datetime.datetime(2023, 1, 23, 10, 30)),
             passengers_number = 20,
             sub_spots = [],
             passengers = []
         ))
 
         db.add_one(Route(
-            move_from = Spot(name="Kiyv", price_from_start=0, date=datetime.datetime(2023, 2, 1, 12, 40)),
-            move_to = Spot(name="Warsaw", price_from_start=1200, date=datetime.datetime(2023, 2, 3, 16, 0)),
+            move_from = Spot(place=Place("Ukraine", "Kiyv", "Shevchenko 21"), date=datetime.datetime(2023, 2, 1, 12, 40)),
+            move_to = Spot(place=Place("Poland", "Warsaw", "Gabal 10"), date=datetime.datetime(2023, 2, 3, 16, 0)),
             passengers_number = 15,
             sub_spots = [],
             passengers = []
         ))
 
         db.add_one(Route(
-            move_from = Spot(name="Warsaw", price_from_start=0, date=datetime.datetime(2023, 1, 24, 14, 0)),
-            move_to = Spot(name="Kiyv", price_from_start=1200, date=datetime.datetime(2023, 1, 26, 10, 30)),
+            move_from = Spot(place=Place("Poland", "Warsaw", "Gabal 10"), date=datetime.datetime(2023, 1, 24, 14, 0)),
+            move_to = Spot(place=Place("Ukraine", "Kiyv", "Shevchenko 21"), date=datetime.datetime(2023, 1, 26, 10, 30)),
             passengers_number = 20,
             sub_spots = [],
             passengers = []
@@ -150,10 +150,10 @@ class DataBaseTests(unittest.TestCase):
         '''
         Test change one route
         '''
-        changed = db.change_one(route.id, passengers_number = 15, move_to = Spot(name="Warsaw", price_from_start=1300, date=datetime.datetime(2023, 1, 23, 10, 30)))
+        changed = db.change_one(route.id, passengers_number = 15, move_to = Spot(place=Place("Poland", "Warsaw", "Gabal 10"), date=datetime.datetime(2023, 1, 23, 10, 30)))
         self.assertEqual(changed.passengers_number, 15)
         self.assertEqual(route.id, changed.id) # route id/hash changes dynamically
-        self.assertEqual(changed.move_to.price_from_start, 1300)
+        self.assertEqual(changed.move_to.place.city, "Warsaw")
 
         '''
         Test change many
@@ -166,24 +166,24 @@ class DataBaseTests(unittest.TestCase):
         db = MemoryRouteDataBase()
 
         db.add_one(route := Route(
-            move_from = Spot(name="Kiyv", price_from_start=0, date=datetime.datetime(2023, 1, 21, 14, 0)),
-            move_to = Spot(name="Warsaw", price_from_start=1200, date=datetime.datetime(2023, 1, 23, 10, 30)),
+            move_from = Spot(place=Place("Ukraine", "Kiyv", "Shevchenko 21"), date=datetime.datetime(2023, 1, 21, 14, 0)),
+            move_to = Spot(place=Place("Poland", "Warsaw", "Gabal 10"), date=datetime.datetime(2023, 1, 23, 10, 30)),
             passengers_number = 20,
             sub_spots = [],
             passengers = []
         ))
 
         db.add_one(Route(
-            move_from = Spot(name="Kiyv", price_from_start=0, date=datetime.datetime(2023, 2, 1, 12, 40)),
-            move_to = Spot(name="Warsaw", price_from_start=1200, date=datetime.datetime(2023, 2, 3, 16, 0)),
+            move_from = Spot(place=Place("Ukraine", "Kiyv", "Shevchenko 21"), date=datetime.datetime(2023, 2, 1, 12, 40)),
+            move_to = Spot(place=Place("Poland", "Warsaw", "Gabal 10"), date=datetime.datetime(2023, 2, 3, 16, 0)),
             passengers_number = 15,
             sub_spots = [],
             passengers = []
         ))
 
         db.add_one(Route(
-            move_from = Spot(name="Warsaw", price_from_start=0, date=datetime.datetime(2023, 1, 24, 14, 0)),
-            move_to = Spot(name="Kiyv", price_from_start=1200, date=datetime.datetime(2023, 1, 26, 10, 30)),
+            move_from = Spot(place=Place("Poland", "Warsaw", "Gabal 10"), date=datetime.datetime(2023, 1, 24, 14, 0)),
+            move_to = Spot(place=Place("Ukraine", "Kiyv", "Shevchenko 21"), date=datetime.datetime(2023, 1, 26, 10, 30)),
             passengers_number = 20,
             sub_spots = [],
             passengers = []
@@ -193,7 +193,7 @@ class DataBaseTests(unittest.TestCase):
 
         self.assertEqual(len(db), 2)
         
-        db.remove_many(lambda _route: _route.move_from.name == "Warsaw")
+        db.remove_many(lambda _route: _route.move_from.place.city == "Warsaw")
 
         self.assertEqual(len(db), 1)
 
