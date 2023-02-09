@@ -4,7 +4,7 @@ import Counter from "./features/counter/Counter";
 
 function App() {
   return (
-    <div className="">
+    <div className="h-screen" id='QW'>
       <HeadNav />
       <Routes>
         <Route path="/" element={<AllRoutes />}/>
