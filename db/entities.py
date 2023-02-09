@@ -5,10 +5,9 @@ import uuid
 
 from errors import *
 from languages import MultiLanguages, enpty_languages
-from typing import Literal
 
 HashId = str
-PricesSchema = dict[HashId, list[dict[Literal["place", "price"], HashId | int]]]
+PricesSchema = dict[HashId, dict[HashId, int]]
 
 class DictAble(object):
     @classmethod
@@ -92,13 +91,12 @@ class Route(DictAble):
     rules: MultiLanguages = dataclasses.field(default_factory = lambda: enpty_languages.copy() )
     transportation_rules: MultiLanguages = dataclasses.field(default_factory = lambda: enpty_languages.copy() )
     id: HashId = dataclasses.field(default_factory = lambda: str(uuid.uuid4()))
+
+    def __post_init__(self):
+        self.prices[self.move_from.id] = {}
     
     def add_sub_spot(self, spot: Spot):
-        self.prices[spot.id] = [
-            {"place": another_spot.id, "price": None}
-            for another_spot in self.sub_spots + [self.move_from, self.move_to]
-        ]
-
+        self.prices[spot.id] = {}
         self.sub_spots.append(spot)
     
     def remove_sub_spot(self, spot_id: HashId):
@@ -110,11 +108,12 @@ class Route(DictAble):
         
         raise SpotNotFoundError()
 
-    def set_spot_price(self, spot_from_id: HashId, spot_to_id: HashId, price: int):
-        for item in self.prices[spot_from_id]:
-            if item['place'] == spot_to_id:
-                item["price"] = price
-                return
+    def set_spot_price(self, spot_from: Spot, spot_to: Spot, price: int):
+        if spot_from.date < spot_to.date:
+            self.prices[spot_from.id][spot_to.id] = price
+        
+        else:
+            self.prices[spot_to.id][spot_from.id] = price
 
     def add_passenger(self, passenger: Passenger):
         if len(self.passengers) == self.passengers_number:

@@ -1,1 +1,70 @@
-[]
+[
+    {
+        "move_from": {
+            "place": {
+                "country": "Ukraine",
+                "city": "Kiyv",
+                "street": "Shevchenko 21",
+                "map_url": null,
+                "id": "2ec1c6eb-5f62-449a-a2a1-cae04a43760b"
+            },
+            "date": "2023-01-21 14:00:00",
+            "is_active": true,
+            "id": "5b496fdd-d7ce-49ef-b33a-e2c5d3ed05a4"
+        },
+        "move_to": {
+            "place": {
+                "country": "Poland",
+                "city": "Warsaw",
+                "street": "Gabal 10",
+                "map_url": null,
+                "id": "be0b99a6-c6cb-4250-8c26-ca5ea8ad860f"
+            },
+            "date": "2023-01-23 10:30:00",
+            "is_active": true,
+            "id": "5594f2cf-43db-43aa-b5f8-806afea1dc76"
+        },
+        "passengers_number": 20,
+        "sub_spots": [
+            {
+                "place": {
+                    "country": "Ukraine",
+                    "city": "Lviv",
+                    "street": "Shevchenko 21",
+                    "map_url": null,
+                    "id": "44537e0c-8d02-49cb-aca2-1898e491d2d5"
+                },
+                "date": "2023-01-22 10:00:00",
+                "is_active": true,
+                "id": "90fad26a-81a7-4254-be33-86a7d4b12ecf"
+            }
+        ],
+        "is_active": true,
+        "prices": {
+            "5b496fdd-d7ce-49ef-b33a-e2c5d3ed05a4": {
+                "5594f2cf-43db-43aa-b5f8-806afea1dc76": 1500,
+                "90fad26a-81a7-4254-be33-86a7d4b12ecf": 800
+            },
+            "90fad26a-81a7-4254-be33-86a7d4b12ecf": {
+                "5594f2cf-43db-43aa-b5f8-806afea1dc76": 400
+            }
+        },
+        "passengers": [],
+        "description": {
+            "en": {},
+            "pl": {},
+            "ua": {}
+        },
+        "rules": {
+            "en": {},
+            "pl": {},
+            "ua": {}
+        },
+        "transportation_rules": {
+            "en": {},
+            "pl": {},
+            "ua": {}
+        },
+        "id": "6cc5901a-069c-42b3-bb03-038eb6addebd"
+    }
+]

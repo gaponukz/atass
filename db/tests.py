@@ -45,31 +45,19 @@ class EntitiesTest(unittest.TestCase):
             datetime.datetime(2023, 1, 22, 10, 0)
         ))
 
-        self.assertEqual(route.prices[spot.id], [
-            {'place': route.move_from.id, 'price': None},
-            {'place': route.move_to.id, 'price': None}
-        ])
+        route.set_spot_price(route.move_from, route.move_to, 1500)
+        route.set_spot_price(spot, route.move_from, 800)
+        route.set_spot_price(spot, route.move_to, 400)
+
+        self.assertEqual(route.prices, {
+            route.move_from.id: { route.move_to.id: 1500, spot.id: 800 },
+            spot.id: { route.move_to.id: 400 },
+        })
+
         route.add_sub_spot(another_spot := Spot(
             Place("Ukraine", "Starychi", "Sichovi stril'si 32"),
             datetime.datetime(2023, 1, 22, 13, 0)
         ))
-
-        self.assertEqual(route.prices[another_spot.id], [
-            {'place': spot.id, 'price': None},
-            {'place': route.move_from.id, 'price': None},
-            {'place': route.move_to.id, 'price': None}
-        ])
-
-        # TODO: this should work (in the future)
-        route.set_spot_price(spot.id, route.move_from.id, 900)
-        route.set_spot_price(spot.id, another_spot.id, 100)
-        route.set_spot_price(spot.id, route.move_to.id, 300)
-
-        self.assertEqual(route.prices[spot.id], [
-            {'place': another_spot.id, 'price': 100},
-            {'place': route.move_from.id, 'price': 900},
-            {'place': route.move_to.id, 'price': 300}  
-        ])
 
         self.assertEqual(len(route.sub_spots), 2)
         route.remove_sub_spot(spot.id)
