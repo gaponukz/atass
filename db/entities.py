@@ -56,7 +56,6 @@ class Spot(DictAble):
     place: Place
     date: datetime.datetime
     is_active: bool = True
-    description: MultiLanguages = dataclasses.field(default_factory = lambda: enpty_languages.copy())
     id: HashId = dataclasses.field(default_factory = lambda: str(uuid.uuid4()))
 
     def archive(self):
@@ -90,6 +89,8 @@ class Route(DictAble):
     prices: PricesSchema = dataclasses.field(default_factory = lambda: {} )
     passengers: list[Passenger] = dataclasses.field(default_factory = lambda: [])
     description: MultiLanguages = dataclasses.field(default_factory = lambda: enpty_languages.copy() )
+    rules: MultiLanguages = dataclasses.field(default_factory = lambda: enpty_languages.copy() )
+    transportation_rules: MultiLanguages = dataclasses.field(default_factory = lambda: enpty_languages.copy() )
     id: HashId = dataclasses.field(default_factory = lambda: str(uuid.uuid4()))
     
     def add_sub_spot(self, spot: Spot):
