@@ -68,6 +68,7 @@ class Passenger(DictAble):
     first_name: str
     last_name: str
     phone_number: str
+    is_authenticated: bool = False
     password_hash: str = None
     current_spot: Spot = None
     id: HashId = dataclasses.field(default_factory = lambda: str(uuid.uuid4()))
