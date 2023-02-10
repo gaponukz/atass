@@ -3,8 +3,8 @@ import inspect
 import datetime
 import uuid
 
-from errors import *
-from languages import MultiLanguages, enpty_languages
+from utils.errors import *
+from utils.languages import MultiLanguages, enpty_languages
 
 HashId = str
 PricesSchema = dict[HashId, dict[HashId, int]]
@@ -70,7 +70,6 @@ class Passenger(DictAble):
     phone_number: str
     is_authenticated: bool = False
     password_hash: str = None
-    current_spot: Spot = None
     id: HashId = dataclasses.field(default_factory = lambda: str(uuid.uuid4()))
 
 @dataclasses.dataclass
@@ -141,3 +140,9 @@ class Route(DictAble):
     
     def unarchive(self):
         self.is_active = True
+
+@dataclasses.dataclass
+class Bus(DictAble):
+    model: str
+    image: str
+    description: MultiLanguages = dataclasses.field(default_factory = lambda: enpty_languages.copy() )

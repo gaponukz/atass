@@ -1,7 +1,7 @@
 import typing
 import abc
 
-from entities import Route
+from utils.entities import Route
 
 class IRouteDataBase(abc.ABC):
     '''

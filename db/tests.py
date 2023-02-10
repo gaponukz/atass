@@ -1,8 +1,8 @@
 import unittest
 import datetime
-from entities import *
-from errors import *
-from memory_db import MemoryRouteDataBase
+from utils.entities import *
+from utils.errors import *
+from memory_route_db import MemoryRouteDataBase
 
 class EntitiesTest(unittest.TestCase):
     def test_spot(self):

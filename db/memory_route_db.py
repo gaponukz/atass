@@ -1,7 +1,7 @@
 import typing
 
-from db import IRouteDataBase
-from entities import Route
+from route_db import IRouteDataBase
+from utils.entities import Route
 
 class MemoryRouteDataBase(IRouteDataBase):
     def __init__(self):
