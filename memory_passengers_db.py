@@ -1,7 +1,7 @@
 import typing
 
-from passenegr_db import IPassengerDatabase
-from utils.entities import Passenger, HashId
+from db.passenegr_db import IPassengerDatabase
+from db.utils.entities import Passenger, HashId
 
 class MemoryPassengerDatabase(IPassengerDatabase):
     def __init__(self):

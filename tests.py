@@ -1,7 +1,7 @@
 import unittest
 import datetime
-from utils.entities import *
-from utils.errors import *
+from db.utils.entities import *
+from db.utils.errors import *
 from memory_route_db import MemoryRouteDataBase
 
 class EntitiesTest(unittest.TestCase):

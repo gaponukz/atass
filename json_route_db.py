@@ -4,8 +4,8 @@ import typing
 import json
 import os
 
-from route_db import IRouteDataBase
-from utils.entities import Route
+from db.route_db import IRouteDataBase
+from db.utils.entities import Route
 
 def datetime_parser(json_dict):
     for key, value in json_dict.items():

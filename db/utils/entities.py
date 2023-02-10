@@ -3,8 +3,8 @@ import inspect
 import datetime
 import uuid
 
-from utils.errors import *
-from utils.languages import MultiLanguages, enpty_languages
+from .errors import *
+from .languages import MultiLanguages, enpty_languages
 
 HashId = str
 PricesSchema = dict[HashId, dict[HashId, int]]

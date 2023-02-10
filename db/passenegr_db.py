@@ -1,7 +1,7 @@
 import typing
 import abc
 
-from utils.entities import Passenger
+from .utils.entities import Passenger
 
 class IPassengerDatabase(abc.ABC):
     '''
