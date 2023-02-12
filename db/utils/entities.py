@@ -37,6 +37,32 @@ class DictAble(object):
         return self.to_dict()
 
 @dataclasses.dataclass
+class Bus(DictAble):
+    model: str
+    image: str
+    description: MultiLanguages = dataclasses.field(default_factory = lambda: enpty_languages.copy() )
+
+@dataclasses.dataclass
+class User(DictAble):
+    first_name: str
+    last_name: str
+    phone_number: str
+    email_address: str = None
+
+    def __eq__(self, other: 'User'):
+        return (
+            self.first_name == other.first_name
+            and self.last_name == other.last_name
+            and self.phone_number == other.phone_number
+        )
+
+@dataclasses.dataclass
+class AuthorizedUser(User):
+    is_authenticated: bool = False
+    password_hash: str = None
+    id: HashId = dataclasses.field(default_factory = lambda: str(uuid.uuid4()))
+
+@dataclasses.dataclass
 class Place(DictAble):
     country: str
     city: str
@@ -64,12 +90,8 @@ class Spot(DictAble):
         self.is_active = True
 
 @dataclasses.dataclass
-class Passenger(DictAble):
-    first_name: str
-    last_name: str
-    phone_number: str
-    is_authenticated: bool = False
-    password_hash: str = None
+class Passenger(User):
+    moving_towards: Spot = None
     id: HashId = dataclasses.field(default_factory = lambda: str(uuid.uuid4()))
 
 @dataclasses.dataclass
@@ -115,10 +137,13 @@ class Route(DictAble):
         else:
             self.prices[spot_to.id][spot_from.id] = price
 
-    def add_passenger(self, passenger: Passenger):
+    def add_passenger(self, passenger: Passenger, moving_towards: Spot = None):
         if len(self.passengers) == self.passengers_number:
             raise RouteBusIsFullError(self.passengers_number)
 
+        if not moving_towards:
+            moving_towards = self.move_to
+        
         self.passengers.append(passenger)
     
     def remove_passenger(self, passenger_id: HashId):
@@ -140,9 +165,3 @@ class Route(DictAble):
     
     def unarchive(self):
         self.is_active = True
-
-@dataclasses.dataclass
-class Bus(DictAble):
-    model: str
-    image: str
-    description: MultiLanguages = dataclasses.field(default_factory = lambda: enpty_languages.copy() )

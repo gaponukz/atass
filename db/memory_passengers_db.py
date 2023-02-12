@@ -1,28 +1,28 @@
 import typing
 
 from db.passenger_db import IPassengerDatabase
-from db.utils.entities import Passenger, HashId
+from db.utils.entities import AuthorizedUser, HashId
 
 class MemoryPassengerDatabase(IPassengerDatabase):
     def __init__(self):
-        self.passengers: dict[HashId, Passenger] = {}
+        self.passengers: dict[HashId, AuthorizedUser] = {}
 
-    def get_all(self, _filter: typing.Callable[[Passenger], bool] = lambda _: True) -> list[Passenger]:
+    def get_all(self, _filter: typing.Callable[[AuthorizedUser], bool] = lambda _: True) -> list[AuthorizedUser]:
         return list(filter(_filter, self.passengers.items()))
 
-    def get_one(self, passenger_id: str) -> Passenger:
+    def get_one(self, passenger_id: str) -> AuthorizedUser:
         return self.passengers.get(passenger_id)
 
-    def add_one(self, passenger: Passenger):
+    def add_one(self, passenger: AuthorizedUser):
         self.passengers[passenger.id] = passenger
 
-    def register_one(self, passenger: Passenger, password_hash: str):
+    def register_one(self, passenger: AuthorizedUser, password_hash: str):
         passenger.is_authenticated = True
         passenger.password_hash = password_hash
 
         self.add_one(passenger)
         
-    def login(self, phone: str, password_hash: str) -> Passenger:
+    def login(self, phone: str, password_hash: str) -> AuthorizedUser:
         maybe_passengers = self.get_all(lambda _passenger: _passenger.phone_number == phone)
 
         if maybe_passengers:
