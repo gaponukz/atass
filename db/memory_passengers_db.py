@@ -1,5 +1,6 @@
 import typing
 
+from db.utils.errors import UserNotFoundError
 from db.passenger_db import IPassengerDatabase
 from db.utils.entities import AuthorizedUser, HashId
 
@@ -8,7 +9,7 @@ class MemoryPassengerDatabase(IPassengerDatabase):
         self.passengers: dict[HashId, AuthorizedUser] = {}
 
     def get_all(self, _filter: typing.Callable[[AuthorizedUser], bool] = lambda _: True) -> list[AuthorizedUser]:
-        return list(filter(_filter, self.passengers.items()))
+        return list(filter(_filter, self.passengers.values()))
 
     def get_one(self, passenger_id: str) -> AuthorizedUser:
         return self.passengers.get(passenger_id)
@@ -29,6 +30,8 @@ class MemoryPassengerDatabase(IPassengerDatabase):
             passenger = maybe_passengers[0]
             if passenger.password_hash == password_hash:
                 return passenger
+        
+        raise UserNotFoundError()
 
     def remove_one(self, passenger_id: str):
         self.passengers.pop(passenger_id)

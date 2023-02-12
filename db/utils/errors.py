@@ -15,3 +15,7 @@ class PassengerNotFoundError(Exception):
 class SpotNotFoundError(Exception):
     def __init__(self):
         super().__init__("Can not find spot with that identifier")
+
+class UserNotFoundError(Exception):
+    def __init__(self):
+        super().__init__("Can not find passender in database")
