@@ -91,6 +91,7 @@ class Spot(DictAble):
 
 @dataclasses.dataclass
 class Passenger(User):
+    moving_from: Spot = None
     moving_towards: Spot = None
     id: HashId = dataclasses.field(default_factory = lambda: str(uuid.uuid4()))
 
@@ -137,12 +138,18 @@ class Route(DictAble):
         else:
             self.prices[spot_to.id][spot_from.id] = price
 
-    def add_passenger(self, passenger: Passenger, moving_towards: Spot = None):
-        if len(self.passengers) == self.passengers_number:
+    def add_passenger(self, passenger: Passenger, moving_from: Spot = None, moving_towards: Spot = None):
+        # TODO: take into account bus boarding and disembarking
+        # NOTE: all logic in __has_enough_seats function
+        
+        if len(self.passengers) == self.passengers_number: # this is not correct
             raise RouteBusIsFullError(self.passengers_number)
 
+        if not moving_from:
+            passenger.moving_from = self.move_from
+        
         if not moving_towards:
-            moving_towards = self.move_to
+            passenger.moving_towards = self.move_to
         
         self.passengers.append(passenger)
     
@@ -165,3 +172,28 @@ class Route(DictAble):
     
     def unarchive(self):
         self.is_active = True
+    
+    def __has_enough_seats(self) -> bool:
+        # TODO: need to implement
+        current_bus_seats = 0
+
+        all_spots = self.sub_spots.copy() + [self.move_to, self.move_from]
+
+        for i in range(len(all_spots)):
+            for j in range(i + 1, len(all_spots)):
+                move_from = all_spots[i]
+                move_to = all_spots[j]
+
+        return True
+
+@dataclasses.dataclass
+class Path(DictAble):
+    '''
+    Path struct is describe path between spots of some route(s).
+    '''
+    move_from: Spot
+    move_to: Spot
+    price: int
+    root_route_id: HashId
+    passengers: list[Passenger] = dataclasses.field(default_factory = lambda: [])
+    id: HashId = dataclasses.field(default_factory = lambda: str(uuid.uuid4()))

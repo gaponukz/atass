@@ -5,7 +5,7 @@ from db.utils.entities import Route
 
 class MemoryRouteDataBase(IRouteDataBase):
     def __init__(self):
-        self.routes = []
+        self.routes: list[Route] = []
     
     def get_all(self, _filter: typing.Callable[[Route], bool] = lambda _: True) -> list[Route]:
         return [route for route in self.routes if _filter(route)]
