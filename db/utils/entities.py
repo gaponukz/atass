@@ -1,49 +1,31 @@
 import dataclasses
-import inspect
 import datetime
 import uuid
 
+from .utils import *
 from .errors import *
 from .languages import MultiLanguages, enpty_languages
 
 HashId = str
 PricesSchema = dict[HashId, dict[HashId, int]]
 
-class DictAble(object):
-    @classmethod
-    def from_dict(cls, dict_obj):
-        new_object = {}
-
-        for key, value in dict_obj.items():
-            dataclasses.is_dataclass
-            if key in inspect.signature(cls).parameters:
-                ThisClass = cls.__annotations__[key]
-                
-                if dataclasses.is_dataclass(ThisClass):
-                    new_object[key] = ThisClass.from_dict(value)
-                
-                else:
-                    new_object[key] = value
-        
-        return cls(**new_object)
-
-    def to_dict(self):
-        dictionary = dataclasses.asdict(self)
-        dictionary.update({"id": self.id})
-
-        return dictionary
-    
-    def __dict__(self):
-        return self.to_dict()
-
+@enforce_types
 @dataclasses.dataclass
 class Bus(DictAble):
+    '''
+    NOTE: Bus struck used id database not in routes logic
+    Maybe in future for image: str -> list[str] (images)
+    '''
     model: str
     image: str
     description: MultiLanguages = dataclasses.field(default_factory = lambda: enpty_languages.copy() )
 
+@enforce_types
 @dataclasses.dataclass
 class User(DictAble):
+    '''
+    Base user struct used to describe soft user (even not authed)
+    '''
     first_name: str
     last_name: str
     phone_number: str
@@ -56,14 +38,19 @@ class User(DictAble):
             and self.phone_number == other.phone_number
         )
 
+@enforce_types
 @dataclasses.dataclass
 class AuthorizedUser(User):
     is_authenticated: bool = False
     password_hash: str = None
     id: HashId = dataclasses.field(default_factory = lambda: str(uuid.uuid4()))
 
+@enforce_types
 @dataclasses.dataclass
 class Place(DictAble):
+    '''
+    Place struct is like a point in Earth
+    '''
     country: str
     city: str
     street: str
@@ -89,12 +76,14 @@ class Spot(DictAble):
     def unarchive(self):
         self.is_active = True
 
+@enforce_types
 @dataclasses.dataclass
 class Passenger(User):
     moving_from: Spot = None
     moving_towards: Spot = None
     id: HashId = dataclasses.field(default_factory = lambda: str(uuid.uuid4()))
 
+@enforce_types
 @dataclasses.dataclass
 class Route(DictAble):
     '''
@@ -186,6 +175,7 @@ class Route(DictAble):
 
         return True
 
+@enforce_types
 @dataclasses.dataclass
 class Path(DictAble):
     '''
