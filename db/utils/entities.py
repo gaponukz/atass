@@ -162,7 +162,7 @@ class Route(DictAble):
     def unarchive(self):
         self.is_active = True
     
-    def __has_enough_seats(self) -> bool:
+    def __has_enough_seats_for(self, passenger: Passenger) -> bool:
         # TODO: need to implement
         current_bus_seats = 0
 
