@@ -1,0 +1,50 @@
+body{
+    margin:0;
+    font-family: 'Roboto Mono', monospace;
+    font-family: 'Shantell Sans', cursive;
+}
+.container{
+    margin: 0px 166px;
+}
+.main-page{
+    background-image: url(q.PNG);
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size:cover;
+}
+.header-line{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.nav-item{
+    text-align: center;
+    color:black;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 15px;
+    margin-right: 29px;
+}
+.nav-item:hover{
+    color:#fce38a;
+}
+.photos{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.child {
+    background: #ffffff;
+    border: 1px solid #ffffff;
+    padding: 10px;
+    float: left;
+    width: 23.5%;
+    margin-right: 2%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    
+}
+.child:last-child {
+    margin-right: 0;
+}
