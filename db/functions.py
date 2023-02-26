@@ -1,34 +1,30 @@
 from utils.entities import *
 from utils.errors import *
+from typing import TypedDict
+import datetime
 
-def get_unique_routes(routes: list[Route]) -> list[Route]:
-    unique: dict[str, Route] = {}
+class ShortRoute(TypedDict):
+    move_from: dict
+    move_to: dict
+    count: int
+
+def get_unique_routes(routes: list[Route]) -> dict[str, ShortRoute]:
+    unique: dict[str, ShortRoute] = {}
 
     for route in routes:
-        key = route.move_from.place.city + route.move_to.place.city
-        
-        unique[key] = route
+        key = f"{route.move_from.place.city}-{route.move_to.place.city}"
+
+        if not unique[key].get(key):
+            unique[key] = {
+                "move_from": route.move_from.place.to_dict(),
+                "move_to": route.move_to.place.to_dict(),
+                "count": 0
+            }
+        unique[key]["count"] += 1
     
-    return list(unique.values())
+    return unique
 
-def generate_pathes_from_route(route: Route) -> list[Path]:
-    pathes: list[Path] = []
-    all_spots = route.sub_spots.copy() + [route.move_to, route.move_from]
+def is_actual_route(route: Route) -> bool:    
+    return route.move_to.date < datetime.datetime.now()
 
-    for i in range(len(all_spots)):
-        for j in range(i + 1, len(all_spots)):
-            move_from = all_spots[i]
-            move_to = all_spots[j]
 
-            pathes.append(Path(
-                move_from = move_from,
-                move_to = move_to,
-                root_route_id = route.id,
-                price = route.prices[move_from.id][move_to.id],
-                passengers = [
-                    passenger for passenger in route.passengers 
-                    if passenger.moving_from.id == move_from.id and passenger.moving_towards.id == move_to.id
-                ]
-            ))
-
-    return pathes
