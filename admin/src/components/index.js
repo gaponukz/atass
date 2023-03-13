@@ -1,13 +1,15 @@
 import HeadNav from "./HeadNav";
 import AllRoutes from "./AllRoutes";
 import CreateRoute from "./CreateRoute";
-import AllBuses from "./AllBuses";
 import AllUsers from "./AllUsers";
+import RouteUniqueDetail from "./RouteUniqueDetail";
+import ShowInfoDetail from "./ShowInfoDetail";
 
 export {
     HeadNav,
     AllRoutes,
     CreateRoute,
-    AllBuses,
-    AllUsers
+    AllUsers,
+    RouteUniqueDetail,
+    ShowInfoDetail
 }

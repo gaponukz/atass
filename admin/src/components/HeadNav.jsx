@@ -14,13 +14,9 @@ const HeadNav = () => {
             className="mt-1"
             >Маршрути</NavLink>
           <NavLink 
-            to="/buses"
-            className="mt-1"
-          >Автобуси</NavLink>
-          <NavLink 
             to="/users"
             className="mt-1"
-          >Користувачі</NavLink>
+            >Користувачі</NavLink>
         </Container>
       </Navbar>
 
