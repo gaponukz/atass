@@ -378,7 +378,7 @@ const RouteUniqueDetail = () => {
     const handleCloseDelete = () => setOpenDelete(false);
 
     return (
-        <div className='p-8'>
+        <div className='bg-white p-8'>
             <div className='flex flex-col items-center justify-center'>
                 <div className='border-2 border-gray-300 rounded-lg w-2/4 mt-[50px]'>
                     <div className='p-2 m-4 border-2 border-red-300 mr-[300px] w-[305px] rounded-md'>

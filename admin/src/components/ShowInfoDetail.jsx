@@ -1,41 +1,14 @@
 import Table from "./Table";
 
-
-
-
 const ShowInfoDetail = (props) => {
-    //const arr = []
 
-    // const id1 = props.info.move_from.id;
-    // const obj1 = {}
-    // obj1[id1] = props.info.move_from.place.city
-    // arr.push(obj1);
-
-    // const id2 = props.info.move_to.id;
-    // const obj2 = {}
-    // obj2[id2] = props.info.move_to.place.city
-
-    
-    //arr.push(obj2);
-
-    // for (let i = 0; i < props.info.sub_spots.length; i++) {
-    //     const id1 = props.info.sub_spots[i].id;
-    //     const obj1 = {}
-    //     obj1[id1] = props.info.sub_spots[i].place.city
-
-    //     arr.push(obj1);
-    // }
-
-    //console.log(arr);
     const arr = []
     arr.push(props.info.move_from)
     for (let i = 0; i < props.info.sub_spots.length; i++) {
         arr.push(props.info.sub_spots[i]);
     }
-    //arr.push(props.clear.move_to);
 
     const arr1 = []
-    //arr1.push(props.clear.move_from)
     for (let i = 0; i < props.info.sub_spots.length; i++) {
         arr1.push(props.info.sub_spots[i]);
     }
@@ -57,7 +30,6 @@ const ShowInfoDetail = (props) => {
                 </div>
 
                 <div className="">
-                    {/* Start */}
                     <div className="w-[286px] h-auto border-2 border-grey-600 rounded-lg mr-[50px] mt-2">
                         <div className="p-2">
                             <p className="text-2xl font-bold ">{props.info.move_from.place.city}</p>
@@ -74,7 +46,7 @@ const ShowInfoDetail = (props) => {
                                 passenger.moving_from.place.city === props.info.move_from.place.city &&
                                 passenger.moving_from.place.street === props.info.move_from.place.street)
                                 return (
-                                    <div className="border-t-2 border-grey-600 flex flex-row justify-start pt-1 gap-x-2">
+                                    <div key={passenger.moving_from.id} className="border-t-2 border-grey-600 flex flex-row justify-start pt-1 gap-x-2">
                                         <div className="w-auto h-[25px] bg-blue-600 px-[5px] rounded-lg font-bold text-white ml-[20px]">Заходить</div>
                                         <p>{passenger.first_name} {passenger.last_name}</p>
                                     </div>
@@ -83,7 +55,7 @@ const ShowInfoDetail = (props) => {
                     </div>
 
                     {props.info.sub_spots.map((road, index) => (
-                        <div className="w-[286px] h-auto border-2 border-grey-600 rounded-lg mr-[50px] mt-2" key={road.place.id}>
+                        <div key={index} className="w-[286px] h-auto border-2 border-grey-600 rounded-lg mr-[50px] mt-2" >
                             <div className="p-2">
                                 <p className="text-2xl font-bold ">{road.place.city}</p>
                                 <div className="flex flex-row gap-1">
@@ -132,19 +104,15 @@ const ShowInfoDetail = (props) => {
                             </div>
                             
                             <div className="ml-[80px] mb-[10px]">
-                            <Table clear={props.info}/>
+                            <Table arr={arr} arr1={arr1} clear={props.info}/>
                             </div>
                         </div>
                         
                     </div>
 
-                    <div className="h-[300px]">
-                            
-                    </div>
+                    <div className="h-[300px]"></div>
                 </div>
-                
             </div>
-            
         </div>
     )
 }
