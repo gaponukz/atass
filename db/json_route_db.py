@@ -5,7 +5,7 @@ import json
 import os
 
 from db.route_db import IRouteDataBase
-from db.utils.entities import Route
+from logic.entities import Route
 
 def datetime_parser(json_dict):
     for key, value in json_dict.items():

@@ -1,28 +1,17 @@
-from flask import Flask, request, abort, jsonify
-from db.memory_route_db import MemoryRouteDataBase
-from db.utils.entities import Route
-import utils
+from fastapi import FastAPI
+from logic.entities import User
 
-server = Flask(__name__)
-db = MemoryRouteDataBase()
+app = FastAPI() # uvicorn server:app --reload
 
-@server.post('/add_route')
-@utils.auth_required
-def add_new_route_page():
-    try:
-        json_route = request.json
-        route = Route.from_dict(json_route)
-        db.add_one(route)
+@app.get("/get_user")
+def read_root(user_id: str) -> str:
+    return {
+        "id" : user_id,
+        "user": User(
+            first_name = "Adam",
+            last_name = "And",
+            phone_number = "38063856332",
+            email_address = "user@gmail.com"
+        )
+    }
 
-        return json_route
-    
-    except Exception as error:
-        print(error)
-        abort(400, description='Non valid route')
-
-@server.get('/get_routes')
-def get_public_routes_page():
-    return jsonify(db.get_all())
-
-if __name__ == '__main__':
-    server.run(port=8000, debug=True)

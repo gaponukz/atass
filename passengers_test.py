@@ -1,6 +1,6 @@
 import unittest
-from db.utils.entities import AuthorizedUser
-from db.utils.errors import UserNotFoundError
+from logic.entities import AuthorizedUser
+from logic.errors import UserNotFoundError
 from db.memory_passengers_db import MemoryPassengerDatabase
 
 class EntitiesTest(unittest.TestCase):
@@ -8,7 +8,7 @@ class EntitiesTest(unittest.TestCase):
         db = MemoryPassengerDatabase()
         self.assertEqual(len(db), 0)
 
-        passenger = AuthorizedUser("Mark", "Dor", "3804628643")
+        passenger = AuthorizedUser(first_name="Mark", last_name= "Dor", phone_number="3804628643")
 
         db.add_one(passenger)
         self.assertEqual(len(db), 1)

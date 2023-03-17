@@ -1,5 +1,5 @@
-from utils.entities import *
-from utils.errors import *
+from .entities import *
+from .errors import *
 from typing import TypedDict
 import datetime
 
@@ -26,5 +26,3 @@ def get_unique_routes(routes: list[Route]) -> dict[str, ShortRoute]:
 
 def is_actual_route(route: Route) -> bool:    
     return route.move_to.date < datetime.datetime.now()
-
-

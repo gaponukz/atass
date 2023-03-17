@@ -1,8 +1,8 @@
 import typing
 
-from db.utils.errors import UserNotFoundError
+from logic.errors import UserNotFoundError
 from db.passenger_db import IPassengerDatabase
-from db.utils.entities import AuthorizedUser, HashId
+from logic.entities import AuthorizedUser, HashId
 
 class MemoryPassengerDatabase(IPassengerDatabase):
     def __init__(self):
