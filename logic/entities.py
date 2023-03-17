@@ -90,3 +90,8 @@ class Path(pydantic.BaseModel):
     root_route_id: HashId
     passengers: list[Passenger] = []
     id: HashId = str(uuid.uuid4())
+
+class ShortRoute(typing.TypedDict):
+    move_from: dict
+    move_to: dict
+    count: int

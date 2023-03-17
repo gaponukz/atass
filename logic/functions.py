@@ -1,12 +1,6 @@
-from .entities import *
-from .errors import *
-from typing import TypedDict
+from logic.entities import *
+from logic.errors import *
 import datetime
-
-class ShortRoute(TypedDict):
-    move_from: dict
-    move_to: dict
-    count: int
 
 def get_unique_routes(routes: list[Route]) -> dict[str, ShortRoute]:
     unique: dict[str, ShortRoute] = {}
@@ -16,8 +10,8 @@ def get_unique_routes(routes: list[Route]) -> dict[str, ShortRoute]:
 
         if not unique[key].get(key):
             unique[key] = {
-                "move_from": route.move_from.place.to_dict(),
-                "move_to": route.move_to.place.to_dict(),
+                "move_from": route.move_from.place.dict(),
+                "move_to": route.move_to.place.dict(),
                 "count": 0
             }
         unique[key]["count"] += 1
