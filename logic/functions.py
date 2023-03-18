@@ -47,10 +47,10 @@ async def get_unique_routes() -> list[logic.entities.ShortRoute]:
     for route in routes:
         key = f"{route.move_from.place.city}-{route.move_to.place.city}"
 
-        if not unique[key].get(key):
+        if not unique.get(key):
             unique[key] = {
-                "move_from": route.move_from.place.dict(),
-                "move_to": route.move_to.place.dict(),
+                "move_from": route.move_from.place,
+                "move_to": route.move_to.place,
                 "count": 0
             }
         unique[key]["count"] += 1

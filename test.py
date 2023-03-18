@@ -1,40 +1,22 @@
-import dataclasses
-import pprint
-import typing
+from db.json_route_db import JsonRouteDataBase
+from logic.entities import *
 
-@dataclasses.dataclass
-class Passenger:
-    name: str
-    move_from: str
-    move_to: str
+db = JsonRouteDataBase()
 
-BUS_SITS: typing.Final = 5 # Max of sits in bus
-AVIABLE = typing.Literal['A', 'B', 'C', 'D'] # All (sub)spots
-BUS_PATH: typing.Final = typing.get_args(AVIABLE)
+db.add_one(route := Route(
+    move_from = Spot(place=Place(country="Ukraine", city="Kiyv", street="Shevchenko 21"), date=datetime.datetime(2023, 1, 21, 14, 0)),
+    move_to = Spot(place=Place(country="Poland", city="Warsaw", street="Gabal 10"), date=datetime.datetime(2023, 1, 23, 10, 30)),
+    passengers_number = 20
+))
 
-sits: dict[typing.Literal[AVIABLE], dict[typing.Literal[AVIABLE], int]] = {}
+db.add_one(Route(
+    move_from = Spot(place=Place(country="Ukraine", city="Kiyv", street="Shevchenko 21"), date=datetime.datetime(2023, 2, 1, 12, 40)),
+    move_to = Spot(place=Place(country="Poland", city="Warsaw", street="Gabal 10"), date=datetime.datetime(2023, 2, 3, 16, 0)),
+    passengers_number = 15
+))
 
-passengers: list[Passenger] = [
-    Passenger("Adam", "A", "D"),
-    Passenger("Max", "A", "C"),
-    Passenger("Anna", "B", "D"),
-    Passenger("Olivia", "B", "D"),
-    Passenger("Ethan", "B", "D"),
-    Passenger("Charlotte", "B", "D"),
-    Passenger("Aiden", "B", "D"),
-    Passenger("Amelia", "B", "D"),
-    Passenger("Ava", "B", "D"),
-    Passenger("Sophia", "B", "D")
-]
-
-sits = {item: {jtem: 0 for jtem in BUS_PATH if jtem != item} for item in BUS_PATH} # all aviable from-to routes
-
-if __name__ == "__main__":
-    for passenger in passengers:
-        for spot in BUS_PATH[BUS_PATH.index(passenger.move_from)+1:BUS_PATH.index(passenger.move_to)]:
-            if sits[passenger.move_from][spot] == BUS_SITS:
-                raise type("BusFullError", (Exception,), {})()
-            
-            sits[passenger.move_from][spot] += 1
-
-    pprint.pprint(sits)
+db.add_one(Route(
+    move_from = Spot(place=Place(country="Poland", city="Warsaw", street="Gabal 10"), date=datetime.datetime(2023, 1, 24, 14, 0)),
+    move_to = Spot(place=Place(country="Ukraine", city="Kiyv", street="Shevchenko 21"), date=datetime.datetime(2023, 1, 26, 10, 30)),
+    passengers_number = 20
+))

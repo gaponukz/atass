@@ -1,1 +1,143 @@
-[]
+[
+    {
+        "move_from": {
+            "place": {
+                "country": "Ukraine",
+                "city": "Kiyv",
+                "street": "Shevchenko 21",
+                "map_url": null,
+                "id": "73a7f3b9-f47d-4cb4-9d76-18f0104e47e7"
+            },
+            "date": "2023-01-21 14:00:00",
+            "is_active": true,
+            "id": "cb142130-ddf7-487b-82b5-bd695739eb54"
+        },
+        "move_to": {
+            "place": {
+                "country": "Poland",
+                "city": "Warsaw",
+                "street": "Gabal 10",
+                "map_url": null,
+                "id": "73a7f3b9-f47d-4cb4-9d76-18f0104e47e7"
+            },
+            "date": "2023-01-23 10:30:00",
+            "is_active": true,
+            "id": "cb142130-ddf7-487b-82b5-bd695739eb54"
+        },
+        "passengers_number": 20,
+        "sub_spots": [],
+        "is_active": true,
+        "prices": {},
+        "passengers": [],
+        "description": {
+            "en": {},
+            "pl": {},
+            "ua": {}
+        },
+        "rules": {
+            "en": {},
+            "pl": {},
+            "ua": {}
+        },
+        "transportation_rules": {
+            "en": {},
+            "pl": {},
+            "ua": {}
+        },
+        "id": "3284c5d5-aa05-4b40-bef8-322af589ad99"
+    },
+    {
+        "move_from": {
+            "place": {
+                "country": "Ukraine",
+                "city": "Kiyv",
+                "street": "Shevchenko 21",
+                "map_url": null,
+                "id": "73a7f3b9-f47d-4cb4-9d76-18f0104e47e7"
+            },
+            "date": "2023-02-01 12:40:00",
+            "is_active": true,
+            "id": "cb142130-ddf7-487b-82b5-bd695739eb54"
+        },
+        "move_to": {
+            "place": {
+                "country": "Poland",
+                "city": "Warsaw",
+                "street": "Gabal 10",
+                "map_url": null,
+                "id": "73a7f3b9-f47d-4cb4-9d76-18f0104e47e7"
+            },
+            "date": "2023-02-03 16:00:00",
+            "is_active": true,
+            "id": "cb142130-ddf7-487b-82b5-bd695739eb54"
+        },
+        "passengers_number": 15,
+        "sub_spots": [],
+        "is_active": true,
+        "prices": {},
+        "passengers": [],
+        "description": {
+            "en": {},
+            "pl": {},
+            "ua": {}
+        },
+        "rules": {
+            "en": {},
+            "pl": {},
+            "ua": {}
+        },
+        "transportation_rules": {
+            "en": {},
+            "pl": {},
+            "ua": {}
+        },
+        "id": "3284c5d5-aa05-4b40-bef8-322af589ad99"
+    },
+    {
+        "move_from": {
+            "place": {
+                "country": "Poland",
+                "city": "Warsaw",
+                "street": "Gabal 10",
+                "map_url": null,
+                "id": "73a7f3b9-f47d-4cb4-9d76-18f0104e47e7"
+            },
+            "date": "2023-01-24 14:00:00",
+            "is_active": true,
+            "id": "cb142130-ddf7-487b-82b5-bd695739eb54"
+        },
+        "move_to": {
+            "place": {
+                "country": "Ukraine",
+                "city": "Kiyv",
+                "street": "Shevchenko 21",
+                "map_url": null,
+                "id": "73a7f3b9-f47d-4cb4-9d76-18f0104e47e7"
+            },
+            "date": "2023-01-26 10:30:00",
+            "is_active": true,
+            "id": "cb142130-ddf7-487b-82b5-bd695739eb54"
+        },
+        "passengers_number": 20,
+        "sub_spots": [],
+        "is_active": true,
+        "prices": {},
+        "passengers": [],
+        "description": {
+            "en": {},
+            "pl": {},
+            "ua": {}
+        },
+        "rules": {
+            "en": {},
+            "pl": {},
+            "ua": {}
+        },
+        "transportation_rules": {
+            "en": {},
+            "pl": {},
+            "ua": {}
+        },
+        "id": "3284c5d5-aa05-4b40-bef8-322af589ad99"
+    }
+]

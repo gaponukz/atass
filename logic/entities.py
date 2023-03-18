@@ -92,6 +92,6 @@ class Path(pydantic.BaseModel):
     id: HashId = str(uuid.uuid4())
 
 class ShortRoute(typing.TypedDict):
-    move_from: dict
-    move_to: dict
+    move_from: Place
+    move_to: Place
     count: int
