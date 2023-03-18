@@ -1,9 +1,10 @@
 import typing
 from functools import wraps
+from webtyping import Response
 
 def catch_exceptions(function: typing.Callable):
     @wraps(function)
-    async def wrapper(*args, **kwargs):
+    async def wrapper(*args, **kwargs) -> Response[None]:
         try:
             return await function(*args, **kwargs)
         
