@@ -19,3 +19,7 @@ class SpotNotFoundError(Exception):
 class UserNotFoundError(Exception):
     def __init__(self):
         super().__init__("Can not find passender in database")
+
+class RouteNotFoundError(Exception):
+    def __init__(self, route_id):
+        super().__init__(f"Can not find route with identifier {route_id}")

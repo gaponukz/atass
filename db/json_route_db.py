@@ -38,11 +38,11 @@ class JsonRouteDataBase(IRouteDataBase):
     def get_all(self, _filter: typing.Callable[[Route], bool] = lambda _: True) -> list[Route]:
         return [Route(**route) for route in self.routes if _filter(Route(**route))]
 
-    def get_one(self, route_hash: str) -> Route:
+    def get_one(self, route_hash: str) -> Route | None:
         finded_objects = [route for route in self.routes if Route(**route).id == route_hash]
 
         if finded_objects:
-            return Route(**finded_objects[0])   
+            return Route(**finded_objects[0])
 
     def add_one(self, route: Route):
         self.routes.append(route.dict())

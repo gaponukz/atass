@@ -1,11 +1,17 @@
-from flask import request, abort
 import typing
+from functools import wraps
 
-def auth_required(function: typing.Callable) -> typing.Callable:
-    def decorated(*args, **kwargs) -> typing.Callable:
-        if request.headers.get('password') == '123':
-            return function(*args, **kwargs)
+def catch_exceptions(function: typing.Callable):
+    @wraps(function)
+    async def wrapper(*args, **kwargs):
+        try:
+            return await function(*args, **kwargs)
+        
+        except Exception as error:
+            return {
+                "status": 500,
+                "message": f"{error.__class__.__name__}: {error}",
+                "body": None
+            }
 
-        abort(401, description='Unauthorized')
-
-    return decorated
+    return wrapper
