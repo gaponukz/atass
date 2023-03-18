@@ -12,7 +12,7 @@ app = fastapi.FastAPI()
 
 @app.get("/get_unique_routes")
 @utils.catch_exceptions
-async def unique_routes_page() -> Response[dict[str, logic.entities.ShortRoute]]:
+async def unique_routes_page() -> Response[list[logic.entities.ShortRoute]]:
     return Response(
         status = 200,
         message = "Success",
