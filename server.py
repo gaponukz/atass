@@ -4,6 +4,7 @@ import fastapi
 import logic.functions
 import logic.entities
 import logic.errors
+import authentication
 import utils
 
 from webtyping import Response
