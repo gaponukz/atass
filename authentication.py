@@ -1,17 +1,11 @@
 import os
-import typing
 
-from functools import wraps
-from fastapi import Header, HTTPException
+from fastapi import Depends, HTTPException, status
+from fastapi.security import OAuth2PasswordBearer
 
-# TODO: make it possible to work
-def admin_authentication_required(function: typing.Callable) -> typing.Callable:
-    @wraps
-    async def wrapper(*args, adminKey: str = Header(...), **kwargs):
-        if adminKey != os.environ['ADMIN_PASSWORD_KEY']:
-            raise HTTPException(status_code=403, detail="Not authorized")
-
-        return await function(*args, **kwargs)
-
-    return wrapper
-
+def admin_required(api_key: str = Depends(OAuth2PasswordBearer(tokenUrl="token"))):
+    if api_key != os.environ.get('ADMIN_PASSWORD_KEY'):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Forbidden"
+        )
