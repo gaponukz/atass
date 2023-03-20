@@ -53,5 +53,32 @@ async def get_route_by_id(route_id: logic.entities.HashId) -> logic.entities.Rou
     
     return route
 
-def is_actual_route(route: logic.entities.Route) -> bool:    
-    return route.move_to.date < datetime.datetime.now()
+def is_actual_spot(spot: logic.entities.Spot) -> bool:
+    return spot.date < datetime.datetime.now()
+
+def is_actual_route(route: logic.entities.Route) -> bool:
+    return is_actual_spot(route.move_to if not route.sub_spots else route.sub_spots[-1])
+
+'''
+def generating_aviable_pathes(route: logic.entities.Route) -> list[logic.entities.Path]:
+    # TODO: make it work correctly 
+    all_spots = route.sub_spots
+    all_spots.insert(0, route.move_from)
+    all_spots.insert(-1, route.move_to)
+
+    if not all_spots[-1].date < datetime.datetime.now():
+        return False
+
+    active_spots_id = [_route.id for _route in all_spots if _route.date < datetime.datetime.now()]
+    sits = {item: {jtem: 0 for jtem in active_spots_id if jtem.id != item.id} for item in active_spots_id}
+
+    for passenger in route.passengers:
+        _from = active_spots_id.index(passenger.moving_from.id)+1
+        to = active_spots_id.index(passenger.moving_towards.id)
+
+        for spot in active_spots_id[_from:to]:
+            if sits[passenger.moving_from.id][spot] == route.passengers_number:
+                return False
+    
+    return True
+'''

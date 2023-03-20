@@ -17,18 +17,11 @@ class User(pydantic.BaseModel):
     first_name: str
     last_name: str
     phone_number: str
-    email_address: str = None
-
-    def __eq__(self, other: 'User'):
-        return (
-            self.first_name == other.first_name
-            and self.last_name == other.last_name
-            and self.phone_number == other.phone_number
-        )
+    email_address: str | None = None
 
 class AuthorizedUser(User):
     is_authenticated: bool = False
-    password_hash: str = None
+    password_hash: str | None = None
     id: HashId = str(uuid.uuid4())
 
 class Place(pydantic.BaseModel):
@@ -38,7 +31,7 @@ class Place(pydantic.BaseModel):
     country: str
     city: str
     street: str
-    map_url: str = None
+    map_url: str | None = None
     id: HashId = str(uuid.uuid4())
 
 class Spot(pydantic.BaseModel):
@@ -54,8 +47,8 @@ class Spot(pydantic.BaseModel):
     id: HashId = str(uuid.uuid4())
 
 class Passenger(User):
-    moving_from: Spot = None
-    moving_towards: Spot = None
+    moving_from: Spot | None = None
+    moving_towards: Spot | None = None
     id: HashId = str(uuid.uuid4())
 
 class Route(pydantic.BaseModel):

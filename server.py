@@ -24,7 +24,7 @@ async def get_routes_family_page(move_from_city: str, move_to_city: str) -> Resp
 
 @app.get("/get_route", dependencies=[fastapi.Depends(authentication.admin_required)])
 @logger.catch
-async def get_route_page(route_id: logic.entities.HashId) -> logic.entities.Route:
+async def get_route_page(route_id: logic.entities.HashId) -> Response[logic.entities.Route]:
     try:
         return Response(body = await logic.functions.get_route_by_id(route_id))
     
