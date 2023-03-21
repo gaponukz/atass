@@ -3,7 +3,7 @@ import datetime
 import typing
 import uuid
 
-HashId = str
+HashId: typing.TypeAlias = str
 PricesSchema = dict[HashId, dict[HashId, int]]
 LangCode = typing.Literal['ua', 'en', 'pl']
 MultiLanguages = dict[LangCode, dict[str, str]]
