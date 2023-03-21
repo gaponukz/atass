@@ -47,8 +47,8 @@ class Spot(pydantic.BaseModel):
     id: HashId = str(uuid.uuid4())
 
 class Passenger(User):
-    moving_from: Spot | None = None
-    moving_towards: Spot | None = None
+    moving_from: Spot
+    moving_towards: Spot
     id: HashId = str(uuid.uuid4())
 
 class Route(pydantic.BaseModel):

@@ -1,5 +1,10 @@
+import os
+import sys
 import unittest
 import datetime
+
+sys.path.insert(0, os.path.abspath('.'))
+
 from logic.entities import *
 from logic.errors import *
 from db.memory_route_db import MemoryRouteDataBase

@@ -1,5 +1,10 @@
+import os
+import sys
+
 from db.json_route_db import JsonRouteDataBase
 from logic.entities import *
+
+sys.path.insert(0, os.path.abspath('.'))
 
 db = JsonRouteDataBase()
 

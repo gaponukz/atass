@@ -1,4 +1,9 @@
+import os
+import sys
 import unittest
+
+sys.path.insert(0, os.path.abspath('.'))
+
 from logic.entities import AuthorizedUser
 from logic.errors import UserNotFoundError
 from db.memory_passengers_db import MemoryPassengerDatabase
