@@ -7,9 +7,10 @@ import authentication
 
 from fastapi import Depends
 from fastapi import FastAPI
+from webtyping import Response
+from webtyping import AddRoutesDTO
 
 from loguru import logger
-from webtyping import Response
 
 app = FastAPI()
 logger.add("logging/server.log")
@@ -48,6 +49,16 @@ async def get_route_page(
             message = f"{error.__class__.__name__}: {error}",
             body = None
         )
+
+@logger.catch
+@app.post("/add_routes", dependencies=[Depends(authentication.admin_required)])
+async def add_routes_page(
+        routes_instruction: AddRoutesDTO,
+        service: logic.functions.Service = Depends()
+    ) -> Response[bool]:
+    
+    # TODO: service.add_routes_copy(routes_instruction.root_route, routes_instruction.dates)
+    return Response(body = True)
 
 if __name__ == "__main__":
     uvicorn.run("server:app", host="localhost", port=5000, reload=True)
