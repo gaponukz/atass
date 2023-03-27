@@ -4,23 +4,24 @@ body {
 
 }
 main{
-    padding-bottom: 100px;
+    padding-bottom: 200px;
     background-image: url("images/background.jpg");
     background-repeat: no-repeat;
     background-size:cover;
 
 }
 .navigation{
-    padding-top: 20px;
+    padding-top: 10px;
 }
 .navigation img{
+    margin-bottom: 10px;
     margin-left: 60px;
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
 }
 .navigation span{
     font-weight: bold;
-    font-size: 20px;
+    font-size: 29px;
 }
 .container{
     max-width: 100%;
@@ -29,8 +30,8 @@ main{
 
 .input-group{
     padding-top: 50px;
-    width: 1350px;
-    padding-left: 50px;
+    width: 90%;
+    padding-left: 70px;
 
 }
 .form-control{
@@ -101,7 +102,7 @@ main{
 }
 
 .row1{
-    padding-top: 100px;
+    padding-top: 50px;
     width: 100%;
   }
 
@@ -131,7 +132,7 @@ main{
 .d-flex p{
     font-weight: bolder;
     font-size: 20px;
-    color:grey;
+    color:black;
 }
 .cloud-box {
   background-color: #f1f1f1;
@@ -156,9 +157,38 @@ main{
     max-width: 100%;
     background-color: white;
 }
-
+#card{
+    margin-top: 20px;
+    background-color: #6388e0;
+    width: 101%;
+}
 .route_card_body {
     padding-top: 30px;
     padding-bottom: 30px;
     font-size: 21px;
+}
+@media (max-width: 500px){
+    .row1 h2{
+    font-weight: bold;
+    padding-left: 49px;
+    font-size: 45px;
+}
+}
+
+@media (max-width: 300px){
+    .row1 h2{
+    font-weight: bold;
+    padding-left: 29px;
+    font-size: 25px;
+}
+    .row1 h3{
+     padding-top: 10px;
+    padding-left: 29px;
+    font-size: 15px;
+}
+    .d-flex p{
+    font-weight: bolder;
+    font-size: 15px;
+    color:black;
+}
 }
