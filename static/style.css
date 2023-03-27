@@ -5,7 +5,7 @@ body {
 }
 main{
     padding-bottom: 200px;
-    background-image: url("images/background.jpg");
+    background-image: url("images/background-new.jpg");
     background-repeat: no-repeat;
     background-size:cover;
 
@@ -95,6 +95,7 @@ main{
 #knop{
     width: 200px;
     font-size: 20px;
+    background-color: #195F79;
 }
 #knop span{
     font-weight: bold;
@@ -159,7 +160,7 @@ main{
 }
 #card{
     margin-top: 20px;
-    background-color: #6388e0;
+    background-color: #41ACD0;
     width: 101%;
 }
 .route_card_body {
