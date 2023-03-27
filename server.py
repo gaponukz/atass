@@ -57,8 +57,10 @@ async def add_routes_page(
         service: logic.functions.Service = Depends()
     ) -> Response[list[logic.entities.Route] | None]:
     
-    # TODO: return service.add_routes_copy(routes_instruction.root_route, routes_instruction.dates)
-    return Response(body = None)
+    return Response(body = service.add_routes_from_prototype(
+        routes_instruction.route_prototype,
+        routes_instruction.datetimes
+    ))
 
 if __name__ == "__main__":
     uvicorn.run("server:app", host="localhost", port=5000, reload=True)

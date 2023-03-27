@@ -10,11 +10,6 @@ class Response(pydantic.BaseModel, typing.Generic[T]):
     message: str = "Success"
     body: T
 
-_DatetimeObject = typing.TypedDict('_DatetimeObject', {
-    'from': datetime.datetime,
-    'to': datetime.datetime
-})
-
 class AddRoutesDTO(pydantic.BaseModel):
     route_prototype: logic.entities.RouteProxy
-    dates: list[_DatetimeObject]
+    datetimes: list[logic.entities._DatetimeObject]

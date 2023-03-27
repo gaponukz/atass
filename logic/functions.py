@@ -1,9 +1,7 @@
-__all__ = (
-    'get_unique_routes', 
-    'get_routes_family_by_cities', 
-    'get_route_by_id'
-)
+__all__ = 'Service',
 
+import uuid
+import typing
 import datetime
 import logic.entities
 import logic.errors
@@ -15,14 +13,20 @@ from db.json_route_db import JsonRouteDataBase
 
 logger.add("logging/functions.log", level="DEBUG")
 
+
 class Service:
     def __init__(self, db: IRouteDataBase = Depends(JsonRouteDataBase)):
         self.db = db
-    
+
     @logger.catch(reraise=True)
     async def _get_all_routes(self, *args, **kwargs) -> list[logic.entities.Route]:
         logger.info("Try to get routes from database")
         return self.db.get_all(*args, **kwargs)
+
+    @logger.catch(reraise=True)
+    async def _load_route_to_database(self, *args, **kwargs):
+        logger.info("Try to load route to database")
+        self.db.add_one(*args, **kwargs)
 
     @logger.catch(reraise=True)
     async def get_unique_routes(self) -> list[logic.entities.ShortRoute]:
@@ -39,7 +43,7 @@ class Service:
                     "count": 0
                 }
             unique[key]["count"] += 1
-        
+
         return list(unique.values())
 
     @logger.catch(reraise=True)
@@ -50,7 +54,7 @@ class Service:
     async def get_route_by_id(self, route_id: logic.entities.HashId) -> logic.entities.Route:
         if not (route := self.db.get_one(route_id)):
             raise logic.errors.RouteNotFoundError(route_id)
-        
+
         return route
 
     @logger.catch(reraise=True)
@@ -93,8 +97,97 @@ class Service:
                         and passenger.moving_towards.id == end_spot.id
                     ]
                 ))
-        
+
         return results
+
+    def create_routes_copy(
+        self,
+        route_prototype: logic.entities.RouteProxy,
+        datetimes: list[logic.entities._DatetimeObject]
+    ) -> list[logic.entities.Route]:
+        '''
+        Generating list of routes from the route prototype(RouteProxy) and datetimes.
+        Number of routes = number of datetimes.
+        '''
+        routes: list[logic.entities.Route] = []
+
+        for datetime_pair in datetimes:
+            move_from_id = str(uuid.uuid4())
+            move_to_id = str(uuid.uuid4())
+
+            future_route: dict[str, typing.Any] = {
+                "move_from": {
+                    "place": route_prototype.move_from.place.dict(),
+                    "date": datetime_pair["from"],
+                    "id": move_from_id
+                },
+                "move_to": {
+                    "place": route_prototype.move_to.place.dict(),
+                    "date": datetime_pair["to"],
+                    "id": move_to_id
+                },
+                "passengers_number": route_prototype.passengers_number,
+                "description": route_prototype.description,
+                "transportation_rules": route_prototype.transportation_rules,
+                "rules": route_prototype.rules,
+                "sub_spots": [],
+                "prices": {}
+            }
+
+            new_prices: logic.entities.PricesSchema = {}
+            ids_replacements: dict[logic.entities.HashId, logic.entities.HashId] = {}
+            ids_replacements[route_prototype.move_from.id] = move_from_id
+            ids_replacements[route_prototype.move_to.id] = move_to_id
+
+            for spot in route_prototype.sub_spots:
+                spot_id = str(uuid.uuid4())
+                fake_spot_id = spot.id
+                ids_replacements[fake_spot_id] = spot_id
+
+                future_route['sub_spots'].append({
+                    "place": spot.place.dict(),
+                    "date": datetime_pair["from"] + datetime.timedelta(minutes=spot.from_start),
+                    "id": spot_id,
+                })
+
+            for _id in route_prototype.prices:
+                new_prices[ids_replacements[_id]] = {}
+
+                for inner_id in route_prototype.prices[_id]:
+                    new_prices[ids_replacements[_id]][ids_replacements[inner_id]] = route_prototype.prices[_id][inner_id]
+        
+            future_route["prices"] = new_prices
+            routes.append(logic.entities.Route(**future_route))
+
+        return routes
+
+    def add_routes(self, routes: list[logic.entities.Route]):
+        '''
+        Add list of routes to database.
+        Returning a list of routes that successfully added to the database
+        '''
+        succeeded_routes = []
+
+        for route in routes:
+            try:
+                self._load_route_to_database(route)
+                succeeded_routes.append(route)
+
+            except Exception as error:
+                logger.exception(error)
+        
+        return succeeded_routes
+    
+    def add_routes_from_prototype(self, 
+        route_prototype: logic.entities.RouteProxy,
+        datetimes: list[logic.entities._DatetimeObject]
+    ) -> list[logic.entities.Route]:
+        '''
+        Generate routes from prototype, add them to database 
+        and return (routes that successfully added to the database)
+        '''
+        routes = self.create_routes_copy(route_prototype, datetimes)
+        return self.add_routes(routes)
 
     def is_actual_spot(self, spot: logic.entities.Spot) -> bool:
         return spot.date < datetime.datetime.now()

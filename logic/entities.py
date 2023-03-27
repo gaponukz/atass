@@ -8,6 +8,11 @@ PricesSchema = dict[HashId, dict[HashId, int]]
 LangCode = typing.Literal['ua', 'en', 'pl']
 MultiLanguages = dict[LangCode, str]
 
+_DatetimeObject = typing.TypedDict('_DatetimeObject', {
+    'from': datetime.datetime,
+    'to': datetime.datetime
+})
+
 enpty_languages: MultiLanguages = { code: "" for code in typing.get_args(LangCode) }
 
 class User(pydantic.BaseModel):
