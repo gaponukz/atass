@@ -6,9 +6,9 @@ import uuid
 HashId: typing.TypeAlias = str
 PricesSchema = dict[HashId, dict[HashId, int]]
 LangCode = typing.Literal['ua', 'en', 'pl']
-MultiLanguages = dict[LangCode, dict[str, str]]
+MultiLanguages = dict[LangCode, str]
 
-enpty_languages: MultiLanguages = { "en": {}, "pl": {}, "ua": {} }
+enpty_languages: MultiLanguages = { code: "" for code in typing.get_args(LangCode) }
 
 class User(pydantic.BaseModel):
     '''
@@ -20,6 +20,9 @@ class User(pydantic.BaseModel):
     email_address: str | None = None
 
 class AuthorizedUser(User):
+    """
+    Authorized user entity, used for authentication
+    """
     is_authenticated: bool = False
     password_hash: str | None = None
     id: HashId = str(uuid.uuid4())
@@ -47,6 +50,9 @@ class Spot(pydantic.BaseModel):
     id: HashId = str(uuid.uuid4())
 
 class Passenger(User):
+    """
+    User who bought the ticket
+    """
     moving_from: Spot
     moving_towards: Spot
     id: HashId = str(uuid.uuid4())
@@ -70,9 +76,6 @@ class Route(pydantic.BaseModel):
     transportation_rules: MultiLanguages = enpty_languages
     id: HashId = str(uuid.uuid4())
 
-    def __post_init__(self):
-        self.prices[self.move_from.id] = {}
-
 class Path(pydantic.BaseModel):
     '''
     Path struct is describe path between spots of some route(s).
@@ -85,6 +88,31 @@ class Path(pydantic.BaseModel):
     id: HashId = str(uuid.uuid4())
 
 class ShortRoute(typing.TypedDict):
+    """
+    Describe routes fammily tittle
+    """
     move_from: Place
     move_to: Place
     count: int
+
+class SpotProxy(pydantic.BaseModel):
+    """
+    Used as proxy object for Spot for RouteProxy
+    """
+    place: Place
+    from_start: int
+    id: HashId
+
+class RouteProxy(pydantic.BaseModel):
+    """
+    DTO for creating new routes, used as proxy object for Route object
+    """
+    move_from: SpotProxy
+    move_to: SpotProxy
+    passengers_number: int
+    sub_spots: list[SpotProxy]
+    prices: PricesSchema
+    description: MultiLanguages
+    rules: MultiLanguages
+    transportation_rules: MultiLanguages
+    id: HashId
