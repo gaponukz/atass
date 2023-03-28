@@ -3,3 +3,4 @@ __pycache__
 server.log
 .vscode
 .mypy_cache
+logging
