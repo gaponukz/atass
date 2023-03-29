@@ -1,7 +1,6 @@
 import typing
-import datetime
 import pydantic
-import logic.entities
+from src.logic import entities
 
 T = typing.TypeVar("T")
 
@@ -11,5 +10,5 @@ class Response(pydantic.BaseModel, typing.Generic[T]):
     body: T
 
 class AddRoutesDTO(pydantic.BaseModel):
-    route_prototype: logic.entities.RouteProxy
-    datetimes: list[logic.entities._DatetimeObject]
+    route_prototype: entities.RouteProxy
+    datetimes: list[entities._DatetimeObject]

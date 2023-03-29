@@ -1,7 +1,7 @@
 import typing
 import abc
 
-from logic.entities import Route
+from src.logic.entities import Route
 
 class IRouteDataBase(abc.ABC):
     '''

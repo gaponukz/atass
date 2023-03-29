@@ -1,7 +1,7 @@
 import typing
 import abc
 
-from logic.entities import AuthorizedUser
+from src.logic.entities import AuthorizedUser
 
 class IPassengerDatabase(abc.ABC):
     '''

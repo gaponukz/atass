@@ -30,7 +30,7 @@ The app should now be accessible at [http://localhost:5000](http://localhost:500
 
 For admin methods
 ```js
-const requestUrl = `http://localhost:5000/get_routes_family?move_from_city=Kiyv&move_to_city=Warsaw`
+const requestUrl = `http://localhost:5000/admin/get_routes_family?move_from_city=Kiyv&move_to_city=Warsaw`
 const token = localStorage.getItem('token')
 
 await fetch(requestUrl, { headers: { 'Authorization': `Bearer ${token}` }} )
@@ -42,7 +42,7 @@ await fetch(requestUrl, { headers: { 'Authorization': `Bearer ${token}` }} )
 
 Public request example
 ```js
-await fetch(`http://localhost:5000/get_unique_routes`)
+await fetch(`http://localhost:5000/public/get_unique_routes`)
 .then(async response => await response.json()).then(data => {
     // add some magic here
     console.log(data)

@@ -4,9 +4,9 @@ import unittest
 
 sys.path.insert(0, os.path.abspath('.'))
 
-from logic.entities import AuthorizedUser
-from logic.errors import UserNotFoundError
-from db.memory_passengers_db import MemoryPassengerDatabase
+from src.logic.entities import AuthorizedUser
+from src.logic.errors import UserNotFoundError
+from src.db.memory_passengers_db import MemoryPassengerDatabase
 
 class EntitiesTest(unittest.TestCase):
     def test_register(self):

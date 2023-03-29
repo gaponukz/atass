@@ -3,13 +3,13 @@ __all__ = 'Service',
 import uuid
 import typing
 import datetime
-import logic.entities
-import logic.errors
+from src.logic import entities
+from src.logic import errors
 
 from fastapi import Depends
 from loguru import logger
-from db.route_db import IRouteDataBase
-from db.json_route_db import JsonRouteDataBase
+from src.db.route_db import IRouteDataBase
+from src.db.json_route_db import JsonRouteDataBase
 
 logger.add("logging/functions.log", level="DEBUG")
 
@@ -19,7 +19,7 @@ class Service:
         self.db = db
 
     @logger.catch(reraise=True)
-    async def _get_all_routes(self, *args, **kwargs) -> list[logic.entities.Route]:
+    async def _get_all_routes(self, *args, **kwargs) -> list[entities.Route]:
         logger.info("Try to get routes from database")
         return self.db.get_all(*args, **kwargs)
 
@@ -29,9 +29,9 @@ class Service:
         self.db.add_one(*args, **kwargs)
 
     @logger.catch(reraise=True)
-    async def get_unique_routes(self) -> list[logic.entities.ShortRoute]:
+    async def get_unique_routes(self) -> list[entities.ShortRoute]:
         routes = await self._get_all_routes()
-        unique: dict[str, logic.entities.ShortRoute] = {}
+        unique: dict[str, entities.ShortRoute] = {}
 
         for route in routes:
             key = f"{route.move_from.place.city}-{route.move_to.place.city}"
@@ -47,25 +47,25 @@ class Service:
         return list(unique.values())
 
     @logger.catch(reraise=True)
-    async def get_routes_family_by_cities(self, move_from_city: str, move_to_city: str) -> list[logic.entities.Route]:
+    async def get_routes_family_by_cities(self, move_from_city: str, move_to_city: str) -> list[entities.Route]:
         return self.db.get_all(lambda route: route.move_from.place.city == move_from_city and route.move_to.place.city == move_to_city) 
 
     @logger.catch(reraise=True)
-    async def get_route_by_id(self, route_id: logic.entities.HashId) -> logic.entities.Route:
+    async def get_route_by_id(self, route_id: entities.HashId) -> entities.Route:
         if not (route := self.db.get_one(route_id)):
-            raise logic.errors.RouteNotFoundError(route_id)
+            raise errors.RouteNotFoundError(route_id)
 
         return route
 
     @logger.catch(reraise=True)
-    def generating_aviable_pathes(self, route: logic.entities.Route) -> list[logic.entities.Path]:
+    def generating_aviable_pathes(self, route: entities.Route) -> list[entities.Path]:
         all_spots = self.get_routes_spots(route)
-        results: list[logic.entities.Path] = []
+        results: list[entities.Path] = []
 
         if not self.is_actual_route(route):
             return []
 
-        sits: dict[logic.entities.HashId, dict[logic.entities.HashId, int]] = {
+        sits: dict[entities.HashId, dict[entities.HashId, int]] = {
             all_spots[i].id: {
                 all_spots[j].id: 0 for j in range(i+1, len(all_spots))
             } for i in range(len(all_spots)-1)
@@ -86,7 +86,7 @@ class Service:
                 )):
                     continue
 
-                results.append(logic.entities.Path(
+                results.append(entities.Path(
                     move_from=start_spot,
                     move_to=end_spot,
                     price=route.prices[start_spot.id][end_spot.id],
@@ -102,14 +102,14 @@ class Service:
 
     def create_routes_copy(
         self,
-        route_prototype: logic.entities.RouteProxy,
-        datetimes: list[logic.entities._DatetimeObject]
-    ) -> list[logic.entities.Route]:
+        route_prototype: entities.RouteProxy,
+        datetimes: list[entities._DatetimeObject]
+    ) -> list[entities.Route]:
         '''
         Generating list of routes from the route prototype(RouteProxy) and datetimes.
         Number of routes = number of datetimes.
         '''
-        routes: list[logic.entities.Route] = []
+        routes: list[entities.Route] = []
 
         for datetime_pair in datetimes:
             move_from_id = str(uuid.uuid4())
@@ -134,8 +134,8 @@ class Service:
                 "prices": {}
             }
 
-            new_prices: logic.entities.PricesSchema = {}
-            ids_replacements: dict[logic.entities.HashId, logic.entities.HashId] = {}
+            new_prices: entities.PricesSchema = {}
+            ids_replacements: dict[entities.HashId, entities.HashId] = {}
             ids_replacements[route_prototype.move_from.id] = move_from_id
             ids_replacements[route_prototype.move_to.id] = move_to_id
 
@@ -157,11 +157,11 @@ class Service:
                     new_prices[ids_replacements[_id]][ids_replacements[inner_id]] = route_prototype.prices[_id][inner_id]
         
             future_route["prices"] = new_prices
-            routes.append(logic.entities.Route(**future_route))
+            routes.append(entities.Route(**future_route))
 
         return routes
 
-    def add_routes(self, routes: list[logic.entities.Route]):
+    def add_routes(self, routes: list[entities.Route]):
         '''
         Add list of routes to database.
         Returning a list of routes that successfully added to the database
@@ -179,9 +179,9 @@ class Service:
         return succeeded_routes
     
     def add_routes_from_prototype(self, 
-        route_prototype: logic.entities.RouteProxy,
-        datetimes: list[logic.entities._DatetimeObject]
-    ) -> list[logic.entities.Route]:
+        route_prototype: entities.RouteProxy,
+        datetimes: list[entities._DatetimeObject]
+    ) -> list[entities.Route]:
         '''
         Generate routes from prototype, add them to database 
         and return (routes that successfully added to the database)
@@ -189,13 +189,13 @@ class Service:
         routes = self.create_routes_copy(route_prototype, datetimes)
         return self.add_routes(routes)
 
-    def is_actual_spot(self, spot: logic.entities.Spot) -> bool:
+    def is_actual_spot(self, spot: entities.Spot) -> bool:
         return spot.date < datetime.datetime.now()
 
-    def is_actual_route(self, route: logic.entities.Route) -> bool:
+    def is_actual_route(self, route: entities.Route) -> bool:
         return self.is_actual_spot(route.move_to if not route.sub_spots else route.sub_spots[-1])
 
-    def get_routes_spots(self, route: logic.entities.Route) -> list[logic.entities.Spot]:
+    def get_routes_spots(self, route: entities.Route) -> list[entities.Spot]:
         routes_spots = route.sub_spots.copy()
         routes_spots.insert(0, route.move_from)
         routes_spots.insert(-1, route.move_to)
