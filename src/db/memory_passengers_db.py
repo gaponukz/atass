@@ -1,7 +1,7 @@
 import typing
 
 from src.logic.errors import UserNotFoundError
-from src.db.passenger_db import IPassengerDatabase
+from src.interfaces import IPassengerDatabase
 from src.logic.entities import AuthorizedUser, HashId
 
 class MemoryPassengerDatabase(IPassengerDatabase):

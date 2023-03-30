@@ -8,25 +8,25 @@ from src.logic import errors
 
 from fastapi import Depends
 from loguru import logger
-from src.db.route_db import IRouteDataBase
-from src.db.json_route_db import JsonRouteDataBase
+
+from src.interfaces import IService
+from src.interfaces import IRouteDataBase
 
 logger.add("logging/functions.log", level="DEBUG")
 
-
-class Service:
-    def __init__(self, db: IRouteDataBase = Depends(JsonRouteDataBase)):
+class Service(IService):
+    def __init__(self, db: IRouteDataBase = Depends()):
         self.db = db
 
     @logger.catch(reraise=True)
     async def _get_all_routes(self, *args, **kwargs) -> list[entities.Route]:
         logger.info("Try to get routes from database")
-        return self.db.get_all(*args, **kwargs)
+        return await self.db.get_all(*args, **kwargs)
 
     @logger.catch(reraise=True)
     async def _load_route_to_database(self, *args, **kwargs):
         logger.info("Try to load route to database")
-        self.db.add_one(*args, **kwargs)
+        await self.db.add_one(*args, **kwargs)
 
     @logger.catch(reraise=True)
     async def get_unique_routes(self) -> list[entities.ShortRoute]:
@@ -48,17 +48,17 @@ class Service:
 
     @logger.catch(reraise=True)
     async def get_routes_family_by_cities(self, move_from_city: str, move_to_city: str) -> list[entities.Route]:
-        return self.db.get_all(lambda route: route.move_from.place.city == move_from_city and route.move_to.place.city == move_to_city) 
+        return await self._get_all_routes(lambda route: route.move_from.place.city == move_from_city and route.move_to.place.city == move_to_city) 
 
     @logger.catch(reraise=True)
     async def get_route_by_id(self, route_id: entities.HashId) -> entities.Route:
-        if not (route := self.db.get_one(route_id)):
+        if not (route := await self.db.get_one(route_id)):
             raise errors.RouteNotFoundError(route_id)
 
         return route
 
     @logger.catch(reraise=True)
-    def generating_aviable_pathes(self, route: entities.Route) -> list[entities.Path]:
+    async def generating_aviable_pathes(self, route: entities.Route) -> list[entities.Path]:
         all_spots = self.get_routes_spots(route)
         results: list[entities.Path] = []
 
@@ -100,7 +100,7 @@ class Service:
 
         return results
 
-    def create_routes_copy(
+    async def create_routes_copy(
         self,
         route_prototype: entities.RouteProxy,
         datetimes: list[entities._DatetimeObject]
@@ -178,7 +178,7 @@ class Service:
         
         return succeeded_routes
     
-    def add_routes_from_prototype(self, 
+    async def add_routes_from_prototype(self, 
         route_prototype: entities.RouteProxy,
         datetimes: list[entities._DatetimeObject]
     ) -> list[entities.Route]:

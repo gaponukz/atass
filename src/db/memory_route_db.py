@@ -1,6 +1,6 @@
 import typing
 
-from src.db.route_db import IRouteDataBase
+from src.interfaces import IRouteDataBase
 from src.logic.entities import Route
 
 class MemoryRouteDataBase(IRouteDataBase):

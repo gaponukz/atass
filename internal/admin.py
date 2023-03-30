@@ -17,7 +17,7 @@ logger.add("logging/admin.log")
 async def get_routes_family_page(
         move_from_city: str,
         move_to_city: str,
-        service: functions.Service = Depends()
+        service: functions.IService = Depends()
     ) -> Response[list[entities.Route]]:
     
     return Response(body = await service.get_routes_family_by_cities(move_from_city, move_to_city))
@@ -26,7 +26,7 @@ async def get_routes_family_page(
 @router.get("/get_route")
 async def get_route_page(
         route_id: entities.HashId,
-        service: functions.Service = Depends()
+        service: functions.IService = Depends()
     ) -> Response[entities.Route]:
     
     try:
@@ -43,7 +43,7 @@ async def get_route_page(
 @router.post("/add_routes")
 async def add_routes_page(
         routes_instruction: AddRoutesDTO,
-        service: functions.Service = Depends()
+        service: functions.IService = Depends()
     ) -> Response[list[entities.Route]]:
     
     return Response(body = service.add_routes_from_prototype(

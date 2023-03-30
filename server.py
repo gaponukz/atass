@@ -5,11 +5,20 @@ from uvicorn import run
 from internal import admin
 from public import public
 
-from src.dependencies import admin_required
+# Import all dependencies
+from src.interfaces import IRouteDataBase
+from src.db.json_route_db import JsonRouteDataBase
+from src.interfaces import IService
+from src.logic.functions import Service
 
+from src.authentication.authentication import admin_required
+
+# Setup app
 app = FastAPI()
 app.include_router(public.router, prefix="/public")
 app.include_router(admin.router, dependencies=[Depends(admin_required)], prefix="/admin")
+app.dependency_overrides[IRouteDataBase] = JsonRouteDataBase
+app.dependency_overrides[IService] = Service
 
 if __name__ == "__main__":
     run("server:app", host="localhost", port=5000, reload=True)

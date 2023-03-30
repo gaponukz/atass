@@ -13,7 +13,7 @@ logger.add("logging/admin.log")
 @logger.catch
 @router.get("/get_unique_routes")
 async def unique_routes_page(
-        service: functions.Service = Depends()
+        service: functions.IService = Depends()
     ) -> Response[list[entities.ShortRoute]]:
     
     return Response(body = await service.get_unique_routes())

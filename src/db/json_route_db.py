@@ -4,7 +4,7 @@ import typing
 import json
 import os
 
-from src.db.route_db import IRouteDataBase
+from src.interfaces import IRouteDataBase
 from src.logic.entities import Route
 
 def datetime_parser(json_dict):
@@ -35,33 +35,28 @@ class JsonRouteDataBase(IRouteDataBase):
         
         self._update_file()
     
-    def get_all(self, _filter: typing.Callable[[Route], bool] = lambda _: True) -> list[Route]:
+    async def get_all(self, _filter: typing.Callable[[Route], bool] = lambda _: True) -> list[Route]:
         return [Route(**route) for route in self.routes if _filter(Route(**route))]
 
-    def get_one(self, route_hash: str) -> Route | None:
+    async def get_one(self, route_hash: str) -> Route | None:
         finded_objects = [route for route in self.routes if Route(**route).id == route_hash]
 
         if finded_objects:
             return Route(**finded_objects[0])
 
-    def add_one(self, route: Route):
+    async def add_one(self, route: Route):
         self.routes.append(route.dict())
         self._update_file()
 
-    def remove_one(self, route_hash: str):
-        import pydantic
+    async def remove_one(self, route_hash: str):
         for route in self.routes:
-            try:
-                if Route(**route).id == route_hash:
-                    self.routes.remove(route)
-                    self._update_file()
+            if Route(**route).id == route_hash:
+                self.routes.remove(route)
+                self._update_file()
 
-                    return
-            
-            except pydantic.error_wrappers.ValidationError as error:
-                print(error.json())
-    
-    def change_one(self, route_hash: str, **fields) -> Route:
+                return
+        
+    async def change_one(self, route_hash: str, **fields) -> Route:
         for item in fields:
             try:
                 fields[item] = fields[item].dict()
@@ -76,14 +71,14 @@ class JsonRouteDataBase(IRouteDataBase):
                 
                 return Route(**route)
 
-    def remove_many(self, _filter: typing.Callable[[Route], bool]):
+    async def remove_many(self, _filter: typing.Callable[[Route], bool]):
         for route in self.routes:
             if _filter(Route(**route)):
                 self.routes.remove(route)
         
         self._update_file()
     
-    def change_many(self, _filter: typing.Callable[[Route], bool], **fields) -> list[Route]:
+    async def change_many(self, _filter: typing.Callable[[Route], bool], **fields) -> list[Route]:
         changed = []
 
         for item in fields:
