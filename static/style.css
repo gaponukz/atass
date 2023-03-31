@@ -5,21 +5,21 @@ body {
 }
 main{
     padding-bottom: 200px;
-    background-image: url("images/background-new.jpg");
+    background-image: url("images/background.jpg");
     background-repeat: no-repeat;
     background-size:cover;
 
 }
-.navigation{
+nav{
     padding-top: 10px;
 }
-.navigation img{
+nav img{
     margin-bottom: 10px;
     margin-left: 60px;
     width: 80px;
     height: 80px;
 }
-.navigation span{
+nav span{
     font-weight: bold;
     font-size: 29px;
 }
@@ -48,7 +48,25 @@ main{
       color:black;
       background-color: rgba(0, 0, 0, 0);
     }
+#language-selector1 {
+      font-weight: bold;
+      bottom: 10px;
+      left: 10px;
+      width: 113px;
+      margin-left:20px;
+      font-size: 1em;
+      border: none;
+      color:black;
+      background-color: rgba(0, 0, 0, 0);
+    }
+.offcanvas-body ul {
+    margin-right: 100px;
+    margin-top: 20px;
+    float: right;
+    list-style: none;
+    padding: 0;
 
+}
 .navigation ul {
     margin-right: 100px;
     margin-top: 20px;
@@ -56,17 +74,32 @@ main{
     list-style: none;
     padding: 0;
 }
-
+.offcanvas-body li{
+    margin-left: 20px;
+}
 .navigation li {
   display: inline-block;
   margin-left: 20px;
 
 }
-
+.offcanvas-body li:first-child{
+    margin-left: 0;
+}
 .navigation li:first-child {
   margin-left: 0;
 }
-
+.offcanvas-body a {
+  font-weight: bold;
+  font-size: 1em;
+  color: black;
+  text-decoration: none;
+}
+#l{
+    padding-left: 20px;
+}
+.offcanvas-body a:hover {
+  text-decoration: underline;
+}
 .navigation a {
   font-weight: bold;
   font-size: 1em;
@@ -95,7 +128,6 @@ main{
 #knop{
     width: 200px;
     font-size: 20px;
-    background-color: #195F79;
 }
 #knop span{
     font-weight: bold;
@@ -160,8 +192,8 @@ main{
 }
 #card{
     margin-top: 20px;
-    background-color: #41ACD0;
-    width: 101%;
+    background-color: #6388e0;
+    width: 100%;
 }
 .route_card_body {
     padding-top: 30px;
@@ -172,11 +204,21 @@ main{
     .row1 h2{
     font-weight: bold;
     padding-left: 49px;
-    font-size: 45px;
-}
+    font-size: 31px;}
+    .row1 h3{
+        font-size: 15px;
+    }
+    .small{
+        text-align: center;
+        padding-left: 33px;
+         display: block;
+        margin-left: auto;
+        margin-right: auto 
+    }
 }
 
-@media (max-width: 300px){
+
+@media (max-width: 322px){
     .row1 h2{
     font-weight: bold;
     padding-left: 29px;
@@ -192,4 +234,85 @@ main{
     font-size: 15px;
     color:black;
 }
+    .container-fluid span{
+        font-size: 25px;
+
+    }
+    .container-fluid img{
+        width: 65px;
+        height: 65px;
+    }
+    .pic{
+        padding-right: 5px;
+    }
+}
+@media (max-width: 767px) {
+    .row1 h3{
+        display: none;
+    }
+    #top2{
+        display: none;
+    }
+  .navigation {
+    display: block;
+    text-align: center;
+  }
+  .navigation img {
+    display: block;
+    margin: 0 auto;
+  }
+  .navigation span {
+    display: block;
+    margin: 10px auto;
+  }
+  .navigation ul {
+    display: block;
+    text-align: center;
+
+  }
+  .navigation li {
+    display: block;
+    margin: 5px 0;
+  }
+  #language-selector {
+    display: block;
+    margin: 10px auto;
+  }
+  #knop{
+      width: 250px;
+      height: 60px;
+      font-size: 12px;
+  }
+  #knop img{
+      width: 15px;
+      height: 15px;
+  }
+  .form-control{
+      width: 250px;
+  }
+  .input-group1{
+      text-align: center;
+      width: 50%;
+      padding-left: 20px;
+  }
+  #card{
+      width: 101%;
+  }
+  .row{
+      text-align: center;
+      display: block;
+  }
+  .big{
+      display: none;
+  }
+}
+@media(min-width:767px) {
+    #top{
+     padding-right: 80px;
+     background-color: #6388e0;
+     display: none;
+ }
+  .small {
+    display:none;
+  }
 }
