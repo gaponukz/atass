@@ -58,15 +58,17 @@ nav span{
       border: none;
       color:black;
       background-color: rgba(0, 0, 0, 0);
+      margin-top: 20px;
     }
 .offcanvas-body ul {
-    margin-right: 100px;
+    margin-right: 80px;
     margin-top: 20px;
-    float: right;
+    float: left;
     list-style: none;
     padding: 0;
 
 }
+
 .navigation ul {
     margin-right: 100px;
     margin-top: 20px;
@@ -193,7 +195,7 @@ nav span{
 #card{
     margin-top: 20px;
     background-color: #6388e0;
-    width: 100%;
+    width: 100.8%;
 }
 .route_card_body {
     padding-top: 30px;
@@ -247,6 +249,74 @@ nav span{
     }
 }
 @media (max-width: 767px) {
+
+    #top ul{
+        width: 60%;
+    }
+
+    #top .osob{
+        margin-right: 50px;
+    }
+
+    #top .onas{
+        margin: 0;
+      padding:0;
+        margin-right: 15px;
+    }
+    .pic{
+        width: 50%;
+    }
+    #top .person{
+        width: 30px;
+        height: 30px;
+        margin: 0;
+    }
+    #top .us{
+        margin:0;
+        width: 30px;
+        height: 30px;
+    }
+    #top .world{
+        margin: 0;
+        width: 30px;
+        height: 30px;
+        margin-top: 20px;
+
+
+    }
+    #selec{
+        padding-bottom: 50px;
+        margin-right: 20px;
+        float:left;
+
+    }
+    #language-selector1{
+          margin-right: 100px;
+        margin: 0;
+        margin-top: 25px;
+    }
+    .offcanvas-header img{
+        height: 50px;
+        width: 50px;
+        margin: 0;
+        padding: 0;
+    }
+    .offcanvas-header h5{
+        font-size: 24px;
+        padding-right: 60%;
+    }
+    .pic img{
+        height: 60px;
+        width: 60px;
+        margin:0;
+        margin-bottom: 15px;
+    }
+    .pic span{
+      font-size: 35px;
+      display: inline-block;
+      margin-bottom: 15px;
+      padding-top: 15px;
+    }
     .row1 h3{
         display: none;
     }
@@ -296,7 +366,7 @@ nav span{
       padding-left: 20px;
   }
   #card{
-      width: 101%;
+      width: 102%;
   }
   .row{
       text-align: center;

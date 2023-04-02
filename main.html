@@ -16,7 +16,7 @@
       <div>
           <nav class="navbar  " id="top">
            <div class="container-fluid">
-               <div class="pic">
+               <div  class="pic" >
               <img src="static/images/bus.png">
               <span>ATASS</span>
                </div>
@@ -25,20 +25,27 @@
              </button>
              <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                <div class="offcanvas-header">
+                   <img src="static/images/bus.png">
                  <h5 class="offcanvas-title" id="offcanvasNavbarLabel">ATASS</h5>
                  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                </div>
                <div class="offcanvas-body">
                  <ul>
-
-                       <li id="l"><a href="#">Про нас</a></li>
-                       <li><a href="#">Особистий кабінет</a></li>
+                       <img src="static/images/icons8-person-96.png" class="person" style="float: left;">
+                       <li class="osob"><a href="#">Особистий кабінет</a></li>
+                     <div style="margin-right: 100px; margin-top: 25px">
+                        <img src="static/images/icons8-contact-us-96.png" class="us" style="float: left;">
+                        <li class="onas"><a href="#" >О нас</a></li>
+                     </div></ul>
+                         <div id="selec">
+                        <img src="static/images/icons8-globe-96.png" class="world" style="float: left;">
                         <select id="language-selector1">
                           <option value="uk">Українська</option>
                           <option value="en">English</option>
                           <option value="pl">Polski</option>
                        </select>
-            </ul>
+                             </div>
+
 
                </div>
              </div>
