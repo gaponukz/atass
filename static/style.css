@@ -175,7 +175,7 @@ nav span{
   background-color: #f1f1f1;
   border-radius: 20px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
-
+  margin-bottom: 40px;
   width: 80%; /* устанавливаем ширину блока */
   max-width: 500px; /* задаем максимальную ширину блока */
   margin: 0 auto; /* устанавливаем автоматические отступы сверху/снизу и слева/справа */
@@ -196,7 +196,7 @@ nav span{
 }
 #card{
     margin-top: 20px;
-    background-color: #6388e0;
+    background-color: #1B5D77;
     width: 100.8%;
 }
 .route_card_body {
