@@ -1,0 +1,482 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+
+}
+main{
+    padding-bottom: 200px;
+    background-image: url("images/background.jpg");
+    background-repeat: no-repeat;
+    background-size:cover;
+
+}
+nav{
+    padding-top: 10px;
+    padding-left: 24px;
+}
+nav img{
+    margin-bottom: 10px;
+    margin-left: 60px;
+    width: 80px;
+    height: 80px;
+}
+nav span{
+    font-weight: bold;
+    font-size: 29px;
+    padding-left:10px;
+}
+.container{
+    max-width: 100%;
+    padding-top: 200px;
+}
+
+.input-group{
+    padding-top: 50px;
+    width: 90%;
+    padding-left: 70px;
+
+}
+.form-control{
+    height: 60px;
+}
+#language-selector {
+      font-weight: bold;
+      bottom: 10px;
+      left: 10px;
+      width: 113px;
+      margin-left:20px;
+      font-size: 1em;
+      border: none;
+      color:black;
+      background-color: rgba(0, 0, 0, 0);
+    }
+#language-selector1 {
+      font-weight: bold;
+      bottom: 10px;
+      left: 10px;
+      width: 113px;
+      margin-left:20px;
+      font-size: 1em;
+      border: none;
+      color:black;
+      background-color: rgba(0, 0, 0, 0);
+      margin-top: 20px;
+    }
+.offcanvas-body ul {
+    margin-right: 80px;
+    margin-top: 20px;
+    float: left;
+    list-style: none;
+    padding: 0;
+
+}
+
+.navigation ul {
+    margin-right: 100px;
+    margin-top: 20px;
+    float: right;
+    list-style: none;
+    padding: 0;
+}
+
+.offcanvas-body li{
+    margin-left: 20px;
+}
+.navigation li {
+  display: inline-block;
+  margin-left: 20px;
+
+}
+.offcanvas-body li:first-child{
+    margin-left: 0;
+}
+.navigation li:first-child {
+  margin-left: 0;
+}
+.offcanvas-body a {
+  font-weight: bold;
+  font-size: 1em;
+  color: black;
+  text-decoration: none;
+}
+#l{
+    padding-left: 20px;
+}
+.offcanvas-body a:hover {
+  text-decoration: underline;
+}
+.navigation a {
+  font-weight: bold;
+  font-size: 1em;
+  color: black;
+  text-decoration: none;
+}
+
+.navigation a:hover {
+  text-decoration: underline;
+}
+.row{
+    width: 95%;
+    padding-top: 50px;
+}
+.row img{
+    width: 60px;
+    height: 60px;
+
+}
+
+.input-group img{
+    width: 25px;
+    height: 25px;
+}
+
+#knop{
+    width: 200px;
+    font-size: 20px;
+}
+#knop span{
+    font-weight: bold;
+    padding-left: 5px;
+}
+
+.row1{
+    padding-top: 50px;
+    width: 100%;
+  }
+
+.column1 {
+    float: left;
+    width: 60%;
+    box-sizing: border-box;
+    padding: 0 10px;}
+.column2{
+    float: left;
+    width: 40%;
+    box-sizing: border-box;
+    padding: 0 10px;}
+.row1 h2{
+    font-weight: bold;
+    padding-left: 72px;
+    font-size: 55px;
+}
+.row1 h3{
+    padding-top: 10px;
+    padding-left: 72px;
+    font-size: 30px;
+}
+.row{
+    padding-left: 50px;
+}
+.d-flex p{
+    font-weight: bolder;
+    font-size: 15px;
+    color:black;
+}
+.cloud-box {
+  background-color: #f1f1f1;
+  border-radius: 20px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+  width: 80%; /* устанавливаем ширину блока */
+  max-width: 500px; /* задаем максимальную ширину блока */
+  margin: 0 auto; /* устанавливаем автоматические отступы сверху/снизу и слева/справа */
+  height: 50px;
+  padding-top: 10px;
+
+}
+
+.cloud-box h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.container-1{
+    padding-top: 50px;
+    max-width: 100%;
+    background-color: white;
+}
+#card{
+    margin-top: 20px;
+    background-color: #1B5D77;
+    width: 100.8%;
+    padding-right: 3%;
+}
+.route_card_body {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    font-size: 21px;
+}
+ .card-body{
+        display: flex;
+        justify-content: center;
+    }
+
+@media (max-width: 500px){
+    .row1 h2{
+    font-weight: bold;
+    font-size: 31px;}
+    .row1 h3{
+        font-size: 15px;
+    }
+    .small{
+        text-align: center;
+        padding-left: 33px;
+         display: block;
+        margin-left: auto;
+        margin-right: auto 
+    }
+}
+
+
+@media (max-width: 322px){
+
+    .row1 h2{
+    font-weight: bold;
+    padding-left: 29px;
+    font-size: 25px;
+}
+    .row1 h3{
+     padding-top: 10px;
+    padding-left: 29px;
+    font-size: 15px;
+}
+    .d-flex p{
+    font-weight: bolder;
+    font-size: 15px;
+    color:black;
+}
+    .container-fluid span{
+        font-size: 25px;
+
+    }
+    .container-fluid img{
+        width: 65px;
+        height: 65px;
+    }
+    .pic{
+        padding-right: 5px;
+    }
+    .container-fluid .pic span{
+        font-size: 18px;
+    }
+    .small{
+        margin-right: 20%;
+    }
+    .small .form-control{
+        width: 200%;
+    }
+    .small #knop{
+        width: 200%;
+    }
+}
+@media (max-width: 767px) {
+    .container-fluid button:focus,.container-fluid button:active{
+        box-shadow: none !important;
+
+    }
+    .d-flex p{
+
+    font-size: 18px;
+    }
+    .card-body{
+        display: flex;
+        justify-content: center;
+    }
+    #offcanvasNavbar{
+        width: 100%;
+        height: 100%;
+    }
+
+    #top ul{
+        width: 60%;
+    }
+
+    #top .osob{
+        margin-right: 50px;
+    }
+
+    #top .onas{
+        margin: 0;
+      padding:0;
+        margin-right: 15px;
+    }
+    .pic{
+        width: 60%;
+
+    }
+    #top .person{
+        width: 30px;
+        height: 30px;
+        margin: 0;
+    }
+    #top .us{
+        margin:0;
+        width: 30px;
+        height: 30px;
+    }
+    #top .world{
+        margin: 0;
+        width: 30px;
+        height: 30px;
+        margin-top: 20px;
+
+
+    }
+    .btn-close{
+        margin-right: 0;
+    }
+    .container-fluid button{
+        border: none;
+    }
+
+    #selec{
+        padding-bottom: 50px;
+        margin-right: 20px;
+        float:left;
+
+    }
+    #language-selector1{
+          margin-right: 100px;
+        margin: 0;
+        margin-top: 25px;
+    }
+    .offcanvas-header{
+        padding-right: 50px;
+    }
+    .offcanvas-header img{
+        height: 50px;
+        width: 50px;
+        margin: 0;
+        padding: 0;
+    }
+    .offcanvas-header h5{
+        font-size: 24px;
+        padding-right: 60%;
+    }
+    .pic img{
+        height: 60px;
+        width: 60px;
+        margin:0;
+        margin-bottom: 15px;
+    }
+    .pic span{
+      font-size: 35px;
+      display: inline-block;
+      margin-bottom: 15px;
+      padding-top: 15px;
+      padding-left: 10px;
+    }
+    .row1 h3{
+        display: none;
+    }
+    #top2{
+        display: none;
+    }
+  .navigation {
+    display: block;
+    text-align: center;
+  }
+  .navigation img {
+    display: block;
+    margin: 0 auto;
+  }
+  .navigation span {
+    display: block;
+    margin: 10px auto;
+  }
+  .navigation ul {
+    display: block;
+    text-align: center;
+
+  }
+  .navigation li {
+    display: block;
+    margin: 5px 0;
+  }
+  #language-selector {
+    display: block;
+    margin: 10px auto;
+  }
+  #knop{
+      width: 250px;
+      height: 60px;
+      font-size: 12px;
+  }
+  #knop img{
+      width: 15px;
+      height: 15px;
+  }
+  .form-control{
+      width: 250px;
+  }
+  .input-group1{
+      text-align: center;
+      width: 50%;
+      padding-left: 20px;
+  }
+  #card{
+      width: 102%;
+  }
+  .row{
+      text-align: center;
+      display: block;
+  }
+  .big{
+      display: none;
+  }
+  .col{
+      padding-right: 12%;
+  }
+}
+@media(min-width:767px) {
+    #top{
+     padding-right: 80px;
+     background-color: #6388e0;
+     display: none;
+ }
+  .small {
+    display:none;
+  }
+}
+@media only screen and (min-width: 500px) and (max-width: 766px){
+    .small{
+        margin-left: 10%;
+    }
+    .row1 h2{
+        margin-left: 15%;
+        font-size: 38px;}
+    .form-control{
+        width: 150%;
+    }
+    #knop{
+        width: 150%;
+        font-size: 15px;
+    }
+}
+@media only screen and (min-width: 460px) and (max-width: 500px){
+    .small{
+        margin-left: 10%;
+    }
+    .row1 h2{
+        margin-left: 15%;
+        }
+}
+@media only screen and (min-width: 575px) and (max-width: 764px){
+
+
+    .col-sm-4{
+        width:100%;
+    }
+
+}
+@media only screen and (min-width: 639px) and (max-width: 765px){
+
+
+    #selec{
+        height: 10px;
+
+        margin-right: 100px;
+        margin-bottom: 130px;
+    }
+
+}
