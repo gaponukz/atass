@@ -12,6 +12,7 @@ main{
 }
 nav{
     padding-top: 10px;
+    padding-left: 24px;
 }
 nav img{
     margin-bottom: 10px;
@@ -155,12 +156,12 @@ nav span{
     padding: 0 10px;}
 .row1 h2{
     font-weight: bold;
-    padding-left: 52px;
+    padding-left: 72px;
     font-size: 55px;
 }
 .row1 h3{
     padding-top: 10px;
-    padding-left: 52px;
+    padding-left: 72px;
     font-size: 30px;
 }
 .row{
@@ -198,6 +199,7 @@ nav span{
     margin-top: 20px;
     background-color: #1B5D77;
     width: 100.8%;
+    padding-right: 3%;
 }
 .route_card_body {
     padding-top: 30px;
@@ -212,7 +214,6 @@ nav span{
 @media (max-width: 500px){
     .row1 h2{
     font-weight: bold;
-    padding-left: 49px;
     font-size: 31px;}
     .row1 h3{
         font-size: 15px;
@@ -228,6 +229,7 @@ nav span{
 
 
 @media (max-width: 322px){
+
     .row1 h2{
     font-weight: bold;
     padding-left: 29px;
@@ -254,8 +256,24 @@ nav span{
     .pic{
         padding-right: 5px;
     }
+    .container-fluid .pic span{
+        font-size: 18px;
+    }
+    .small{
+        margin-right: 20%;
+    }
+    .small .form-control{
+        width: 200%;
+    }
+    .small #knop{
+        width: 200%;
+    }
 }
 @media (max-width: 767px) {
+    .container-fluid button:focus,.container-fluid button:active{
+        box-shadow: none !important;
+
+    }
     .d-flex p{
 
     font-size: 18px;
@@ -406,6 +424,9 @@ nav span{
   .big{
       display: none;
   }
+  .col{
+      padding-right: 12%;
+  }
 }
 @media(min-width:767px) {
     #top{
@@ -439,4 +460,23 @@ nav span{
     .row1 h2{
         margin-left: 15%;
         }
+}
+@media only screen and (min-width: 575px) and (max-width: 764px){
+
+
+    .col-sm-4{
+        width:100%;
+    }
+
+}
+@media only screen and (min-width: 639px) and (max-width: 765px){
+
+
+    #selec{
+        height: 10px;
+
+        margin-right: 100px;
+        margin-bottom: 130px;
+    }
+
 }
