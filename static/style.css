@@ -210,7 +210,9 @@ nav span{
         display: flex;
         justify-content: center;
     }
-
+.input-group1{
+    margin-bottom: -16px;
+}
 @media (max-width: 500px){
     .row1 h2{
     font-weight: bold;
@@ -438,7 +440,7 @@ nav span{
     display:none;
   }
 }
-@media only screen and (min-width: 500px) and (max-width: 766px){
+@media only screen and (min-width: 500px) and (max-width: 767px){
     .small{
         margin-left: 10%;
     }
@@ -452,6 +454,10 @@ nav span{
         width: 150%;
         font-size: 15px;
     }
+    .offcanvas-header h5{
+        font-size: 24px;
+        padding-right: 65%;
+    }
 }
 @media only screen and (min-width: 460px) and (max-width: 500px){
     .small{
@@ -461,9 +467,12 @@ nav span{
         margin-left: 15%;
         }
 }
-@media only screen and (min-width: 575px) and (max-width: 764px){
+@media only screen and (min-width: 575px) and (max-width: 767px){
 
-
+     .offcanvas-header h5{
+        font-size: 24px;
+        padding-right: 70%;
+    }
     .col-sm-4{
         width:100%;
     }
@@ -479,4 +488,13 @@ nav span{
         margin-bottom: 130px;
     }
 
+}
+
+@media only screen and (min-width: 700px) and (max-width: 765px){
+
+
+    .offcanvas-header h5{
+        font-size: 24px;
+        padding-right: 75%;
+    }
 }
