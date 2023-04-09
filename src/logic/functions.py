@@ -1,8 +1,8 @@
 __all__ = 'Service',
 
 import uuid
-import typing
 import datetime
+from src import utils
 from src.logic import entities
 from src.logic import errors
 
@@ -37,12 +37,9 @@ class Service(IService):
             key = f"{route.move_from.place.city}-{route.move_to.place.city}"
 
             if not unique.get(key):
-                unique[key] = {
-                    "move_from": route.move_from.place,
-                    "move_to": route.move_to.place,
-                    "count": 0
-                }
-            unique[key]["count"] += 1
+                unique[key] = utils.RouteToShortRouteAdapter(route)
+            
+            unique[key].count += 1
 
         return list(unique.values())
 
@@ -115,24 +112,21 @@ class Service(IService):
             move_from_id = str(uuid.uuid4())
             move_to_id = str(uuid.uuid4())
 
-            future_route: dict[str, typing.Any] = {
-                "move_from": {
-                    "place": route_prototype.move_from.place.dict(),
-                    "date": datetime_pair["from"],
-                    "id": move_from_id
-                },
-                "move_to": {
-                    "place": route_prototype.move_to.place.dict(),
-                    "date": datetime_pair["to"],
-                    "id": move_to_id
-                },
-                "passengers_number": route_prototype.passengers_number,
-                "description": route_prototype.description,
-                "transportation_rules": route_prototype.transportation_rules,
-                "rules": route_prototype.rules,
-                "sub_spots": [],
-                "prices": {}
-            }
+            route_builder = utils.RouteBuiler()\
+                .set_move_from(entities.Spot(
+                    place=route_prototype.move_from.place,
+                    date=datetime_pair["from"],
+                    id=move_from_id
+                ))\
+                .set_move_to(entities.Spot(
+                    place=route_prototype.move_to.place,
+                    date=datetime_pair["to"],
+                    id=move_to_id
+                ))\
+                .set_passengers_number(route_prototype.passengers_number)\
+                .set_description(route_prototype.description)\
+                .set_transportation_rules(route_prototype.transportation_rules)\
+                .set_rules(route_prototype.rules)
 
             new_prices: entities.PricesSchema = {}
             ids_replacements: dict[entities.HashId, entities.HashId] = {}
@@ -144,20 +138,19 @@ class Service(IService):
                 fake_spot_id = spot.id
                 ids_replacements[fake_spot_id] = spot_id
 
-                future_route['sub_spots'].append({
-                    "place": spot.place.dict(),
-                    "date": datetime_pair["from"] + datetime.timedelta(minutes=spot.from_start),
-                    "id": spot_id,
-                })
+                route_builder.add_subspot(entities.Spot(
+                    place=spot.place,
+                    date=datetime_pair["from"] + datetime.timedelta(minutes=spot.from_start),
+                    id=spot_id
+                ))
 
             for _id in route_prototype.prices:
                 new_prices[ids_replacements[_id]] = {}
 
                 for inner_id in route_prototype.prices[_id]:
                     new_prices[ids_replacements[_id]][ids_replacements[inner_id]] = route_prototype.prices[_id][inner_id]
-        
-            future_route["prices"] = new_prices
-            routes.append(entities.Route(**future_route))
+            
+            routes.append(route_builder.set_prices(new_prices).build())
 
         return routes
 

@@ -4,3 +4,4 @@ server.log
 .vscode
 .mypy_cache
 logging
+db.json

@@ -92,7 +92,7 @@ class Path(pydantic.BaseModel):
     passengers: list[Passenger] = []
     id: HashId = str(uuid.uuid4())
 
-class ShortRoute(typing.TypedDict):
+class ShortRoute(pydantic.BaseModel):
     """
     Describe routes fammily tittle
     """
