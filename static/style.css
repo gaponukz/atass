@@ -446,7 +446,7 @@ nav span{
     }
     .row1 h2{
         margin-left: 15%;
-        font-size: 38px;}
+        font-size: 31px;}
     .form-control{
         width: 150%;
     }
@@ -458,6 +458,7 @@ nav span{
         font-size: 24px;
         padding-right: 65%;
     }
+
 }
 @media only screen and (min-width: 460px) and (max-width: 500px){
     .small{
