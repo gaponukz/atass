@@ -154,33 +154,20 @@ class Service(IService):
 
         return routes
 
-    def add_routes(self, routes: list[entities.Route]):
-        '''
-        Add list of routes to database.
-        Returning a list of routes that successfully added to the database
-        '''
-        succeeded_routes = []
-
+    def _add_routes(self, routes: list[entities.Route]):
         for route in routes:
             try:
                 self._load_route_to_database(route)
-                succeeded_routes.append(route)
 
             except Exception as error:
                 logger.exception(error)
         
-        return succeeded_routes
-    
-    async def add_routes_from_prototype(self, 
-        route_prototype: entities.RouteProxy,
-        datetimes: list[entities._DatetimeObject]
-    ) -> list[entities.Route]:
+    async def add_routes_from_prototype(self, route_prototype: entities.RouteProxy, datetimes: list[entities._DatetimeObject]):
         '''
         Generate routes from prototype, add them to database 
         and return (routes that successfully added to the database)
         '''
-        routes = self.create_routes_copy(route_prototype, datetimes)
-        return self.add_routes(routes)
+        self._add_routes(self.create_routes_copy(route_prototype, datetimes))
 
     def is_actual_spot(self, spot: entities.Spot) -> bool:
         return spot.date < datetime.datetime.now()

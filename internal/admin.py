@@ -44,9 +44,11 @@ async def get_route_page(
 async def add_routes_page(
         routes_instruction: AddRoutesDTO,
         service: functions.IService = Depends()
-    ) -> Response[list[entities.Route]]:
+    ) -> Response[None]:
     
-    return Response(body = service.add_routes_from_prototype(
+    await service.add_routes_from_prototype(
         routes_instruction.route_prototype,
         routes_instruction.datetimes
-    ))
+    )
+
+    return Response(body = None)
