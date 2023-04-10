@@ -216,10 +216,10 @@ nav span{
 @media (max-width: 500px){
     .row1 h2{
     font-weight: bold;
-    font-size: 31px;}
-    .row1 h3{
-        font-size: 15px;
+    font-size: 31px;
+        padding-left: 27%;
     }
+
     .small{
         text-align: center;
         padding-left: 33px;
@@ -234,7 +234,7 @@ nav span{
 
     .row1 h2{
     font-weight: bold;
-    padding-left: 29px;
+    padding-left: 35%;
     font-size: 25px;
 }
     .row1 h3{
@@ -429,6 +429,9 @@ nav span{
   .col{
       padding-right: 12%;
   }
+  row1 h2{
+      margin-left: 5%;
+  }
 }
 @media(min-width:767px) {
     #top{
@@ -439,14 +442,15 @@ nav span{
   .small {
     display:none;
   }
+
 }
 @media only screen and (min-width: 500px) and (max-width: 767px){
     .small{
         margin-left: 10%;
     }
     .row1 h2{
-        margin-left: 15%;
-        font-size: 31px;}
+        margin-left: 1%;
+        font-size: 32px;}
     .form-control{
         width: 150%;
     }
@@ -465,7 +469,7 @@ nav span{
         margin-left: 10%;
     }
     .row1 h2{
-        margin-left: 15%;
+        padding-left: 35%;
         }
 }
 @media only screen and (min-width: 575px) and (max-width: 767px){
@@ -477,6 +481,9 @@ nav span{
     .col-sm-4{
         width:100%;
     }
+    .row1 h2{
+        margin-left: 6%;
+        }
 
 }
 @media only screen and (min-width: 639px) and (max-width: 765px){
@@ -498,4 +505,18 @@ nav span{
         font-size: 24px;
         padding-right: 75%;
     }
+    .row1 h2{
+        margin-left: 5%;
+         font-size: 37px;
+        }
+}
+@media only screen and (min-width: 575px) and (max-width: 603px){
+    .row1 h2{
+        margin-left: 2%;
+        }
+}
+@media only screen and (min-width: 575px) and (max-width: 699px){
+    .row1 h2{
+        margin-left: 5%;
+        }
 }
