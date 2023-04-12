@@ -17,7 +17,7 @@ from src.authentication.authentication import admin_required
 app = FastAPI()
 app.include_router(public.router, prefix="/public")
 app.include_router(admin.router, dependencies=[Depends(admin_required)], prefix="/admin")
-app.dependency_overrides[IRouteDataBase] = JsonRouteDataBase
+app.dependency_overrides[IRouteDataBase] = (lambda db: lambda: db)(JsonRouteDataBase())
 app.dependency_overrides[IService] = Service
 
 if __name__ == "__main__":
