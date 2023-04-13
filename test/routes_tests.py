@@ -3,7 +3,6 @@ import sys
 import unittest
 import aiounittest
 import datetime
-import asyncio
 
 sys.path.insert(0, os.path.abspath('.'))
 
@@ -11,14 +10,44 @@ from src.logic.entities import *
 from src.logic.errors import *
 from src.db.json_route_db import JsonRouteDataBase
 
-# TODO: fix
+db = JsonRouteDataBase()
+
 class DataBaseTests(aiounittest.AsyncTestCase):
-    async def test_adding_and_getter_routes(self):
-        db = JsonRouteDataBase()
+    async def test_remove_routes(self):
         await db.remove_many(lambda _: True)
         self.assertEqual(len(db), 0)
 
-        await asyncio.sleep(1)
+        await db.add_one(route := Route(
+            move_from = Spot(place=Place(country="Ukraine", city="Kiyv", street="Shevchenko 21"), date=datetime.datetime(2023, 1, 21, 14, 0)),
+            move_to = Spot(place=Place(country="Poland", city="Warsaw", street="Gabal 10"), date=datetime.datetime(2023, 1, 23, 10, 30)),
+            passengers_number = 20
+        ))
+
+        await db.add_one(Route(
+            move_from = Spot(place=Place(country="Ukraine", city="Kiyv", street="Shevchenko 21"), date=datetime.datetime(2023, 2, 1, 12, 40)),
+            move_to = Spot(place=Place(country="Poland", city="Warsaw", street="Gabal 10"), date=datetime.datetime(2023, 2, 3, 16, 0)),
+            passengers_number = 15
+        ))
+
+        await db.add_one(Route(
+            move_from = Spot(place=Place(country="Poland", city="Warsaw", street="Gabal 10"), date=datetime.datetime(2023, 1, 24, 14, 0)),
+            move_to = Spot(place=Place(country="Ukraine", city="Kiyv", street="Shevchenko 21"), date=datetime.datetime(2023, 1, 26, 10, 30)),
+            passengers_number = 20
+        ))
+
+        await db.remove_one(route.id)
+
+        self.assertEqual(len(db), 2)
+        
+        await db.remove_many(lambda _route: _route.move_from.place.city == "Warsaw")
+
+        self.assertEqual(len(db), 1)
+        await db.remove_many(lambda _: True)
+        self.assertEqual(len(db), 0)
+
+    async def test_adding_and_getter_routes(self):
+        await db.remove_many(lambda _: True)
+        self.assertEqual(len(db), 0)
 
         await db.add_one(route := Route(
             move_from = Spot(place=Place(country="Ukraine", city="Kiyv", street="Shevchenko 21"), date=datetime.datetime(2023, 1, 21, 14, 0)),
@@ -61,13 +90,10 @@ class DataBaseTests(aiounittest.AsyncTestCase):
         self.assertTrue(this_route.id == route.id == this_one.id)
 
         await db.remove_many(lambda _: True)
-        await asyncio.sleep(1)
-        print(await db.get_all())
+        yield
         self.assertEqual(len(db), 0)
 
     async def test_change(self):
-        db = JsonRouteDataBase()
-
         await db.add_one(route := Route(
             move_from = Spot(place=Place(country="Ukraine", city="Kiyv", street="Shevchenko 21"), date=datetime.datetime(2023, 1, 21, 14, 0)),
             move_to = Spot(place=Place(country="Poland", city="Warsaw", street="Gabal 10"), date=datetime.datetime(2023, 1, 23, 10, 30)),
@@ -102,38 +128,7 @@ class DataBaseTests(aiounittest.AsyncTestCase):
         self.assertTrue(all([_route.passengers_number == 21 for _route in changed]))
 
         await db.remove_many(lambda _: True)
-        self.assertEqual(len(db), 0)
-    
-    async def test_remove_routes(self):
-        db = JsonRouteDataBase()
-
-        await db.add_one(route := Route(
-            move_from = Spot(place=Place(country="Ukraine", city="Kiyv", street="Shevchenko 21"), date=datetime.datetime(2023, 1, 21, 14, 0)),
-            move_to = Spot(place=Place(country="Poland", city="Warsaw", street="Gabal 10"), date=datetime.datetime(2023, 1, 23, 10, 30)),
-            passengers_number = 20
-        ))
-
-        await db.add_one(Route(
-            move_from = Spot(place=Place(country="Ukraine", city="Kiyv", street="Shevchenko 21"), date=datetime.datetime(2023, 2, 1, 12, 40)),
-            move_to = Spot(place=Place(country="Poland", city="Warsaw", street="Gabal 10"), date=datetime.datetime(2023, 2, 3, 16, 0)),
-            passengers_number = 15
-        ))
-
-        await db.add_one(Route(
-            move_from = Spot(place=Place(country="Poland", city="Warsaw", street="Gabal 10"), date=datetime.datetime(2023, 1, 24, 14, 0)),
-            move_to = Spot(place=Place(country="Ukraine", city="Kiyv", street="Shevchenko 21"), date=datetime.datetime(2023, 1, 26, 10, 30)),
-            passengers_number = 20
-        ))
-
-        await db.remove_one(route.id)
-
-        self.assertEqual(len(db), 2)
-        
-        await db.remove_many(lambda _route: _route.move_from.place.city == "Warsaw")
-
-        self.assertEqual(len(db), 1)
-
-        await db.remove_many(lambda _: True)
+        yield
         self.assertEqual(len(db), 0)
 
 if __name__ == "__main__":

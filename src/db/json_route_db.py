@@ -1,13 +1,13 @@
-import dateutil.parser
-import dataclasses
-import typing
-import json
 import os
+import json
+import typing
+import aiofiles
+import dateutil.parser
 
 from src.interfaces import IRouteDataBase
 from src.logic.entities import Route
 
-def datetime_parser(json_dict):
+def _datetime_parser(json_dict):
     for key, value in json_dict.items():
         try:
             json_dict[key] = dateutil.parser.parse(value)
@@ -17,13 +17,6 @@ def datetime_parser(json_dict):
 
     return json_dict
 
-class EnhancedJSONEncoder(json.JSONEncoder):
-    def default(self, obj):
-        if dataclasses.is_dataclass(obj):
-            return dataclasses.asdict(obj)
-
-        return super().default(obj)
-
 class JsonRouteDataBase(IRouteDataBase):
     def __init__(self, filename = "db.json"):
         self._filename = filename
@@ -31,9 +24,7 @@ class JsonRouteDataBase(IRouteDataBase):
 
         if os.path.exists(self._filename):
             with open(self._filename, 'r', encoding='utf-8') as out:
-                self.routes = json.load(out, object_hook=datetime_parser)
-        
-        self._update_file()
+                self.routes = json.load(out, object_hook=_datetime_parser)
     
     async def get_all(self, _filter: typing.Callable[[Route], bool] = lambda _: True) -> list[Route]:
         return [Route(**route) for route in self.routes if _filter(Route(**route))]
@@ -46,13 +37,13 @@ class JsonRouteDataBase(IRouteDataBase):
 
     async def add_one(self, route: Route):
         self.routes.append(route.dict())
-        self._update_file()
+        await self._update_file()
 
     async def remove_one(self, route_hash: str):
         for route in self.routes:
             if Route(**route).id == route_hash:
                 self.routes.remove(route)
-                self._update_file()
+                await self._update_file()
 
                 return
         
@@ -67,7 +58,7 @@ class JsonRouteDataBase(IRouteDataBase):
         for route in self.routes:
             if route.get('id') == route_hash:
                 route.update(fields)
-                self._update_file()
+                await self._update_file()
                 
                 return Route(**route)
 
@@ -76,7 +67,7 @@ class JsonRouteDataBase(IRouteDataBase):
             if _filter(Route(**route)):
                 self.routes.remove(route)
         
-        self._update_file()
+        await self._update_file()
     
     async def change_many(self, _filter: typing.Callable[[Route], bool], **fields) -> list[Route]:
         changed = []
@@ -93,13 +84,14 @@ class JsonRouteDataBase(IRouteDataBase):
                 route.update(fields)
                 changed.append(Route(**route))
 
-        self._update_file()
+        await self._update_file()
         
         return changed
     
-    def _update_file(self):
-        with open(self._filename, 'w', encoding='utf-8') as out:
-            json.dump(self.routes, out, indent=4, cls=EnhancedJSONEncoder, default=str)
+    async def _update_file(self):
+        aiofiles
+        async with aiofiles.open(self._filename, 'w', encoding='utf-8') as out:
+            await out.write(json.dumps(self.routes, indent=4, default=str))
 
     def __len__(self):
         return len(self.routes)
