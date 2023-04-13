@@ -8,7 +8,7 @@ const HeadNav = () => {
     <div className="h-[40px] flex flex-row p-7" >
       <Navbar bg="light" expand="lg">
         <Container className='gap-3'>
-          <p className='text-2xl mt-3'>Панельee адміністратора</p>
+          <p className='text-2xl mt-3'>Панель адміністратора</p>
           <NavLink 
             to="/"
             className="mt-1"

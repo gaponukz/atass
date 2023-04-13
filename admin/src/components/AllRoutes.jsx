@@ -4,8 +4,6 @@ import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 
-
-
 const AllRoutes = () => {
     const routes = useSelector(state => state.createRoute.routes)
 
@@ -13,8 +11,8 @@ const AllRoutes = () => {
         <div className='p-8'>
             <div className='flex flex-row items-center justify-center'>
                 <div className='border-2 border-gray-300 rounded-lg w-2/4 mt-[50px]'>
-                    {routes.map(route => (
-                        <NavLink className='no-underline text-black' to={`route/${route.move_from.city.toLowerCase()}`} key={route.move_from}>
+                    {routes.map((route, index) => (
+                        <NavLink className='no-underline text-black' to={`route/${route.move_from.city.toLowerCase()}`} key={route.move_from.id}>
                         <div className='border-b-2 border-gray-300'>
                             <div className='relative p-4'>
                                 <div className='flex flex-row gap-1'> 
@@ -31,7 +29,7 @@ const AllRoutes = () => {
                     ))}
                 </div>
 
-                <NavLink className='border-2 border-gray-300 mt-[-350px] px-[16px] py-[4px] rounded-lg text-xl no-underline text-black' to="/create-route">
+                <NavLink className='border-2 border-gray-300 mt-[-350px] px-[16px] py-[4px] rounded-lg text-xl no-underline text-black' to="/create-route-1">
                     Додати маршрут
                 </NavLink>
             </div>
