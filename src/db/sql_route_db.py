@@ -1,4 +1,5 @@
 from src.db.sql.database import SessionLocal
+from src.db.sql.database import Base
 from src.db.sql.database import engine
 from src.db.sql.models import *
 

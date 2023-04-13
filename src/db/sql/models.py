@@ -1,3 +1,10 @@
+__all__ = (
+    'PlaceModel',
+    'PassengerModel',
+    'SpotModel',
+    'Route'
+)
+
 import uuid
 import json
 
