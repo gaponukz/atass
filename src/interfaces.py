@@ -5,8 +5,8 @@ from src.logic.entities import Path
 from src.logic.entities import Route
 from src.logic.entities import HashId
 from src.logic.entities import ShortRoute
-from src.logic.entities import RouteProxy
-from src.logic.entities import _DatetimeObject
+from src.logic.entities import RouteTemplate
+from src.logic.entities import DatetimeObject
 from src.logic.entities import AuthorizedUser
 
 class IService(abc.ABC):
@@ -37,7 +37,7 @@ class IService(abc.ABC):
         // Aviable is fresh date and free sits
         '''
         ...
-    async def add_routes_from_prototype(self, route_prototype: RouteProxy, datetimes: list[_DatetimeObject]) -> list[Route]:
+    async def add_routes_from_prototype(self, route_prototype: RouteTemplate, datetimes: list[DatetimeObject]) -> list[Route]:
         '''
         Generating routes from route prototype and selected dates
         and return routes that successfully added to the database.

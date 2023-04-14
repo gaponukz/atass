@@ -8,7 +8,7 @@ from src.logic.entities import *
 sys.path.insert(0, os.path.abspath('.'))
 
 async def main(db):
-    await db.add_one(route := Route(
+    await db.add_one(Route(
         move_from = Spot(place=Place(country="Ukraine", city="Kiyv", street="Shevchenko 21"), date=datetime.datetime(2023, 1, 21, 14, 0)),
         move_to = Spot(place=Place(country="Poland", city="Warsaw", street="Gabal 10"), date=datetime.datetime(2023, 1, 23, 10, 30)),
         passengers_number = 20

@@ -10,5 +10,5 @@ class Response(pydantic.BaseModel, typing.Generic[T]):
     body: T
 
 class AddRoutesDTO(pydantic.BaseModel):
-    route_prototype: entities.RouteProxy
-    datetimes: list[entities._DatetimeObject]
+    route_prototype: entities.RouteTemplate
+    datetimes: list[entities.DatetimeObject]

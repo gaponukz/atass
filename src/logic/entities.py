@@ -8,12 +8,21 @@ PricesSchema = dict[HashId, dict[HashId, int]]
 LangCode = typing.Literal['ua', 'en', 'pl']
 MultiLanguages = dict[LangCode, str]
 
-_DatetimeObject = typing.TypedDict('_DatetimeObject', {
+DatetimeObject = typing.TypedDict('DatetimeObject', {
     'from': datetime.datetime,
     'to': datetime.datetime
 })
 
 enpty_languages: MultiLanguages = { code: "" for code in typing.get_args(LangCode) }
+
+class _RouteBase(pydantic.BaseModel):
+    passengers_number: int
+    is_active: bool = True
+    prices: PricesSchema = {}
+    description: MultiLanguages = enpty_languages
+    rules: MultiLanguages = enpty_languages
+    transportation_rules: MultiLanguages = enpty_languages
+    id: HashId = str(uuid.uuid4())
 
 class User(pydantic.BaseModel):
     first_name: str
@@ -44,18 +53,14 @@ class Passenger(User):
     moving_towards: Spot
     id: HashId = str(uuid.uuid4())
 
-class Route(pydantic.BaseModel):
+class Route(_RouteBase):
     move_from: Spot
     move_to: Spot
-    passengers_number: int
     sub_spots: list[Spot] = []
-    is_active: bool = True
-    prices: PricesSchema = {}
     passengers: list[Passenger] = []
-    description: MultiLanguages = enpty_languages
-    rules: MultiLanguages = enpty_languages
-    transportation_rules: MultiLanguages = enpty_languages
-    id: HashId = str(uuid.uuid4())
+
+    class Config:
+        extra = pydantic.Extra.ignore
 
 class Path(pydantic.BaseModel):
     move_from: Spot
@@ -70,18 +75,12 @@ class ShortRoute(pydantic.BaseModel):
     move_to: Place
     count: int
 
-class SpotProxy(pydantic.BaseModel):
+class SpotTemplate(pydantic.BaseModel):
     place: Place
     from_start: int
     id: HashId
 
-class RouteProxy(pydantic.BaseModel):
-    move_from: SpotProxy
-    move_to: SpotProxy
-    passengers_number: int
-    sub_spots: list[SpotProxy]
-    prices: PricesSchema
-    description: MultiLanguages
-    rules: MultiLanguages
-    transportation_rules: MultiLanguages
-    id: HashId
+class RouteTemplate(_RouteBase):
+    move_from: SpotTemplate
+    move_to: SpotTemplate
+    sub_spots: list[SpotTemplate]

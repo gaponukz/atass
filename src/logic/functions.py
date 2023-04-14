@@ -1,6 +1,7 @@
 __all__ = 'Service',
 
 import uuid
+import typing
 import datetime
 from src import utils
 from src.logic import entities
@@ -54,95 +55,87 @@ class Service(IService):
 
         return route
 
-    @logger.catch(reraise=True)
-    async def generating_aviable_pathes(self, route: entities.Route) -> list[entities.Path]:
-        all_spots = self.get_routes_spots(route)
-        results: list[entities.Path] = []
-
-        if not self.is_actual_route(route):
-            return []
-
-        sits: dict[entities.HashId, dict[entities.HashId, int]] = {
+    def _get_route_sits(all_spots: list[entities.Spot], passengers: list[entities.Passenger]) -> dict[entities.HashId, dict[entities.HashId, int]]:
+        sits = {
             all_spots[i].id: {
                 all_spots[j].id: 0 for j in range(i+1, len(all_spots))
             } for i in range(len(all_spots)-1)
         }
 
-        for passenger in route.passengers:
+        for passenger in passengers:
             sits[passenger.moving_from.id][passenger.moving_towards.id] += 1
-
+        
+        return sits
+    
+    def _iter_different_spots(self, all_spots: list[entities.Spot]) -> typing.Iterator[tuple[entities.Spot, entities.Spot]]:
         for i in range(len(all_spots)-1):
             for j in range(i+1, len(all_spots)):
-                start_spot = all_spots[i]
-                end_spot = all_spots[j]
+                yield (all_spots[i], all_spots[j])
 
-                if not all((
-                    self.is_actual_spot(start_spot),
-                    route.prices.get(start_spot.id, {}).get(end_spot.id),
-                    sits[start_spot.id][end_spot.id] < route.passengers_number
-                )):
-                    continue
+    @logger.catch(reraise=True)
+    async def generating_aviable_pathes(self, route: entities.Route) -> list[entities.Path]:
+        all_spots = self._get_routes_spots(route)
+        results: list[entities.Path] = []
 
-                results.append(entities.Path(
-                    move_from=start_spot,
-                    move_to=end_spot,
-                    price=route.prices[start_spot.id][end_spot.id],
-                    root_route_id=route.id,
-                    passengers=[
-                        passenger for passenger in route.passengers 
-                        if passenger.moving_from.id == start_spot.id \
-                        and passenger.moving_towards.id == end_spot.id
-                    ]
-                ))
+        if not self._is_actual_route(route):
+            return []
+
+        sits: dict[entities.HashId, dict[entities.HashId, int]] = self._get_route_sits(all_spots)
+
+        for start_spot, end_spot in self._iter_different_spots(all_spots):   
+            if not all((
+                self._is_actual_spot(start_spot),
+                route.prices.get(start_spot.id, {}).get(end_spot.id),
+                sits[start_spot.id][end_spot.id] < route.passengers_number
+            )):
+                continue
+
+            results.append(entities.Path(
+                move_from=start_spot,
+                move_to=end_spot,
+                price=route.prices[start_spot.id][end_spot.id],
+                root_route_id=route.id,
+                passengers=[
+                    passenger for passenger in route.passengers 
+                    if passenger.moving_from.id == start_spot.id \
+                    and passenger.moving_towards.id == end_spot.id
+                ]
+            ))
 
         return results
 
-    async def create_routes_copy(
+    async def _generate_routes_copy(
         self,
-        route_prototype: entities.RouteProxy,
-        datetimes: list[entities._DatetimeObject]
+        route_prototype: entities.RouteTemplate,
+        datetimes: list[entities.DatetimeObject]
     ) -> list[entities.Route]:
         '''
-        Generating list of routes from the route prototype(RouteProxy) and datetimes.
+        Generating list of routes from the route prototype(RouteTemplate) and datetimes list.
         Number of routes = number of datetimes.
         '''
         routes: list[entities.Route] = []
 
         for datetime_pair in datetimes:
+            new_route = utils.FromTemplateToRouteAdapter(route_prototype.copy(deep=True), datetime_pair)
+            
+            ids_replacements: dict[entities.HashId, entities.HashId] = {}
+            new_prices: entities.PricesSchema = {}
+
             move_from_id = str(uuid.uuid4())
             move_to_id = str(uuid.uuid4())
+        
+            new_route.move_from.id = move_from_id
+            new_route.move_to.id = move_to_id
 
-            route_builder = utils.RouteBuiler()\
-                .set_move_from(entities.Spot(
-                    place=route_prototype.move_from.place,
-                    date=datetime_pair["from"],
-                    id=move_from_id
-                ))\
-                .set_move_to(entities.Spot(
-                    place=route_prototype.move_to.place,
-                    date=datetime_pair["to"],
-                    id=move_to_id
-                ))\
-                .set_passengers_number(route_prototype.passengers_number)\
-                .set_description(route_prototype.description)\
-                .set_transportation_rules(route_prototype.transportation_rules)\
-                .set_rules(route_prototype.rules)
-
-            new_prices: entities.PricesSchema = {}
-            ids_replacements: dict[entities.HashId, entities.HashId] = {}
             ids_replacements[route_prototype.move_from.id] = move_from_id
             ids_replacements[route_prototype.move_to.id] = move_to_id
 
-            for spot in route_prototype.sub_spots:
+            for spot in new_route.sub_spots:
                 spot_id = str(uuid.uuid4())
                 fake_spot_id = spot.id
                 ids_replacements[fake_spot_id] = spot_id
 
-                route_builder.add_subspot(entities.Spot(
-                    place=spot.place,
-                    date=datetime_pair["from"] + datetime.timedelta(minutes=spot.from_start),
-                    id=spot_id
-                ))
+                spot.id = spot_id
 
             for _id in route_prototype.prices:
                 new_prices[ids_replacements[_id]] = {}
@@ -150,32 +143,28 @@ class Service(IService):
                 for inner_id in route_prototype.prices[_id]:
                     new_prices[ids_replacements[_id]][ids_replacements[inner_id]] = route_prototype.prices[_id][inner_id]
             
-            routes.append(route_builder.set_prices(new_prices).build())
+            new_route.prices = new_prices
+            
+            routes.append(new_route)
 
         return routes
-
-    def _add_routes(self, routes: list[entities.Route]):
-        for route in routes:
-            try:
-                self._load_route_to_database(route)
-
-            except Exception as error:
-                logger.exception(error)
         
-    async def add_routes_from_prototype(self, route_prototype: entities.RouteProxy, datetimes: list[entities._DatetimeObject]):
+    async def add_routes_from_prototype(self, route_prototype: entities.RouteTemplate, datetimes: list[entities.DatetimeObject]):
         '''
-        Generate routes from prototype, add them to database 
-        and return (routes that successfully added to the database)
+        Generate routes from prototype and add them to database 
         '''
-        self._add_routes(self.create_routes_copy(route_prototype, datetimes))
+        routes = await self._generate_routes_copy(route_prototype, datetimes)
 
-    def is_actual_spot(self, spot: entities.Spot) -> bool:
+        for route in routes:
+            self._load_route_to_database(route)
+
+    def _is_actual_spot(self, spot: entities.Spot) -> bool:
         return spot.date < datetime.datetime.now()
 
-    def is_actual_route(self, route: entities.Route) -> bool:
-        return self.is_actual_spot(route.move_to if not route.sub_spots else route.sub_spots[-1])
+    def _is_actual_route(self, route: entities.Route) -> bool:
+        return self._is_actual_spot(route.move_to if not route.sub_spots else route.sub_spots[-1])
 
-    def get_routes_spots(self, route: entities.Route) -> list[entities.Spot]:
+    def _get_routes_spots(self, route: entities.Route) -> list[entities.Spot]:
         routes_spots = route.sub_spots.copy()
         routes_spots.insert(0, route.move_from)
         routes_spots.insert(-1, route.move_to)
