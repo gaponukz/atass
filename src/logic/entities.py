@@ -39,7 +39,7 @@ class Place(pydantic.BaseModel):
     country: str
     city: str
     street: str
-    map_url: str | None = None
+    map_url: pydantic.HttpUrl | None = None
     id: HashId = str(uuid.uuid4())
 
 class Spot(pydantic.BaseModel):
