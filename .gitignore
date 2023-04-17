@@ -1,5 +1,6 @@
 __pycache__
 .env
+.venv
 server.log
 .vscode
 .mypy_cache
