@@ -216,16 +216,19 @@ nav span{
 @media (max-width: 500px){
     .row1 h2{
     font-weight: bold;
-    font-size: 31px;
-        padding-left: 27%;
+    font-size: 28px;
+        padding-left: 18%;
     }
 
     .small{
         text-align: center;
-        padding-left: 33px;
+        padding-left: 25px;
          display: block;
         margin-left: auto;
         margin-right: auto 
+    }
+    .container{
+        width: 90%;
     }
 }
 
@@ -234,7 +237,7 @@ nav span{
 
     .row1 h2{
     font-weight: bold;
-    padding-left: 35%;
+    padding-left: 25%;
     font-size: 25px;
 }
     .row1 h3{
@@ -268,10 +271,37 @@ nav span{
         width: 200%;
     }
     .small #knop{
+        margin-top:5px;
         width: 200%;
+    }
+    .small .input-group1{
+        width: 140px;
+        height: 70px;
+    }
+    .small .ter{
+        width: 141px;
     }
 }
 @media (max-width: 767px) {
+    .ter{
+        background-color: white;
+        width: 290px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        margin-left: 1px;
+         box-shadow:
+            0px 0px 10px 5px rgba(0, 0, 0, 0.1),
+            0px 0px 20px 10px rgba(0, 0, 0, 0.1),
+            0px 0px 30px 15px rgba(0, 0, 0, 0.1);
+    }
+            .long-line-label::after {
+          content: "";
+          display: block;
+          width: 100%;
+          height: 1px;
+          background-color: black;
+          margin-top: 5px; /* для отступа между текстом и линией */
+        }
     .container-fluid button:focus,.container-fluid button:active{
         box-shadow: none !important;
 
@@ -399,22 +429,38 @@ nav span{
     display: block;
     margin: 10px auto;
   }
+
   #knop{
-      width: 250px;
+      border-radius: 0 0 10px 10px;
+      width: 291px;
       height: 60px;
       font-size: 12px;
+      box-shadow:
+            0px 0px 10px 5px rgba(0, 0, 0, 0.001);
+
   }
   #knop img{
       width: 15px;
       height: 15px;
   }
+
   .form-control{
-      width: 250px;
+       box-shadow: none;
+      outline:none !important;
+      border: none;
+      width: 290px;
   }
   .input-group1{
+      box-shadow: none;
+      outline:none;
+      border: none;
       text-align: center;
-      width: 50%;
-      padding-left: 20px;
+      width: 60%;
+      padding-right: 30px;
+  }
+  .form-control:focus{
+      box-shadow: none;
+      outline: none;
   }
   #card{
       width: 102%;
@@ -430,8 +476,12 @@ nav span{
       padding-right: 12%;
   }
   row1 h2{
-      margin-left: 5%;
+      margin-left: 8%;
   }
+  .container{
+      margin-left: 2%;
+  }
+
 }
 @media(min-width:767px) {
     #top{
@@ -445,31 +495,36 @@ nav span{
 
 }
 @media only screen and (min-width: 500px) and (max-width: 767px){
+    .container{
+        width: 90%;
+    }
     .small{
         margin-left: 10%;
     }
     .row1 h2{
-        margin-left: 1%;
-        font-size: 32px;}
+        margin-left: -2%;
+        font-size: 28px;}
     .form-control{
         width: 150%;
     }
     #knop{
-        width: 150%;
+        width: 162%;
         font-size: 15px;
     }
     .offcanvas-header h5{
         font-size: 24px;
         padding-right: 65%;
     }
-
+    .input-group1{
+        width: 210px;
+    }
 }
 @media only screen and (min-width: 460px) and (max-width: 500px){
     .small{
         margin-left: 10%;
     }
     .row1 h2{
-        padding-left: 35%;
+        padding-left: 29%;
         }
 }
 @media only screen and (min-width: 575px) and (max-width: 767px){
@@ -482,7 +537,7 @@ nav span{
         width:100%;
     }
     .row1 h2{
-        margin-left: 6%;
+        padding-left: 15%;
         }
 
 }
@@ -506,9 +561,12 @@ nav span{
         padding-right: 75%;
     }
     .row1 h2{
-        margin-left: 5%;
-         font-size: 37px;
+        margin-left: 3%;
+         font-size: 34px;
         }
+    #card{
+        width: 101.5%;
+    }
 }
 @media only screen and (min-width: 575px) and (max-width: 603px){
     .row1 h2{
