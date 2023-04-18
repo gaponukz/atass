@@ -7,7 +7,6 @@ from src.logic.entities import HashId
 from src.logic.entities import ShortRoute
 from src.logic.entities import RouteTemplate
 from src.logic.entities import DatetimeObject
-from src.logic.entities import AuthorizedUser
 
 class IService(abc.ABC):
     '''
@@ -50,7 +49,7 @@ class IRouteDataBase(abc.ABC):
     Abstract base class for routes databases
     '''
     @abc.abstractmethod
-    async def get_all(self, _filter: typing.Callable[[Route], bool] = lambda _: True) -> list[Route]:
+    async def get_all(self, _filter: dict[str, typing.Any] = {}) -> list[Route]:
         '''
         Fetch all routes from the database with the given filter
         '''
@@ -89,72 +88,19 @@ class IRouteDataBase(abc.ABC):
         ...
     
     @abc.abstractmethod
-    async def remove_many(self, _filter: typing.Callable[[Route], bool]):
+    async def remove_many(self, _filter: dict[str, typing.Any] = {}):
         '''
         Remove many routes from the database with the given filter
         '''
         ...
     
     @abc.abstractmethod
-    async def change_many(self, _filter: typing.Callable[[Route], bool], **fields) -> list[Route]:
+    async def change_many(self, _filter: dict[str, typing.Any] = {}, **fields) -> list[Route]:
         '''
         Change many routes by filter with given fields to change, returning changed routes
         '''
         ...
     
-    @abc.abstractmethod
-    def __len__(self):
-        ...
-
-
-class IPassengerDatabase(abc.ABC):
-    '''
-    Abstract base class for passengers databases
-    '''
-    @abc.abstractmethod
-    async def get_all(self, _filter: typing.Callable[[AuthorizedUser], bool] = lambda _: True) -> list[AuthorizedUser]:
-        '''
-        Fetch all passengers from the database with the given filter
-        '''
-        ...
-
-    @abc.abstractmethod
-    async def get_one(self, passenger_id: str) -> AuthorizedUser:
-        '''
-        Return one passenger from the database
-        @param passenger_id: The passenger id
-        '''
-        ...
-    
-    @abc.abstractmethod
-    async def add_one(self, passenger: AuthorizedUser):
-        '''
-        Add one non registered passenger to the database.
-        '''
-        ...
-    
-    @abc.abstractmethod
-    async def register_one(self, passenger: AuthorizedUser, password_hash: str):
-        '''
-        Register passenger.
-        NOTE: if passenger not in database, we will add him by calling .add_one(passenger)
-        '''
-        ...
-    
-    @abc.abstractmethod
-    async def login(self, phone: str, password_hash: str) -> AuthorizedUser:
-        '''
-        Check if user exist, throw error if passenger is not exist else return Passenger entity
-        '''
-        ...
-    
-    @abc.abstractmethod
-    async def remove_one(self, passenger_id: str):
-        '''
-        Remove one passenger from the database
-        '''
-        ...
-
     @abc.abstractmethod
     def __len__(self):
         ...

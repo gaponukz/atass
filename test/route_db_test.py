@@ -59,11 +59,10 @@ class DataBaseTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(len(db), 3)
 
         self.assertEqual(len(db), len(await db.get_all()))
-
-        flitered_routes = await db.get_all(lambda route: route.move_from == test_spot1)
+        flitered_routes = await db.get_all({"move_from": test_spot1})
         self.assertEqual(len(flitered_routes), 1)
 
-        flitered_routes = await db.get_all(lambda route: route.move_from == test_spot2)
+        flitered_routes = await db.get_all({"move_from": test_spot2})
         self.assertEqual(len(flitered_routes), 1)
 
         self.assertEqual(route2.id, (await db.get_one(route2.id)).id)
@@ -92,7 +91,7 @@ class DataBaseTests(unittest.IsolatedAsyncioTestCase):
             passengers_number=10
         )
 
-        await db.change_many(lambda _: True, passengers_number=15)
+        await db.change_many(passengers_number=15)
 
         all_routes = await db.get_all()
 
@@ -107,7 +106,7 @@ class DataBaseTests(unittest.IsolatedAsyncioTestCase):
         await db.change_one(route3.id, move_to=(new_spot := generate_random_spot()))
         self.assertEqual(new_spot, (await db.get_one(route3.id)).move_to)
 
-        await db.change_many(lambda _: True, move_to=(new_spot := generate_random_spot()))
+        await db.change_many(move_to=(new_spot := generate_random_spot()))
         all_routes = await db.get_all()
         self.assertTrue(all(_route.move_to == new_spot for _route in all_routes))
 

@@ -46,7 +46,7 @@ class Service(IService):
 
     @logger.catch(reraise=True)
     async def get_routes_family_by_cities(self, move_from_city: str, move_to_city: str) -> list[entities.Route]:
-        return await self._get_all_routes(lambda route: route.move_from.place.city == move_from_city and route.move_to.place.city == move_to_city) 
+        return await self._get_all_routes({"move_from": {"place": {"city": move_from_city}}, "move_to": {"place": {"city": move_to_city}}})
 
     @logger.catch(reraise=True)
     async def get_route_by_id(self, route_id: entities.HashId) -> entities.Route:
