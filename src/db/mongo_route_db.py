@@ -1,5 +1,6 @@
 import os
 import typing
+import asyncio
 
 from dotenv import load_dotenv
 from src.interfaces import IRouteDataBase
@@ -29,17 +30,13 @@ class MongoRouteDataBase(IRouteDataBase):
         await self._db.delete_one({"id": route_hash})
 
     async def change_one(self, route_hash: str, **fields) -> Route:
-        ...
+        await self._db.update_one({"id": route_hash}, fields)
     
     async def remove_many(self, _filter: dict[str, typing.Any] = {}):
         await self._db.delete_many(_filter)
     
     async def change_many(self, _filter: dict[str, typing.Any] = {}, **fields) -> list[Route]:
-        '''
-        Change many routes by filter with given fields to change, returning changed routes
-        '''
-        ...
+        await self._db.update_many(_filter, fields)
     
-
     def __len__(self):
-        ...
+        return 0

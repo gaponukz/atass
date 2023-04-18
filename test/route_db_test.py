@@ -10,6 +10,7 @@ from src.logic.entities import *
 from src.logic.errors import *
 from src.db.json_route_db import JsonRouteDataBase
 from src.db.memory_route_db import MemoryRouteDataBase
+from src.db.mongo_route_db import MongoRouteDataBase
 
 db = JsonRouteDataBase()
 
@@ -33,6 +34,7 @@ def generate_random_spot() -> Spot:
 
 class DataBaseTests(unittest.IsolatedAsyncioTestCase):
     async def test_adding_getting_routes(self):
+        await db.remove_many()
         route1 = Route(
             move_from=(test_spot1 := generate_random_spot()),
             move_to=generate_random_spot(),
@@ -68,7 +70,7 @@ class DataBaseTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(route2.id, (await db.get_one(route2.id)).id)
 
     async def test_removing_all(self):
-        await db.remove_many(lambda _: True)
+        await db.remove_many()
         
         self.assertEqual(len(db), 0)
 
