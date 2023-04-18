@@ -1,38 +1,15 @@
 import typing
 
 from src.interfaces import IRouteDataBase
+from src.utils import FilterComparatorTemplate
 from src.logic.entities import Route
 
-def _check_filter(entity, _filter):
-    if not _filter:
-        return True
-    
-    entity = entity.dict()
-
-    def check_nested_fields(entity, _filter):
-        for key, value in _filter.items():
-            if key not in entity:
-                return False
-            
-            if isinstance(value, dict):
-                if not check_nested_fields(entity[key], value):
-                    return False
-            
-            else:
-                if entity[key] != value:
-                    return False
-            
-        return True
-
-    return check_nested_fields(entity, _filter)
-
-
-class MemoryRouteDataBase(IRouteDataBase):
+class MemoryRouteDataBase(IRouteDataBase, FilterComparatorTemplate):
     def __init__(self):
         self.routes: list[Route] = []
     
     async def get_all(self, _filter: dict[str, typing.Any] = {}) -> list[Route]:
-        return [route for route in self.routes if _check_filter(route, _filter)]
+        return [route for route in self.routes if self._compare_filters(route, _filter)]
 
     async def get_one(self, route_hash: str) -> Route:
         for route in self.routes:
@@ -57,19 +34,22 @@ class MemoryRouteDataBase(IRouteDataBase):
                 return route
 
     async def remove_many(self, _filter: dict[str, typing.Any] = {}):        
-        self.routes = [route for route in self.routes if not _check_filter(route, _filter)]
+        self.routes = [route for route in self.routes if not self._compare_filters(route, _filter)]
     
     async def change_many(self, _filter: dict[str, typing.Any] = {}, **fields) -> list[Route]:
         changed = []
 
         for route in self.routes:
-            if _check_filter(route, _filter):
+            if self._compare_filters(route, _filter):
                 for key, value in fields.items():
                     setattr(route, key, value)
 
                 changed.append(route)
         
         return changed
+
+    def _entity_hook(self, entity: Route) -> dict[str, typing.Any]:
+        return entity.dict()
 
     def __len__(self):
         return len(self.routes)

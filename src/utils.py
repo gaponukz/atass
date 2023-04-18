@@ -1,3 +1,4 @@
+import typing
 import datetime
 from src.logic import entities
 
@@ -15,3 +16,30 @@ class FromTemplateToRouteAdapter(entities.Route):
             new_route['sub_spots'][i]['date'] = date_pair['from'] + datetime.timedelta(minutes=route.sub_spots[i].from_start)
         
         super().__init__(**new_route)
+
+class FilterComparatorTemplate:
+    def _compare_filters(self, entity: typing.Any, _filter: dict[str, typing.Any]) -> bool:
+        entity = self._entity_hook(entity)
+
+        if not _filter:
+            return True
+
+        def check_nested_fields(entity, _filter):
+            for key, value in _filter.items():
+                if key not in entity:
+                    return False
+                
+                if isinstance(value, dict):
+                    if not check_nested_fields(entity[key], value):
+                        return False
+                
+                else:
+                    if entity[key] != value:
+                        return False
+                
+            return True
+
+        return check_nested_fields(entity, _filter)
+
+    def _entity_hook(self, entity: typing.Any) -> dict[str, typing.Any]:
+        return entity

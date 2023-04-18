@@ -5,6 +5,7 @@ import aiofiles
 import dateutil.parser
 
 from src.interfaces import IRouteDataBase
+from src.utils import FilterComparatorTemplate
 from src.logic.entities import Route
 
 def _datetime_parser(json_dict):
@@ -17,28 +18,7 @@ def _datetime_parser(json_dict):
 
     return json_dict
 
-def _check_filter(entity, _filter):
-    if not _filter:
-        return True
-
-    def check_nested_fields(entity, _filter):
-        for key, value in _filter.items():
-            if key not in entity:
-                return False
-            
-            if isinstance(value, dict):
-                if not check_nested_fields(entity[key], value):
-                    return False
-            
-            else:
-                if entity[key] != value:
-                    return False
-            
-        return True
-
-    return check_nested_fields(entity, _filter)
-
-class JsonRouteDataBase(IRouteDataBase):
+class JsonRouteDataBase(IRouteDataBase, FilterComparatorTemplate):
     def __init__(self, filename = "db.json"):
         self._filename = filename
         self.routes = []
@@ -48,7 +28,7 @@ class JsonRouteDataBase(IRouteDataBase):
                 self.routes = json.load(out, object_hook=_datetime_parser)
     
     async def get_all(self, _filter: dict[str, typing.Any] = {}) -> list[Route]:
-        return [Route(**route) for route in self.routes if _check_filter(route, _filter)]
+        return [Route(**route) for route in self.routes if self._compare_filters(route, _filter)]
 
     async def get_one(self, route_hash: str) -> Route | None:
         finded_objects = [route for route in self.routes if Route(**route).id == route_hash]
@@ -85,7 +65,7 @@ class JsonRouteDataBase(IRouteDataBase):
 
     async def remove_many(self, _filter: dict[str, typing.Any] = {}):
         for route in self.routes:
-            if _check_filter(route, _filter):
+            if self._compare_filters(route, _filter):
                 self.routes.remove(route)
         
         await self._update_file()
@@ -101,7 +81,7 @@ class JsonRouteDataBase(IRouteDataBase):
                 pass
         
         for route in self.routes:
-            if _check_filter(route, _filter):
+            if self._compare_filters(route, _filter):
                 route.update(fields)
                 changed.append(Route(**route))
 
