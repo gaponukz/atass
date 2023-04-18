@@ -481,6 +481,22 @@ nav span{
   .container{
       margin-left: 2%;
   }
+  .d-flex img{
+      width: 40px;
+      height: 40px;
+      position: absolute;
+      margin-left: 40%;
+  }
+  .d-flex p{
+      margin-top:40px;
+      font-size: 15px;
+  }
+  .col-sm-4{
+      margin-right: 80px;
+  }
+  .col{
+      margin: 10px;
+  }
 
 }
 @media(min-width:767px) {
@@ -537,13 +553,18 @@ nav span{
         width:100%;
     }
     .row1 h2{
-        padding-left: 15%;
+        padding-left: 33%;
         }
-
+    .small{
+        padding-left: 13%;
+    }
+    
 }
 @media only screen and (min-width: 639px) and (max-width: 765px){
 
-
+    .row1 h2{
+        padding-left: 17%;
+        }
     #selec{
         height: 10px;
 
@@ -551,6 +572,22 @@ nav span{
         margin-bottom: 130px;
     }
 
+    .input-group1{
+        width: 85%;
+    }
+    .ter{
+        width: 95%;
+        margin: 0;
+    }
+    .small{
+        padding-left: 2%;
+    }
+    .form-control{
+        width: 100%;
+    }
+    #knop{
+        width: 120%;
+    }
 }
 
 @media only screen and (min-width: 700px) and (max-width: 765px){
@@ -561,8 +598,8 @@ nav span{
         padding-right: 75%;
     }
     .row1 h2{
-        margin-left: 3%;
-         font-size: 34px;
+        margin-left: 5%;
+         font-size: 29px;
         }
     #card{
         width: 101.5%;
