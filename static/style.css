@@ -222,7 +222,7 @@ nav span{
 
     .small{
         text-align: center;
-        padding-left: 25px;
+        padding-left: 10%;
          display: block;
         margin-left: auto;
         margin-right: auto 
@@ -515,11 +515,11 @@ nav span{
         width: 90%;
     }
     .small{
-        margin-left: 10%;
+        margin-left: 15%;
     }
     .row1 h2{
-        margin-left: -2%;
-        font-size: 28px;}
+        margin-left: 3%;
+        font-size: 30px;}
     .form-control{
         width: 150%;
     }
@@ -540,7 +540,7 @@ nav span{
         margin-left: 10%;
     }
     .row1 h2{
-        padding-left: 29%;
+        padding-left: 36%;
         }
 }
 @media only screen and (min-width: 575px) and (max-width: 767px){
@@ -552,45 +552,12 @@ nav span{
     .col-sm-4{
         width:100%;
     }
-    .row1 h2{
-        padding-left: 33%;
-        }
-    .small{
-        padding-left: 13%;
-    }
+
+
     
 }
-@media only screen and (min-width: 639px) and (max-width: 765px){
 
-    .row1 h2{
-        padding-left: 17%;
-        }
-    #selec{
-        height: 10px;
-
-        margin-right: 100px;
-        margin-bottom: 130px;
-    }
-
-    .input-group1{
-        width: 85%;
-    }
-    .ter{
-        width: 95%;
-        margin: 0;
-    }
-    .small{
-        padding-left: 2%;
-    }
-    .form-control{
-        width: 100%;
-    }
-    #knop{
-        width: 120%;
-    }
-}
-
-@media only screen and (min-width: 700px) and (max-width: 765px){
+@media only screen and (min-width: 700px) and (max-width: 767px){
 
 
     .offcanvas-header h5{
@@ -598,20 +565,103 @@ nav span{
         padding-right: 75%;
     }
     .row1 h2{
-        margin-left: 5%;
-         font-size: 29px;
+        padding-left: 17%;
+         font-size: 36px;
         }
     #card{
         width: 101.5%;
     }
+    .form-control{
+        width: 210%;
+    }
+    .ter{
+        width: 95%;
+    }
+    #knop{
+        width: 212%;
+
+    }
+    .small{
+        margin-left: 11%;
+    }
+    .input-group1{
+        width: 50%;
+    }
+}
+
+@media only screen and (min-width: 575px) and (max-width: 700px){
+    .row1 h2{
+        padding-left: 10%;
+        font-size: 31px;
+        }
+    .form-control{
+        width: 210%;
+    }
+    .ter{
+        width: 95%;
+    }
+    .input-group1{
+        width: 50%;
+    }
+    #knop{
+        width: 220%;
+    }
 }
 @media only screen and (min-width: 575px) and (max-width: 603px){
     .row1 h2{
-        margin-left: 2%;
+        margin-left: 18%;
         }
+    #knop{
+        width: 226%;
+    }
 }
-@media only screen and (min-width: 575px) and (max-width: 699px){
+
+@media only screen and (min-width: 603px) and (max-width: 650px){
+    #knop{
+        width: 222%;
+    }
     .row1 h2{
-        margin-left: 5%;
+        font-size: 35px;
+        padding-left: 15%;
         }
+    .small{
+        margin: 0;
+        padding-left: 10%;
+    }
+}
+
+@media only screen and (min-width: 639px) and (max-width: 765px){
+
+    .row1 h2{
+        padding-left: 18%;
+        font-size: 35px;
+        }
+    #selec{
+        height: 10px;
+        margin-right: 100px;
+        margin-bottom: 130px;
+    }
+    .small{
+        margin: 0;
+        padding-left: 10%;
+    }
+
+
+}
+@media only screen and (min-width: 720px) and (max-width: 767px){
+    .row1 h2{
+        font-size: 39px;
+        }
+
+}
+@media only screen and (min-width: 500px) and (max-width: 575px){
+
+    .row1 h2{
+        padding-left: 38%;
+        }
+    .small{
+        padding-left: 10%;
+    }
+
+
 }
