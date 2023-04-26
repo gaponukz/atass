@@ -614,11 +614,12 @@ nav span{
     #knop{
         width: 226%;
     }
+
 }
 
 @media only screen and (min-width: 603px) and (max-width: 650px){
     #knop{
-        width: 222%;
+        width: 216%;
     }
     .row1 h2{
         font-size: 35px;
@@ -657,10 +658,65 @@ nav span{
 @media only screen and (min-width: 500px) and (max-width: 575px){
 
     .row1 h2{
-        padding-left: 38%;
+        padding-left: 27%;
         }
     .small{
-        padding-left: 10%;
+        padding-left: -2%;
+    }
+    .ter{
+        width: 92%;
+    }
+    .input-group1{
+        width: 67%;
+    }
+    #knop{
+        width: 154%;
+    }
+
+
+}
+@media only screen and (min-width: 500px) and (max-width: 550px){
+
+    #knop{
+        width: 156%;
+    }
+
+
+}
+@media only screen and (min-width: 575px) and (max-width: 604px){
+
+    #knop{
+        width: 222%;
+    }
+
+
+}
+@media only screen and (min-width: 654px) and (max-width: 690px){
+
+    #knop{
+        width: 215%;
+    }
+
+
+}
+@media only screen and (min-width: 652px) and (max-width: 655px){
+
+    #knop{
+        width: 215%;
+    }
+}
+@media only screen and (min-width: 688px) and (max-width: 700px){
+
+    #knop{
+        width: 214%;
+    }
+
+
+}
+@media only screen and (min-width: 700px) and (max-width: 740px){
+
+    #knop{
+        width: 213%;
     }
 
 
