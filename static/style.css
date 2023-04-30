@@ -670,7 +670,7 @@ nav span{
         width: 67%;
     }
     #knop{
-        width: 154%;
+        width: 155%;
     }
 
 
@@ -717,6 +717,70 @@ nav span{
 
     #knop{
         width: 213%;
+    }
+
+
+}
+@media only screen and (min-width: 500px) and (max-width: 520px){
+
+    #knop{
+        width: 156.5%;
+    }
+
+
+}
+@media only screen and (min-width: 536px) and (max-width: 548px){
+
+    #knop{
+        width: 155.5%;
+    }
+
+
+}
+@media only screen and (min-width: 552px) and (max-width: 570px){
+
+    #knop{
+        width: 155%;
+    }
+
+
+}
+@media only screen and (min-width: 560px) and (max-width: 575px){
+
+    #knop{
+        width: 154.2%;
+    }
+
+
+}
+@media only screen and (min-width: 599px) and (max-width: 605px){
+
+    #knop{
+        width: 221%;
+    }
+
+
+}
+@media only screen and (min-width: 605px) and (max-width: 640px){
+
+    #knop{
+        width: 217%;
+    }
+
+
+}
+@media only screen and (min-width: 650px) and (max-width: 652px){
+
+    #knop{
+        width: 216%;
+    }
+
+
+}
+@media only screen and (min-width: 606px) and (max-width: 620px){
+
+    #knop{
+        width: 217%;
     }
 
 
