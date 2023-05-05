@@ -90,7 +90,6 @@ class JsonRouteDataBase(IRouteDataBase, FilterComparatorTemplate):
         return changed
     
     async def _update_file(self):
-        aiofiles
         async with aiofiles.open(self._filename, 'w', encoding='utf-8') as out:
             await out.write(json.dumps(self.routes, indent=4, default=str))
 

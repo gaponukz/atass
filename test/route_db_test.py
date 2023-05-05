@@ -12,7 +12,7 @@ from src.db.json_route_db import JsonRouteDataBase
 from src.db.memory_route_db import MemoryRouteDataBase
 from src.db.mongo_route_db import MongoRouteDataBase
 
-db = JsonRouteDataBase()
+db = MongoRouteDataBase()
 
 def generate_random_spot() -> Spot:
     countries = ["USA", "Canada", "France", "Germany", "Japan", "China"]
@@ -30,7 +30,7 @@ def generate_random_spot() -> Spot:
 
     date = datetime.datetime.now() - datetime.timedelta(days=random.randint(0, 30))
 
-    return Spot(place=place, date=date, is_active=is_active)
+    return Spot(place=place, date=date.replace(microsecond=0), is_active=is_active)
 
 class DataBaseTests(unittest.IsolatedAsyncioTestCase):
     async def test_adding_getting_routes(self):
@@ -100,6 +100,7 @@ class DataBaseTests(unittest.IsolatedAsyncioTestCase):
         self.assertTrue(all(_route.passengers_number == 15 for _route in all_routes))
 
         await db.change_one(route1.id, move_to=(new_spot := generate_random_spot()))
+        print(new_spot, (await db.get_one(route1.id)).move_to)
         self.assertEqual(new_spot, (await db.get_one(route1.id)).move_to)
 
         await db.change_one(route2.id, move_to=(new_spot := generate_random_spot()))
