@@ -1,55 +1,70 @@
 import { useForm } from "react-hook-form";
 
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-
-import { Button, TextField } from '@mui/material';
-
 import { useDispatch } from 'react-redux';
-import { change4, createRoute } from "../features/routeCreator/routeCreateSlice";
-import { NavLink, useNavigate } from "react-router-dom";
+import CheckSteps from "./CheckSteps";
+
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import { ImCancelCircle } from "react-icons/im";
 import { GrFormNextLink } from "react-icons/gr";
+import TableInput from "./TableInput";
 
-const schema = yup.object({
-
-});
 
 const CreateRouteFourth = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const currentRoute = useSelector(state => state.createRoute.currentRoute)
+    const currentRoute = useSelector(state => state.createRoute.familly_route)
+    const subSpots = useSelector(state => state.createRoute.subSpots)
     const check = useSelector(state => state.createRoute.steps)
-    console.log("Start2", currentRoute);
+    //console.log("Start4", currentRoute);
+    //console.log("Start41", subSpots);
 
-    const { register, handleSubmit, formState: { errors, isDirty, isValid }, resetField } = useForm({
-        resolver: yupResolver(schema)
-    })
+    const { handleSubmit } = useForm()
 
     const onSubmit = (data) => {
-        
         navigate("/")
     }
+
+    let horizon = [{city: currentRoute.route_prototype.move_from.place.city, id:currentRoute.route_prototype.move_from.id}]
+    for (let i = 0; i < subSpots.length; i++) {
+        horizon.push({city: subSpots[i].place.city,
+                    id: subSpots[i].id});
+    }
+    
+
+    let vertical = []
+    for (let i = 0; i < subSpots.length; i++) {
+        vertical.push({city: subSpots[i].place.city,
+                    id: subSpots[i].id});
+    }
+    vertical.push({city: currentRoute.route_prototype.move_to.place.city, id:currentRoute.route_prototype.move_to.id});
+    
     return (
         <div className="bg-white p-8 ">
             <div className="border-2 border-gray-300 w-[600px] mx-auto flex flex-col rounded-lg p-4">
             <div className="flex flex-row gap-1">
-                { check.firstStep && <NavLink className={({ isActive }) => (isActive ? 'no-underline text-black' : '')} to="/create-route-1">Місця та дати</NavLink>}
-                    { check.secondStep && <p>/</p> }
-                    { check.secondStep && <NavLink className={({ isActive }) => (isActive ? 'no-underline text-black' : '')} to="/create-route-2">Опис</NavLink>}
-                    { check.thirdStep && <p>/</p> } 
-                    { check.thirdStep && <NavLink className={({ isActive }) => (isActive ? 'no-underline text-black' : '')} to="/create-route-3">Проміжні точки</NavLink> }
-                    { check.fourthStep && <p>/</p> }
-                    { check.fourthStep && <NavLink className={({ isActive }) => (isActive ? 'no-underline text-black' : '')} to="/create-route-4">Ціни</NavLink> }
-                </div>
+                <CheckSteps check={check}/>
+            </div>
 
                 <form onSubmit={handleSubmit(onSubmit)}>
 
-                    Fourth Step
+                    <div className="relative border-2 border-600-gray p-4 rounded-md">
+                            <div className="flex flex-row gap-6 ml-[90px] font-bold text-xl">
+                                {horizon.map(obg => (<div className="w-[120px]" key={obg.id}>{obg.city}</div>))} 
+                            </div>
+                            <hr></hr>
+                            <div className="flex flex-col gap-3 font-bold text-xl mt-[20px]">
+                                {vertical.map(obg => (<div className="mb-[15px]" key={obg.id}>{obg.city}</div>))} 
+                                
+                            </div>
 
-                    {/* <div className="flex flex-row mb-8 justify-center items-center">
+                            <div className="ml-[80px] mb-[10px]">
+                                <TableInput horizon={horizon} vertical={vertical}/>
+                            </div>
+                    </div>
+
+                    <div className="flex flex-row mb-8 justify-center items-center">
                         <button
                             className="flex flex-row mt-8 rounded-lg border-2 border-red-500 w-[100px] h-[40px] justify-center items-center mr-[100px]"
                         >
@@ -63,7 +78,7 @@ const CreateRouteFourth = () => {
                             <GrFormNextLink size={20} color="" />
                         </button>
 
-                    </div> */}
+                    </div> 
                     
                 </form>
 

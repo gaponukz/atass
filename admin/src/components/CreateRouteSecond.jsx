@@ -3,20 +3,21 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
+import CheckSteps from "./CheckSteps";
+
 import { useDispatch } from 'react-redux';
-import { change3, createRoute } from "../features/routeCreator/routeCreateSlice";
-import { NavLink, useNavigate } from "react-router-dom";
+import { change3, createRoute2 } from "../features/routeCreator/routeCreateSlice";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import { ImCancelCircle } from "react-icons/im";
 import { GrFormNextLink } from "react-icons/gr";
 
 // second
-import { CNav, CNavItem, CNavLink, CTabContent, CTabPane, CFormTextarea } from '@coreui/bootstrap-react';
-import { Button, TextareaAutosize } from '@mui/material';
+import { CNav, CNavItem, CNavLink, CTabContent, CTabPane } from '@coreui/bootstrap-react';
+import { TextareaAutosize } from '@mui/material';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from "react";
-import { createRoute2 } from "../features/routeCreator/routeCreateSlice";
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -42,13 +43,11 @@ const CreateRouteSecond = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const currentRoute = useSelector(state => state.createRoute.currentRoute)
-    const test = useSelector(state => state.createRoute.familly_route)
+    const familly_route = useSelector(state => state.createRoute.familly_route)
     const check = useSelector(state => state.createRoute.steps)
-    //console.log(test);
-    //console.log("Start2", currentRoute);
+    //console.log("Start2", familly_route);
 
-    const { register, handleSubmit, formState: { errors, isDirty, isValid }, resetField } = useForm({
+    const { register, handleSubmit, formState: { errors }, resetField } = useForm({
         resolver: yupResolver(schema)
     })
 
@@ -80,13 +79,7 @@ const CreateRouteSecond = () => {
             <div className="border-2 border-gray-300 w-[600px] mx-auto flex flex-col rounded-lg p-4">
 
                 <div className="flex flex-row gap-1">
-                { check.firstStep && <NavLink className={({ isActive }) => (isActive ? 'no-underline text-black' : '')} to="/create-route-1">Місця та дати</NavLink>}
-                    { check.secondStep && <p>/</p> }
-                    { check.secondStep && <NavLink className={({ isActive }) => (isActive ? 'no-underline text-black' : '')} to="/create-route-2">Опис</NavLink>}
-                    { check.thirdStep && <p>/</p> } 
-                    { check.thirdStep && <NavLink className={({ isActive }) => (isActive ? 'no-underline text-black' : '')} to="/create-route-3">Проміжні точки</NavLink> }
-                    { check.fourthStep && <p>/</p> }
-                    { check.fourthStep && <NavLink className={({ isActive }) => (isActive ? 'no-underline text-black' : '')} to="/create-route-4">Ціни</NavLink> }
+                    <CheckSteps check={check}/>
                 </div>
                 
 

@@ -3,6 +3,7 @@ import { useState } from "react";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import CheckSteps from "./CheckSteps";
 
 import { Button, TextField, Modal } from '@mui/material';
 
@@ -11,8 +12,8 @@ import TimePicker from "react-multi-date-picker/plugins/time_picker";
 import DatePanel from "react-multi-date-picker/plugins/date_panel";
 
 import { useDispatch } from 'react-redux';
-import { createRoute1, addRoute, change2 } from "../features/routeCreator/routeCreateSlice";
-import { NavLink, useNavigate } from "react-router-dom";
+import { createRoute1, addArrayDatetime, change2 } from "../features/routeCreator/routeCreateSlice";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import { ImCancelCircle } from "react-icons/im";
@@ -20,8 +21,8 @@ import { GrFormNextLink } from "react-icons/gr";
 import { nanoid } from "@reduxjs/toolkit";
 
 const sub = (date) => {
-
-    date[2](addRoute([`${date[0][0].day}-${date[0][0].month.number}-${date[0][0].year} ${date[0][0].hour}:${date[0][0].minute}:${date[0][0].second}`,
+    
+    date[2](addArrayDatetime([`${date[0][0].day}-${date[0][0].month.number}-${date[0][0].year} ${date[0][0].hour}:${date[0][0].minute}:${date[0][0].second}`,
     `${date[1][0].day}-${date[1][0].month.number}-${date[1][0].year} ${date[1][0].hour}:${date[1][0].minute}:${date[1][0].second}`]))
 }
 
@@ -41,12 +42,8 @@ const schema = yup.object({
 const CreateRouteFirst = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const currentRoute = useSelector(state => state.createRoute.currentRoute)
-    const v = useSelector(state => state.createRoute.addRoute)
-    const test = useSelector(state => state.createRoute.familly_route)
+    const datetimes = useSelector(state => state.createRoute.ArrayDatetimes)
     const check = useSelector(state => state.createRoute.steps)
-    //console.log(test);
-
 
     const [dates1, setDates1] = useState(
         [].map((number) =>
@@ -68,12 +65,6 @@ const CreateRouteFirst = () => {
             })
         )
     );
-    //console.log(dates);
-    //if (dates[0]) {
-    //    console.log(`${dates[0].day}-${dates[0].month.number}-${dates[0].year} ${dates[0].hour}:${dates[0].minute}:${dates[0].second}`);
-    //}
-
-    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     let index1 = 0;
 
     const [openShow, setOpenShow] = useState(false);
@@ -81,15 +72,13 @@ const CreateRouteFirst = () => {
     const handleCloseShow = () => setOpenShow(false);
 
 
-    const { register, handleSubmit, formState: { errors, isDirty, isValid }, resetField } = useForm({
+    const { register, handleSubmit, formState: { errors }, resetField } = useForm({
         resolver: yupResolver(schema)
     })
 
     const onSubmit = (data) => {
-        console.log("here -> ", data);
-        console.log(v.at(-1), v.at(-2));
         dispatch(createRoute1(data.fromCountry, data.fromCity, data.fromStreet,
-           data.toCountry, data.toCity, data.toStreet, data.numberPlaces, data.map1, data.map2, v.at(-1)))
+           data.toCountry, data.toCity, data.toStreet, data.numberPlaces, data.map1, data.map2, datetimes.at(-1), datetimes.at(-2)))
         
         dispatch(change2())
         navigate("/create-route-2");
@@ -147,7 +136,9 @@ const CreateRouteFirst = () => {
                         >Закрити</Button>
 
                         <Button 
-                            onClick={() => sub([dates1, dates2, dispatch])} 
+                            onClick={() => {
+                                sub([dates1, dates2, dispatch])
+                            }} 
                             variant="contained"
                         >Підтвердити</Button>
                     </div>
@@ -157,13 +148,7 @@ const CreateRouteFirst = () => {
 
             <div className="border-2 border-gray-300 w-[600px] mx-auto flex flex-col rounded-lg p-4">
                 <div className="flex flex-row gap-1">
-                    { check.firstStep && <NavLink className={({ isActive }) => (isActive ? 'no-underline text-black' : '')} to="/create-route-1">Місця та дати</NavLink>}
-                    { check.secondStep && <p>/</p> }
-                    { check.secondStep && <NavLink className={({ isActive }) => (isActive ? 'no-underline text-black' : '')} to="/create-route-2">Опис</NavLink>}
-                    { check.thirdStep && <p>/</p> } 
-                    { check.thirdStep && <NavLink className={({ isActive }) => (isActive ? 'no-underline text-black' : '')} to="/create-route-3">Проміжні точки</NavLink> }
-                    { check.fourthStep && <p>/</p> }
-                    { check.fourthStep && <NavLink className={({ isActive }) => (isActive ? 'no-underline text-black' : '')} to="/create-route-4">Ціни</NavLink> }
+                    <CheckSteps check={check}/>
                 </div>
 
                 <form onSubmit={handleSubmit(onSubmit)}>
@@ -377,7 +362,7 @@ const CreateRouteFirst = () => {
                             <p className="font-bold text-xl">Прибуття</p>
                         </div>
 
-                        {v.map(date => (
+                        {datetimes.map(date => (
                             <div className="flex flex-row justify-between" key={nanoid()}>
                                 <p className="">{date[0]}</p>
                                 <p>{date[1]}</p>

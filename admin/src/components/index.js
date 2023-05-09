@@ -7,6 +7,7 @@ import ShowInfoDetail from "./ShowInfoDetail";
 import CreateRouteSecond from "./CreateRouteSecond";
 import CreateRouteThird from "./CreateRouteThird";
 import CreateRouteFourth from "./CreateRouteFourth";
+import CheckSteps from "./CheckSteps";
 
 export {
     HeadNav,
@@ -18,5 +19,5 @@ export {
     AllUsers,
     RouteUniqueDetail,
     ShowInfoDetail,
-    
+    CheckSteps,
 }

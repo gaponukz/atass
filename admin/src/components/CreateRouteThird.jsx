@@ -1,49 +1,39 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+import CheckSteps from "./CheckSteps";
 
-import { Button, TextField, Modal, TextareaAutosize } from '@mui/material'
+import { Button, TextField, Modal } from '@mui/material'
 import { CiEdit } from "react-icons/ci";
 import { AiFillDelete } from "react-icons/ai";
 import { BiShow } from "react-icons/bi";
 
 import { useDispatch } from 'react-redux';
-import { change4, createRoute, addSubSpot } from "../features/routeCreator/routeCreateSlice";
-import { NavLink, useNavigate } from "react-router-dom";
+import { change4, addSubSpot } from "../features/routeCreator/routeCreateSlice";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import { ImCancelCircle } from "react-icons/im";
 import { GrFormNextLink } from "react-icons/gr";
 
-const schema = yup.object({
-
-});
-
-const defultClassTextArea = "border-2 border-gray-300 p-2 rounded-lg w-full focus:outline-none mt-1 min-h-[90px]"
-
-
 const CreateRouteThird = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    //const currentRoute = useSelector(state => state.createRoute.currentRoute)
-    //console.log("Start2", currentRoute);
-    const test = useSelector(state => state.createRoute.familly_route)
+
+    const familly_route = useSelector(state => state.createRoute.familly_route)
     const check = useSelector(state => state.createRoute.steps)
     const subSpots = useSelector(state => state.createRoute.subSpots)
-    //console.log(test);
+    //console.log("Start 3", familly_route);
 
     const [openShow, setOpenShow] = useState(false);
     const handleOpenShow = () => setOpenShow(true);
     const handleCloseShow = () => setOpenShow(false);
 
-    const { register, handleSubmit, formState: { errors, isDirty, isValid }, resetField } = useForm({
-        resolver: yupResolver(schema)
-    })
+    const { handleSubmit} = useForm()
 
     const onSubmit = (data) => {
         dispatch(change4())
+        console.log(data);
         navigate("/create-route-4")
     }
 
@@ -58,6 +48,7 @@ const CreateRouteThird = () => {
 
     return (
         <div className="bg-white p-8 ">
+            
             <Modal
                 open={openShow}
                 onClose={handleCloseShow}
@@ -139,18 +130,8 @@ const CreateRouteThird = () => {
 
                         <Button
                             onClick={() => {
-                                // console.log({
-                                //     "place": {
-                                //         "country": country,
-                                //         "city": city,
-                                //         "street": street,
-                                //         "map_url": map
-                                //     },
-                                //     "from_start": "?",
-                                //     "id": "test"
-                                // });
                                 let time = days + " " + hours + " " + minutes;
-                                console.log(time);
+                                //console.log(time);
                                 dispatch(addSubSpot(country, city, street, map, time))
                                 setCountry("");
                                 setCity("");
@@ -172,13 +153,7 @@ const CreateRouteThird = () => {
 
             <div className="border-2 border-gray-300 w-[600px] mx-auto flex flex-col rounded-lg p-4">
                 <div className="flex flex-row gap-1">
-                    {check.firstStep && <NavLink className={({ isActive }) => (isActive ? 'no-underline text-black' : '')} to="/create-route-1">Місця та дати</NavLink>}
-                    {check.secondStep && <p>/</p>}
-                    {check.secondStep && <NavLink className={({ isActive }) => (isActive ? 'no-underline text-black' : '')} to="/create-route-2">Опис</NavLink>}
-                    {check.thirdStep && <p>/</p>}
-                    {check.thirdStep && <NavLink className={({ isActive }) => (isActive ? 'no-underline text-black' : '')} to="/create-route-3">Проміжні точки</NavLink>}
-                    {check.fourthStep && <p>/</p>}
-                    {check.fourthStep && <NavLink className={({ isActive }) => (isActive ? 'no-underline text-black' : '')} to="/create-route-4">Ціни</NavLink>}
+                    <CheckSteps check={check}/>
                 </div>
 
                 <form onSubmit={handleSubmit(onSubmit)} className="min-h-[200px]">

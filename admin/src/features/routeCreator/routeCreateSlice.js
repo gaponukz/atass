@@ -65,7 +65,9 @@ const initialState = {
         "move_from": "",
         "move_to": "",
         "passengers_number": "",
-        "sub_spots": [],
+        "sub_spots": [
+            
+        ],
         "is_active": true,
         "prices": {},
         "passengers": [],
@@ -79,20 +81,22 @@ const initialState = {
             "move_to": {
                 "place": {
                     "country": "",
-                    "city": "",
+                    "city": "D",
                     "street": "",
-                    "map_url": ""
+                    "map_url": "",
+                    "test": ""
                 },
-                "id": ""
+                "id": "1"
             },
             "move_from": {
                 "place": {
                     "country": "",
-                    "city": "",
+                    "city": "A",
                     "street": "",
-                    "map_url": ""
+                    "map_url": "",
+                    "test": ""
                 },
-                "id": ""
+                "id": "2"
             },
             "passengers_number": 0,
             "sub_spots": [],
@@ -117,23 +121,15 @@ const initialState = {
         "datatimes": []
     },
     dates: [],
-    addRoute: [],
+    ArrayDatetimes: [],
     steps: {
         firstStep: true,
         secondStep: true,
         thirdStep: true,
         fourthStep: true,
     },
-    subSpots: [{
-        "place": {
-            "country": "Україна",
-            "city": "Хмельницький",
-            "street": "Вулиця 1",
-            "map_url": "map1"
-        },
-        "from_start": "2 8 30",
-        "id": String(nanoid())
-    }],
+    subSpots: [],
+    prices: {}
 
 }
 
@@ -143,10 +139,7 @@ export const routeCreateSlice = createSlice({
     reducers: {
         createRoute1: {
             reducer(state, action) {
-                console.log("here2 -> ", action.payload);
-                //state.currentRoute.move_from = action.payload.from;
-                //state.currentRoute.move_to = action.payload.to;
-                //state.currentRoute.passengers_number = action.payload.numberPlaces;
+                //console.log("here2 -> ", action.payload);
                 state.familly_route["route_prototype"]["move_from"] = {
                     "place": {
                         "country": action.payload.fromCountry,
@@ -168,17 +161,13 @@ export const routeCreateSlice = createSlice({
                 }
 
                 state.familly_route["route_prototype"]["passengers_number"] = action.payload.numberPlaces
-
-
-                console.log("test" ,state.familly_route);
+                state.familly_route["datatimes"].push([action.payload.fromTime, action.payload.toTime])
 
             },
-            prepare(fromCountry, fromCity, fromStreet,
-                toCountry, toCity, toStreet, numberPlaces, map1, map2, fromTime,) {
+            prepare(fromCountry, fromCity, fromStreet, toCountry, toCity, toStreet, numberPlaces, map1, map2, fromTime, toTime) {
                 return {
                     payload: {
-                        fromCountry, fromCity, fromStreet,
-                toCountry, toCity, toStreet, numberPlaces, map1, map2, fromTime
+                        fromCountry, fromCity, fromStreet, toCountry, toCity, toStreet, numberPlaces, map1, map2, fromTime, toTime
                     }
 
                 }
@@ -192,6 +181,20 @@ export const routeCreateSlice = createSlice({
         },
         change4: (state) => {
             state.steps.fourthStep = true;
+        },
+        submitPrices: {
+            reducer(state, action) {
+                state.familly_route["route_prototype"]["prices"] = {...action.payload.prices};
+                state.familly_route["route_prototype"]["sub_spots"] = {...action.payload.subspots};    
+            },  
+            prepare(prices, sub_spots) {
+                return {
+                    payload: {
+                        "prices": prices,
+                        "subspots": sub_spots
+                    }
+                }
+            }
         },
         addSubSpot: {
             reducer(state, action) {
@@ -208,7 +211,8 @@ export const routeCreateSlice = createSlice({
                             "country": country,
                             "city": city,
                             "street": street,
-                            "map_url": map
+                            "map_url": map,
+                            "test": ""
                         },
                         "from_start": time,
                         "id": String(nanoid())
@@ -218,7 +222,7 @@ export const routeCreateSlice = createSlice({
         },
         createRoute2: {
             reducer(state, action) {
-                console.log("here2 !", action.payload);
+                //console.log("here2 !", action.payload);
                 state.familly_route["route_prototype"]["description"] = {
                     "en": action.payload.cmt12,
                     "pl": action.payload.cmt13,
@@ -242,10 +246,9 @@ export const routeCreateSlice = createSlice({
                 }
             }
         },
-        addRoute: {
+        addArrayDatetime: {
             reducer(state, action) {
-                //console.log("here2 -> ", action.payload[0]);
-                state.addRoute.push(action.payload[0])
+                state.ArrayDatetimes.push(action.payload[0])
                 
             },
             prepare(date1, date2) {
@@ -261,6 +264,6 @@ export const routeCreateSlice = createSlice({
     }
 })
 
-export const { createRoute1, createRoute2, addRoute, change2, change3, change4, addSubSpot } = routeCreateSlice.actions;
+export const { createRoute1, createRoute2, addArrayDatetime, change2, change3, change4, addSubSpot, submitPrices } = routeCreateSlice.actions;
 
 export default routeCreateSlice.reducer;
