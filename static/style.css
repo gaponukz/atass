@@ -5,10 +5,13 @@ body {
 }
 main{
     padding-bottom: 200px;
-    background-image: url("images/background.jpg");
+    background-image: url("images/Sky_Bus.png");
     background-repeat: no-repeat;
     background-size:cover;
 
+}
+#top2{
+    background-color: white;
 }
 nav{
     padding-top: 10px;
@@ -16,9 +19,9 @@ nav{
 }
 nav img{
     margin-bottom: 10px;
-    margin-left: 60px;
-    width: 80px;
-    height: 80px;
+    margin-left: 20px;
+    width: 100px;
+    height: 60px;
 }
 nav span{
     font-weight: bold;
@@ -47,7 +50,7 @@ nav span{
       margin-left:20px;
       font-size: 1em;
       border: none;
-      color:black;
+      color:#40ABCF;
       background-color: rgba(0, 0, 0, 0);
     }
 #language-selector1 {
@@ -58,7 +61,7 @@ nav span{
       margin-left:20px;
       font-size: 1em;
       border: none;
-      color:black;
+      color:#40ABCF;
       background-color: rgba(0, 0, 0, 0);
       margin-top: 20px;
     }
@@ -77,6 +80,7 @@ nav span{
     float: right;
     list-style: none;
     padding: 0;
+    color: blue;
 }
 
 .offcanvas-body li{
@@ -108,8 +112,9 @@ nav span{
 .navigation a {
   font-weight: bold;
   font-size: 1em;
-  color: black;
+
   text-decoration: none;
+  color:#40ABCF;
 }
 
 .navigation a:hover {
@@ -158,11 +163,13 @@ nav span{
     font-weight: bold;
     padding-left: 72px;
     font-size: 55px;
+    color:white;
 }
 .row1 h3{
     padding-top: 10px;
     padding-left: 72px;
     font-size: 30px;
+    color:white;
 }
 .row{
     padding-left: 50px;
@@ -217,18 +224,15 @@ nav span{
     .row1 h2{
     font-weight: bold;
     font-size: 28px;
-        padding-left: 18%;
+        padding-left: 29%;
     }
 
     .small{
         text-align: center;
-        padding-left: 10%;
+        padding-left: 33px;
          display: block;
         margin-left: auto;
         margin-right: auto 
-    }
-    .container{
-        width: 90%;
     }
 }
 
@@ -237,7 +241,7 @@ nav span{
 
     .row1 h2{
     font-weight: bold;
-    padding-left: 25%;
+    padding-left: 35%;
     font-size: 25px;
 }
     .row1 h3{
@@ -271,37 +275,10 @@ nav span{
         width: 200%;
     }
     .small #knop{
-        margin-top:5px;
         width: 200%;
-    }
-    .small .input-group1{
-        width: 140px;
-        height: 70px;
-    }
-    .small .ter{
-        width: 141px;
     }
 }
 @media (max-width: 767px) {
-    .ter{
-        background-color: white;
-        width: 290px;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
-        margin-left: 1px;
-         box-shadow:
-            0px 0px 10px 5px rgba(0, 0, 0, 0.1),
-            0px 0px 20px 10px rgba(0, 0, 0, 0.1),
-            0px 0px 30px 15px rgba(0, 0, 0, 0.1);
-    }
-            .long-line-label::after {
-          content: "";
-          display: block;
-          width: 100%;
-          height: 1px;
-          background-color: black;
-          margin-top: 5px; /* для отступа между текстом и линией */
-        }
     .container-fluid button:focus,.container-fluid button:active{
         box-shadow: none !important;
 
@@ -419,7 +396,6 @@ nav span{
   .navigation ul {
     display: block;
     text-align: center;
-
   }
   .navigation li {
     display: block;
@@ -429,34 +405,28 @@ nav span{
     display: block;
     margin: 10px auto;
   }
-
   #knop{
-      border-radius: 0 0 10px 10px;
-      width: 291px;
+      width: 250px;
       height: 60px;
       font-size: 12px;
-      box-shadow:
-            0px 0px 10px 5px rgba(0, 0, 0, 0.001);
-
   }
   #knop img{
       width: 15px;
       height: 15px;
   }
-
   .form-control{
        box-shadow: none;
       outline:none !important;
       border: none;
-      width: 290px;
+      width: 250px;
   }
   .input-group1{
       box-shadow: none;
       outline:none;
       border: none;
       text-align: center;
-      width: 60%;
-      padding-right: 30px;
+      width: 50%;
+      padding-left: 20px;
   }
   .form-control:focus{
       box-shadow: none;
@@ -476,28 +446,11 @@ nav span{
       padding-right: 12%;
   }
   row1 h2{
-      margin-left: 8%;
+      margin-left: 10%;
   }
   .container{
       margin-left: 2%;
   }
-  .d-flex img{
-      width: 40px;
-      height: 40px;
-      position: absolute;
-      margin-left: 40%;
-  }
-  .d-flex p{
-      margin-top:40px;
-      font-size: 15px;
-  }
-  .col-sm-4{
-      margin-right: 80px;
-  }
-  .col{
-      margin: 10px;
-  }
-
 }
 @media(min-width:767px) {
     #top{
@@ -511,36 +464,31 @@ nav span{
 
 }
 @media only screen and (min-width: 500px) and (max-width: 767px){
-    .container{
-        width: 90%;
-    }
     .small{
-        margin-left: 15%;
+        margin-left: 10%;
     }
     .row1 h2{
         margin-left: 3%;
-        font-size: 30px;}
+        font-size: 28px;}
     .form-control{
         width: 150%;
     }
     #knop{
-        width: 162%;
+        width: 150%;
         font-size: 15px;
     }
     .offcanvas-header h5{
         font-size: 24px;
         padding-right: 65%;
     }
-    .input-group1{
-        width: 210px;
-    }
+
 }
 @media only screen and (min-width: 460px) and (max-width: 500px){
     .small{
         margin-left: 10%;
     }
     .row1 h2{
-        padding-left: 36%;
+        padding-left: 40%;
         }
 }
 @media only screen and (min-width: 575px) and (max-width: 767px){
@@ -552,12 +500,24 @@ nav span{
     .col-sm-4{
         width:100%;
     }
+    .row1 h2{
+        margin-left: 6%;
+        }
+
+}
+@media only screen and (min-width: 639px) and (max-width: 765px){
 
 
-    
+    #selec{
+        height: 10px;
+
+        margin-right: 100px;
+        margin-bottom: 130px;
+    }
+
 }
 
-@media only screen and (min-width: 700px) and (max-width: 767px){
+@media only screen and (min-width: 700px) and (max-width: 765px){
 
 
     .offcanvas-header h5{
@@ -565,223 +525,17 @@ nav span{
         padding-right: 75%;
     }
     .row1 h2{
-        padding-left: 17%;
-         font-size: 36px;
+        margin-left: 8%;
+         font-size: 34px;
         }
-    #card{
-        width: 101.5%;
-    }
-    .form-control{
-        width: 210%;
-    }
-    .ter{
-        width: 95%;
-    }
-    #knop{
-        width: 212%;
-
-    }
-    .small{
-        margin-left: 11%;
-    }
-    .input-group1{
-        width: 50%;
-    }
-}
-
-@media only screen and (min-width: 575px) and (max-width: 700px){
-    .row1 h2{
-        padding-left: 10%;
-        font-size: 31px;
-        }
-    .form-control{
-        width: 210%;
-    }
-    .ter{
-        width: 95%;
-    }
-    .input-group1{
-        width: 50%;
-    }
-    #knop{
-        width: 220%;
-    }
 }
 @media only screen and (min-width: 575px) and (max-width: 603px){
     .row1 h2{
-        margin-left: 18%;
+        margin-left: 2%;
         }
-    #knop{
-        width: 226%;
-    }
-
 }
-
-@media only screen and (min-width: 603px) and (max-width: 650px){
-    #knop{
-        width: 216%;
-    }
+@media only screen and (min-width: 575px) and (max-width: 699px){
     .row1 h2{
-        font-size: 35px;
-        padding-left: 15%;
+        margin-left: 5%;
         }
-    .small{
-        margin: 0;
-        padding-left: 10%;
-    }
-}
-
-@media only screen and (min-width: 639px) and (max-width: 765px){
-
-    .row1 h2{
-        padding-left: 18%;
-        font-size: 35px;
-        }
-    #selec{
-        height: 10px;
-        margin-right: 100px;
-        margin-bottom: 130px;
-    }
-    .small{
-        margin: 0;
-        padding-left: 10%;
-    }
-
-
-}
-@media only screen and (min-width: 720px) and (max-width: 767px){
-    .row1 h2{
-        font-size: 39px;
-        }
-
-}
-@media only screen and (min-width: 500px) and (max-width: 575px){
-
-    .row1 h2{
-        padding-left: 27%;
-        }
-    .small{
-        padding-left: -2%;
-    }
-    .ter{
-        width: 92%;
-    }
-    .input-group1{
-        width: 67%;
-    }
-    #knop{
-        width: 155%;
-    }
-
-
-}
-@media only screen and (min-width: 500px) and (max-width: 550px){
-
-    #knop{
-        width: 156%;
-    }
-
-
-}
-@media only screen and (min-width: 575px) and (max-width: 604px){
-
-    #knop{
-        width: 222%;
-    }
-
-
-}
-@media only screen and (min-width: 654px) and (max-width: 690px){
-
-    #knop{
-        width: 215%;
-    }
-
-
-}
-@media only screen and (min-width: 652px) and (max-width: 655px){
-
-    #knop{
-        width: 215%;
-    }
-}
-@media only screen and (min-width: 688px) and (max-width: 700px){
-
-    #knop{
-        width: 214%;
-    }
-
-
-}
-@media only screen and (min-width: 700px) and (max-width: 740px){
-
-    #knop{
-        width: 213%;
-    }
-
-
-}
-@media only screen and (min-width: 500px) and (max-width: 520px){
-
-    #knop{
-        width: 156.5%;
-    }
-
-
-}
-@media only screen and (min-width: 536px) and (max-width: 548px){
-
-    #knop{
-        width: 155.5%;
-    }
-
-
-}
-@media only screen and (min-width: 552px) and (max-width: 570px){
-
-    #knop{
-        width: 155%;
-    }
-
-
-}
-@media only screen and (min-width: 560px) and (max-width: 575px){
-
-    #knop{
-        width: 154.2%;
-    }
-
-
-}
-@media only screen and (min-width: 599px) and (max-width: 605px){
-
-    #knop{
-        width: 221%;
-    }
-
-
-}
-@media only screen and (min-width: 605px) and (max-width: 640px){
-
-    #knop{
-        width: 217%;
-    }
-
-
-}
-@media only screen and (min-width: 650px) and (max-width: 652px){
-
-    #knop{
-        width: 216%;
-    }
-
-
-}
-@media only screen and (min-width: 606px) and (max-width: 620px){
-
-    #knop{
-        width: 217%;
-    }
-
-
 }
