@@ -25,3 +25,6 @@ yarn-error.log*
 __pycache__
 .env
 server.log
+.vscode
+logging
+admin/package-lock.json
