@@ -8,6 +8,7 @@ main{
     background-image: url("images/Sky_Bus.png");
     background-repeat: no-repeat;
     background-size:cover;
+    background-position: center;
 
 }
 #top2{
@@ -363,8 +364,8 @@ nav span{
         padding-right: 60%;
     }
     .pic img{
-        height: 60px;
-        width: 60px;
+        height: 70px;
+        width: 110px;
         margin:0;
         margin-bottom: 15px;
     }
