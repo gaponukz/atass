@@ -7,6 +7,9 @@ import { BiShow } from "react-icons/bi";
 import { useState } from 'react';
 import ShowInfoDetail from './ShowInfoDetail';
 
+import { useDispatch } from 'react-redux';
+import { changeEditRoute } from '../features/routeEditor/routeEditSlice';
+
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 
@@ -170,19 +173,19 @@ const route = [
             }
         ],
         "description": {
-            "en": {s: "повідомлення"},
-            "pl": {},
-            "ua": {}
+            "en": "",
+            "pl": "",
+            "ua": ""
         },
         "rules": {
-            "en": {},
-            "pl": {},
-            "ua": {}
+            "en": "",
+            "pl": "",
+            "ua": ""
         },
         "transportation_rules": {
-            "en": {},
-            "pl": {},
-            "ua": {}
+            "en": "",
+            "pl": "",
+            "ua": ""
         },
         "id": "dd5cf8ad-afb1-4ce4-bae1-20dd90b4cc4f"
     }
@@ -191,7 +194,10 @@ const route = [
 const RouteUniqueDetail = () => {
     const routes = useSelector(state => state.createRoute.routes2)
 
+    const currentEditRoute = useSelector(state => state.editRoute.currentEditRoute)
+    console.log(currentEditRoute);
 
+    const dispatch = useDispatch();
 
     const [openShow, setOpenShow] = useState(false);
     const handleOpenShow = () => setOpenShow(true);
@@ -229,8 +235,16 @@ const RouteUniqueDetail = () => {
                         aria-describedby="modal-modal-description"
                         className='flex flex-row justify-center items-center'
                     >
-                        <div className='w-[300px] h-[200px] bg-white text-black '>
-                        Delete
+                        <div className='w-1/2 h-1/2 bg-white text-black shadow-md rounded-lg flex flex-col justify-center items-center'>
+                            <p className='font-bold text-2xl mt-8'>Ви впевнені, що хочете видалити цей маршрут?</p>
+
+                            <div className='w-auto'>
+                            <Button variant="outlined" color="error"
+                                onClick={() => {console.log("tyt");}}
+                            >
+                                Видалити
+                            </Button>
+                            </div>
                         </div>
                     </Modal>
 
@@ -258,13 +272,15 @@ const RouteUniqueDetail = () => {
                                     {/* <NavLink className='no-underline text-black ' to={`detail/${route.move_from.place.city.toLowerCase()}`}></NavLink>
                                     <NavLink className='no-underline text-black ' to={`detail/${route.move_from.place.city.toLowerCase()}`}></NavLink> */}
                                     <div className=''>
-                                        <Button onClick={""} classname=""><CiEdit className='no-underline text-black' size={23}/></Button>
+                                        <button onClick={() => {
+                                            dispatch(changeEditRoute(route))
+                                        }} ><NavLink to="/edit-route-1"><CiEdit className='no-underline text-black mt-1 mr-4' size={25}/></NavLink></button>
                                     </div>
                                     <div className=''>
-                                        <Button onClick={handleOpenDelete} classname=""><AiFillDelete className='no-underline text-black' size={23} /></Button>
+                                        <Button onClick={handleOpenDelete} ><AiFillDelete className='no-underline text-black' size={23} /></Button>
                                     </div>
                                     <div className=''>
-                                        <Button onClick={handleOpenShow} classname=""><BiShow className='no-underline text-black' size={23} /></Button>
+                                        <Button onClick={handleOpenShow} ><BiShow className='no-underline text-black' size={23} /></Button>
                                     </div>
                                     
                                 </div>

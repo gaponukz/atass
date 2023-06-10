@@ -8,6 +8,9 @@ import CreateRouteSecond from "./CreateRouteSecond";
 import CreateRouteThird from "./CreateRouteThird";
 import CreateRouteFourth from "./CreateRouteFourth";
 import CheckSteps from "./CheckSteps";
+import EditRouteFirst from "./EditRouteFirst";
+import EditRouteSecond from "./EditRouteSecond";
+import EditRouteThird from "./EditRouteThird";
 
 export {
     HeadNav,
@@ -20,4 +23,7 @@ export {
     RouteUniqueDetail,
     ShowInfoDetail,
     CheckSteps,
+    EditRouteFirst,
+    EditRouteSecond,
+    EditRouteThird
 }

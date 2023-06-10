@@ -18,11 +18,14 @@ const CreateRouteFourth = () => {
     const subSpots = useSelector(state => state.createRoute.subSpots)
     const check = useSelector(state => state.createRoute.steps)
     //console.log("Start4", currentRoute);
-    //console.log("Start41", subSpots);
+    //console.log("Start41", subSpots);\
+    
 
     const { handleSubmit } = useForm()
 
     const onSubmit = (data) => {
+        console.log("Finall", currentRoute);
+
         navigate("/")
     }
 
@@ -48,7 +51,7 @@ const CreateRouteFourth = () => {
             </div>
 
                 <form onSubmit={handleSubmit(onSubmit)}>
-
+                    
                     <div className="relative border-2 border-600-gray p-4 rounded-md">
                             <div className="flex flex-row gap-6 ml-[90px] font-bold text-xl">
                                 {horizon.map(obg => (<div className="w-[120px]" key={obg.id}>{obg.city}</div>))} 
