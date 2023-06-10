@@ -13,8 +13,44 @@
    <body>
    <main>
       <div class="na">
+          <nav class="navbar  " id="top">
+           <div class="container-fluid">
+               <div  class="pic" >
+              <img src="static/images/logo.png">
+
+               </div>
+             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+             </button>
+             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+               <div class="offcanvas-header">
+                   <img src="static/images/logo.png">
+                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+               </div>
+               <div class="offcanvas-body">
+                 <ul>
+                       <img src="static/images/icons8-person-96.png" class="person" style="float: left;">
+                       <li class="osob"><a href="#">Увійти</a></li>
+                     <div style="margin-right: 100px; margin-top: 25px">
+                        <img src="static/images/icons8-contact-us-96.png" class="us" style="float: left;">
+                        <li class="onas"><a href="#" >О нас</a></li>
+                     </div></ul>
+                         <div id="selec">
+                        <img src="static/images/icons8-globe-96.png" class="world" style="float: left;">
+                        <select id="language-selector1">
+                          <option value="uk">Українська</option>
+                          <option value="en">English</option>
+                          <option value="pl">Polski</option>
+                       </select>
+                             </div>
+
+
+               </div>
+             </div>
+           </div>
+         </nav>
           <nav class="navigation" id="top2">
-            <img src="static/images/l2.jpg" >
+            <img src="static/images/logo.png" >
             <span></span>
             <ul>
                <select id="language-selector">
@@ -55,12 +91,15 @@
 
       </div>
         <div class="container1">
+            <div class="r">
         <div class="card">
               <div class="card-body">
-                 <img src="static/images/icons8-circle-32.png" class="pic">
+                   <div class="test">
+                 <img src="static/images/icons8-circle-32.png" class="pic1">
                 <span class="names">4:00 Київ</span>
-                  <img src="static/images/icons8-visit-32.png" class="pic">
+                  <img src="static/images/icons8-visit-32.png" class="pic1">
                  <span class="names">5:00 Львів</span>
+                       </div>
                   <span class="price">60$</span>
                   <button>Вибрати</button>
                   <img src="static/images/icons8-clock-96.png" class="time">
@@ -69,10 +108,12 @@
         </div>
            <div class="card">
               <div class="card-body">
-                 <img src="static/images/icons8-circle-32.png" class="pic">
+                  <div class="test">
+                 <img src="static/images/icons8-circle-32.png" class="pic1">
                 <span class="names">4:00 Київ</span>
-                  <img src="static/images/icons8-visit-32.png" class="pic">
+                  <img src="static/images/icons8-visit-32.png" class="pic1">
                  <span class="names">5:00 Львів</span>
+                      </div>
                   <span class="price">60$</span>
                   <button>Вибрати</button>
                   <img src="static/images/icons8-clock-96.png" class="time">
@@ -81,16 +122,19 @@
         </div>
            <div class="card">
               <div class="card-body">
-                 <img src="static/images/icons8-circle-32.png" class="pic">
+                  <div class="test">
+                 <img src="static/images/icons8-circle-32.png" class="pic1">
                 <span class="names">4:00 Київ</span>
-                  <img src="static/images/icons8-visit-32.png" class="pic">
+                  <img src="static/images/icons8-visit-32.png" class="pic1">
                  <span class="names">5:00 Львів</span>
+                      </div>
                   <span class="price">60$</span>
                   <button>Вибрати</button>
                   <img src="static/images/icons8-clock-96.png" class="time">
                   <span class="t">18ч</span>
               </div>
         </div>
+            </div>
    </div>
    </main>
 
