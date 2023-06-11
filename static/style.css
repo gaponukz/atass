@@ -213,18 +213,25 @@ nav span{
     padding-top: 30px;
     padding-bottom: 30px;
     font-size: 21px;
+
+}
+.col{
+    margin-bottom: 10px;
 }
  .card-body{
         display: flex;
         justify-content: center;
     }
 .input-group1{
-    margin-bottom: -16px;
+    margin-bottom: -15.6px;
+}
+.container-fluid button{
+    padding-bottom: 23px;
 }
 @media (max-width: 500px){
     .row1 h2{
     font-weight: bold;
-    font-size: 28px;
+    font-size: 30px;
         padding-left: 29%;
     }
 
@@ -470,7 +477,7 @@ nav span{
     }
     .row1 h2{
         margin-left: 3%;
-        font-size: 28px;}
+        font-size: 32px;}
     .form-control{
         width: 150%;
     }
@@ -527,7 +534,7 @@ nav span{
     }
     .row1 h2{
         margin-left: 8%;
-         font-size: 34px;
+         font-size: 36px;
         }
 }
 @media only screen and (min-width: 575px) and (max-width: 603px){
