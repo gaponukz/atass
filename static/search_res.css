@@ -225,7 +225,12 @@ nav span{
 .offcanvas-body a:hover {
   text-decoration: underline;
 }
+
+.container-fluid button{
+    padding-bottom: 17px;
+}
 @media (max-width: 700px) {
+
     .container-fluid button:focus,.container-fluid button:active{
         box-shadow: none !important;
 
@@ -237,6 +242,7 @@ nav span{
     .card-body{
         display: flex;
         justify-content: center;
+        height: 150px;
     }
     #offcanvasNavbar{
         width: 100%;
@@ -370,6 +376,7 @@ nav span{
  }
  .t{
      padding-left: 10px;
+     font-size: 17px;
  }
  .pic img{
      width: 100px;
@@ -410,9 +417,60 @@ nav span{
      padding-right: 38%;
  }
 
+
+.card-body button{
+    font-size: 14px;
+}
+.second{
+    padding-top: 10px;
+}
+.big{
+    display: none;
+}
+    .form-control{
+       box-shadow: none;
+      outline:none !important;
+      border: none;
+      width: 220%;
+      height: 10px;
+
+  }
+  .input-group1{
+      box-shadow: none;
+      outline:none;
+      border: none;
+      text-align: center;
+      width: 71%;
+      height: 51px;
+
+  }
+
+  .form-control:focus{
+      box-shadow: none;
+      outline: none;
+  }
+  #knop{
+      width: 220%;
+      height: 60px;
+      font-size: 17px;
+  }
+  #knop img{
+      width: 25px;
+      height: 25px;
+  }
+   .small{
+       padding-left: 24%;
+       padding-top: 10px;
+   }
+   .container{
+       height: 250px;
+   }
 }
 @media (min-width: 700px){
     #top{
+        display: none;
+    }
+    .small{
         display: none;
     }
 }
