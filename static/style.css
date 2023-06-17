@@ -223,7 +223,7 @@ nav span{
         justify-content: center;
     }
 .input-group1{
-    margin-bottom: -15.6px;
+    margin-bottom: -16px;
 }
 .container-fluid button{
     padding-bottom: 23px;
@@ -417,6 +417,7 @@ nav span{
       width: 250px;
       height: 60px;
       font-size: 12px;
+      border-radius: 0 0 10px 10px;
   }
   #knop img{
       width: 15px;
@@ -458,6 +459,15 @@ nav span{
   }
   .container{
       margin-left: 2%;
+  }
+  #to1{
+      border-radius: 0;
+  }
+  #date1{
+      border-radius: 0;
+  }
+  #from1{
+      border-radius: 10px 10px 0 0;
   }
 }
 @media(min-width:767px) {
