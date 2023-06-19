@@ -1,0 +1,91 @@
+<html>
+   <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Roboto+Mono:wght@200&family=Shantell+Sans:wght@300&display=swap" rel="stylesheet">
+      <title>reg_osnova</title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+      <link rel="stylesheet" href="static/reg_osnov.css" >
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+   </head>
+<body>
+ <main>
+      <div class="na">
+          <nav class="navbar  " id="top">
+           <div class="container-fluid">
+               <div  class="pic" >
+              <img src="static/images/logo.png">
+
+               </div>
+             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+             </button>
+             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+               <div class="offcanvas-header">
+                   <img src="static/images/logo.png">
+                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+               </div>
+               <div class="offcanvas-body">
+                 <ul>
+                       <img src="static/images/icons8-person-96.png" class="person" style="float: left;">
+                       <li class="osob"><a href="#">Увійти</a></li>
+                     <div style="margin-right: 100px; margin-top: 25px">
+                        <img src="static/images/icons8-contact-us-96.png" class="us" style="float: left;">
+                        <li class="onas"><a href="#" >О нас</a></li>
+                     </div></ul>
+                         <div id="selec">
+                        <img src="static/images/icons8-globe-96.png" class="world" style="float: left;">
+                        <select id="language-selector1">
+                          <option value="uk">Українська</option>
+                          <option value="en">English</option>
+                          <option value="pl">Polski</option>
+                       </select>
+                             </div>
+
+
+               </div>
+             </div>
+           </div>
+         </nav>
+          <nav class="navigation" id="top2">
+            <img src="static/images/logo.png" >
+            <span></span>
+            <ul>
+               <select id="language-selector">
+                  <option value="uk">Українська</option>
+                  <option value="en">English</option>
+                  <option value="pl">Polski</option>
+               </select>
+               <li><a href="#">Про нас</a></li>
+               <li><a href="#">Особистий кабінет</a></li>
+            </ul>
+         </nav>
+      </div>
+     <div class="container">
+     <div class="input-group mb-3">
+       <input type="text" class="form-control" placeholder="Ім'я" aria-label="Recipient's username" aria-describedby="button-addon2">
+
+</div>
+              <div class="input-group mb-3">
+       <input type="text" class="form-control" placeholder="Прізвище" aria-label="Recipient's username" aria-describedby="button-addon2">
+</div>
+                       <div class="input-group mb-3">
+       <input type="text" class="form-control" placeholder="Електронна адреса" aria-label="Recipient's username" aria-describedby="button-addon2">
+</div>
+                       <div class="input-group mb-3">
+       <input type="text" class="form-control" placeholder="Пароль" aria-label="Recipient's username" aria-describedby="button-addon2">
+</div>
+                       <div class="input-group mb-3">
+       <input type="text" class="form-control" placeholder="Підтвердити пароль" aria-label="Recipient's username" aria-describedby="button-addon2">
+</div>
+         </div>
+     <div class="kn">
+         <button type="submit" class="btn" style="background-color: #40ABCF;color:white; font-weight: bold;" id="knop">
+                           <span>Зареєструвати</span>
+                         </button>
+     </div>
+ </main>
+</body>
+</html>
