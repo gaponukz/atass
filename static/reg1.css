@@ -110,7 +110,7 @@ nav span{
 }
 .centered-text {
     padding-top: 2%;
-      text-align: center;
+    text-align: center;
     }
 .centered-text h1{
     font-weight: bold;
@@ -166,6 +166,7 @@ nav span{
 
 
 @media (max-width: 800px) {
+
        .container-fluid button:focus,.container-fluid button:active{
         box-shadow: none !important;
 
@@ -296,7 +297,7 @@ nav span{
        height: 20px;
    }
    .centered-text h1{
-       font-size: 27px;
+       font-size: 20px;
    }
    .object{
        font-size: 14px;
