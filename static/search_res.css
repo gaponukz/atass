@@ -74,7 +74,7 @@ nav span{
     max-width: 100%;
 
 }
-.input-group{
+#sadasd{
     padding-top: 35px;
     width: 79.5%;
     padding-left: 20.5%;
@@ -90,7 +90,7 @@ nav span{
 .big{
 
 }
-.form-control{
+.sadadas{
 
     height: 60px;
 }
@@ -229,7 +229,7 @@ nav span{
 .container-fluid button{
     padding-bottom: 17px;
 }
-@media (max-width: 700px) {
+@media (max-width: 800px) {
 
     .container-fluid button:focus,.container-fluid button:active{
         box-shadow: none !important;
@@ -242,7 +242,7 @@ nav span{
     .card-body{
         display: flex;
         justify-content: center;
-        height: 150px;
+        height: 130px;
     }
     #offcanvasNavbar{
         width: 100%;
@@ -362,12 +362,13 @@ nav span{
  .names{
      font-size: 17px;
      width: 140%;
-     padding-top: 10px  ;
+     padding-top: 14px  ;
  }
  .pic1{
-     margin-top: 10px  ;
+     margin-top: 16px  ;
      height: 25px;
      width: 25px;
+     margin-left: 10px;
  }
  .test{
      position: absolute;
@@ -375,7 +376,9 @@ nav span{
      left: 0;
  }
  .t{
-     padding-left: 10px;
+      position: absolute;
+     left: 14%;
+     bottom: 8%;
      font-size: 17px;
  }
  .pic img{
@@ -385,17 +388,18 @@ nav span{
  .offcanvas-header img{
      width: 100px;
  }
- #knop{
+ .qw{
      width: 30%;
      font-size: 15px;
  }
- #knop img{
+ .qw img{
      height: 16px;
      width: 16px;
  }
  .time{
      position: absolute;
-     left: 0;
+     left: 4%;
+     bottom: 8%;
  }
  .card{
      width: 80%;
@@ -409,7 +413,7 @@ nav span{
      left: 13%;
    width: 90%;
  }
- .input-group{
+ #sadasd{
      width: 150%;
      padding-right: 20px;
  }
@@ -421,13 +425,11 @@ nav span{
 .card-body button{
     font-size: 14px;
 }
-.second{
-    padding-top: 10px;
-}
-.big{
+
+.big12{
     display: none;
 }
-    .form-control{
+    .sadadas{
        box-shadow: none;
       outline:none !important;
       border: none;
@@ -435,7 +437,7 @@ nav span{
       height: 10px;
 
   }
-  .input-group1{
+  .input-grou{
       box-shadow: none;
       outline:none;
       border: none;
@@ -445,7 +447,7 @@ nav span{
 
   }
 
-  .form-control:focus{
+  .sadadas:focus{
       box-shadow: none;
       outline: none;
   }
@@ -465,12 +467,49 @@ nav span{
    .container{
        height: 250px;
    }
+   .second{
+       padding-bottom: 5px;
+   }
+   .first{
+       padding-bottom: -7px;
+   }
 }
-@media (min-width: 700px){
+@media (min-width: 800px){
     #top{
         display: none;
     }
     .small{
         display: none;
+    }
+}
+@media only screen and (min-width: 800px) and (max-width: 1100px){
+    .names{
+     font-size: 17px;
+     width: 140%;
+     padding-top: 10px  ;
+       }
+     .pic1{
+         margin-top: 10px  ;
+         height: 25px;
+         width: 25px;
+     }
+     .test{
+         position: absolute;
+         top:0;
+         left: 0;
+     }
+     .t{
+         padding-left: 5px;
+         font-size: 17px;
+     }
+     .time{
+         left: 2px;
+     }
+}
+
+@media only screen and (min-width: 620px) and (max-width: 810px){
+    #selec{
+        position: absolute;
+        bottom: 57%;
     }
 }
