@@ -126,10 +126,11 @@ nav span{
     height: 60px;
     background-color:#E8F0FE;
     border-radius: 15px;
+    border: 2px #42C4F8;
 }
 
 .btn{
-    background-color: #dfdaf2;
+    background-color: #EDEDED;
 }
 .btn img{
     width: 40px;
@@ -162,11 +163,10 @@ nav span{
 }
 .kn{
     text-align: center;
+    padding-top: 5%;
 }
 
-.input-group{
-    margin-bottom: 5px;
-}
+
 @media (max-width: 800px) {
        .container-fluid button:focus,.container-fluid button:active{
         box-shadow: none !important;
@@ -302,13 +302,15 @@ nav span{
    }
    .object{
        font-size: 14px;
+       padding-left: 5%;
    }
    #myCheckbox{
        width: 17px;
        height: 17px;
    }
    .sil{
-       padding-top: 23%;
+       padding-top: 14%;
+       padding-left: 5%;
    }
    .sil a{
        padding-top: 5%;
@@ -317,10 +319,8 @@ nav span{
    .form-control{
        height: 40px;
        font-size: 13px;
-       margin-bottom: 10px;
-
    }
-   .input-group{
+      .input-group{
        width: 80%;
        padding-right: 2%;
        padding-left: 5%;
@@ -329,8 +329,8 @@ nav span{
    .container{
        width: 100%;
    }
-   .kn{
-       padding-top: 5%;
+   .centered-text h1{
+       font-size: 20px;
    }
 }
 

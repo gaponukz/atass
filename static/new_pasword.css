@@ -110,7 +110,7 @@ nav span{
 }
 .centered-text {
     padding-top: 2%;
-      text-align: center;
+    text-align: center;
     }
 .centered-text h1{
     font-weight: bold;
@@ -124,7 +124,7 @@ nav span{
 }
 .form-control{
     height: 60px;
-    background-color:#E8F0FE;
+    background-color:#a6a1b9;
     border-radius: 15px;
 }
 
@@ -164,10 +164,9 @@ nav span{
     text-align: center;
 }
 
-.input-group{
-    margin-bottom: 5px;
-}
+
 @media (max-width: 800px) {
+
        .container-fluid button:focus,.container-fluid button:active{
         box-shadow: none !important;
 
@@ -298,7 +297,7 @@ nav span{
        height: 20px;
    }
    .centered-text h1{
-       font-size: 27px;
+       font-size: 20px;
    }
    .object{
        font-size: 14px;
@@ -317,20 +316,6 @@ nav span{
    .form-control{
        height: 40px;
        font-size: 13px;
-       margin-bottom: 10px;
-
-   }
-   .input-group{
-       width: 80%;
-       padding-right: 2%;
-       padding-left: 5%;
-   }
-
-   .container{
-       width: 100%;
-   }
-   .kn{
-       padding-top: 5%;
    }
 }
 
