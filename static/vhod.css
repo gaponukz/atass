@@ -309,7 +309,7 @@ nav span{
        height: 17px;
    }
    .sil{
-       padding-top: 14%;
+       padding-top: 15%;
        padding-left: 5%;
    }
    .sil a{
@@ -321,7 +321,7 @@ nav span{
        font-size: 13px;
    }
       .input-group{
-       width: 80%;
+       width: 100%;
        padding-right: 2%;
        padding-left: 5%;
    }
@@ -346,11 +346,17 @@ nav span{
         bottom: 57%;
     }
     .sil{
-       padding-top: 13%;
+       padding-top: 8%;
    }
 }
 @media only screen and (min-width: 800px) and (max-width: 970px){
     .sil{
-       padding-top: 15%;
+       padding-top: 13%;
+   }
+}
+
+@media only screen and (min-width: 400px) and (max-width: 582px){
+    .sil{
+       padding-top: 10%;
    }
 }
