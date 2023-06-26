@@ -9,7 +9,7 @@ from public import public
 from src.interfaces import IRouteDataBase
 from src.db.json_route_db import JsonRouteDataBase
 from src.interfaces import IService
-from src.logic.functions import Service
+from src.logic.usecase import Service
 
 from src.authentication.authentication import admin_required
 

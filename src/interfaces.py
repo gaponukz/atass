@@ -5,7 +5,7 @@ from src.logic.entities import Path
 from src.logic.entities import Route
 from src.logic.entities import HashId
 from src.logic.entities import ShortRoute
-from src.logic.entities import RouteTemplate
+from src.logic.entities import RoutePrototype
 from src.logic.entities import DatetimeObject
 
 class IService(abc.ABC):
@@ -36,12 +36,15 @@ class IService(abc.ABC):
         // Aviable is fresh date and free sits
         '''
         ...
-    async def add_routes_from_prototype(self, route_prototype: RouteTemplate, datetimes: list[DatetimeObject]) -> list[Route]:
+    async def add_routes_from_prototype(self, route_prototype: RoutePrototype, datetimes: list[DatetimeObject]) -> list[Route]:
         '''
         Generating routes from route prototype and selected dates
         and return routes that successfully added to the database.
         Number of routes = number of datetimes.
         '''
+        ...
+    
+    async def change_route_info(self, route_id: HashId, fields: dict[str, object]) -> Route:
         ...
 
 class IRouteDataBase(abc.ABC):
@@ -99,8 +102,4 @@ class IRouteDataBase(abc.ABC):
         '''
         Change many routes by filter with given fields to change, returning changed routes
         '''
-        ...
-    
-    @abc.abstractmethod
-    def __len__(self):
         ...

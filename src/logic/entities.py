@@ -40,13 +40,25 @@ class Place(pydantic.BaseModel):
     city: str
     street: str
     map_url: pydantic.HttpUrl | None = None
-    id: HashId = str(uuid.uuid4())
+    id: str | None = None
+
+    def __init__(self, **data):
+        if 'id' not in data:
+            data['id'] = str(uuid.uuid4())
+
+        super().__init__(**data)
 
 class Spot(pydantic.BaseModel):
     place: Place
     date: datetime.datetime
     is_active: bool = True
     id: HashId = str(uuid.uuid4())
+
+    def __init__(self, **data):
+        if 'id' not in data:
+            data['id'] = str(uuid.uuid4())
+            
+        super().__init__(**data)
 
 class Passenger(User):
     moving_from: Spot
@@ -80,7 +92,7 @@ class SpotTemplate(pydantic.BaseModel):
     from_start: int
     id: HashId
 
-class RouteTemplate(_RouteBase):
+class RoutePrototype(_RouteBase):
     move_from: SpotTemplate
     move_to: SpotTemplate
     sub_spots: list[SpotTemplate]

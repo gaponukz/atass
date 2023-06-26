@@ -5,7 +5,6 @@ import typing
 import datetime
 from src import utils
 from src.logic import entities
-from src.logic import errors
 
 from fastapi import Depends
 from loguru import logger
@@ -50,11 +49,8 @@ class Service(IService):
 
     @logger.catch(reraise=True)
     async def get_route_by_id(self, route_id: entities.HashId) -> entities.Route:
-        if not (route := await self.db.get_one(route_id)):
-            raise errors.RouteNotFoundError(route_id)
-
-        return route
-
+        return await self.db.get_one(route_id)
+    
     def _get_route_sits(all_spots: list[entities.Spot], passengers: list[entities.Passenger]) -> dict[entities.HashId, dict[entities.HashId, int]]:
         sits = {
             all_spots[i].id: {
@@ -106,11 +102,11 @@ class Service(IService):
 
     async def _generate_routes_copy(
         self,
-        route_prototype: entities.RouteTemplate,
+        route_prototype: entities.RoutePrototype,
         datetimes: list[entities.DatetimeObject]
     ) -> list[entities.Route]:
         '''
-        Generating list of routes from the route prototype(RouteTemplate) and datetimes list.
+        Generating list of routes from the route prototype(RoutePrototype) and datetimes list.
         Number of routes = number of datetimes.
         '''
         routes: list[entities.Route] = []
@@ -149,7 +145,7 @@ class Service(IService):
 
         return routes
         
-    async def add_routes_from_prototype(self, route_prototype: entities.RouteTemplate, datetimes: list[entities.DatetimeObject]):
+    async def add_routes_from_prototype(self, route_prototype: entities.RoutePrototype, datetimes: list[entities.DatetimeObject]):
         '''
         Generate routes from prototype and add them to database 
         '''
@@ -157,6 +153,9 @@ class Service(IService):
 
         for route in routes:
             self._load_route_to_database(route)
+    
+    async def change_route_info(self, route_id: entities.HashId, fields: dict[str, object]):
+        self.db.change_one(route_id, fields)
 
     def _is_actual_spot(self, spot: entities.Spot) -> bool:
         return spot.date < datetime.datetime.now()
