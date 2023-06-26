@@ -1,0 +1,418 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+
+}
+nav{
+    padding-top: 5px;
+    padding-left: 24px;
+    background-color: white;
+    height: 70px;
+}
+nav img{
+    margin-bottom: 10px;
+    margin-left: 10px;
+    width: 110px;
+    height: 68px;
+}
+nav span{
+    font-weight: bold;
+    font-size: 29px;
+    padding-left:10px;
+}
+#language-selector {
+      font-weight: bold;
+      bottom: 10px;
+      left: 10px;
+      width: 119px;
+      margin-left:20px;
+      font-size: 1em;
+      border: none;
+      color:black;
+      background-color: rgba(0, 0, 0, 0);
+    }
+
+.navigation ul {
+    margin-right: 100px;
+    margin-top: 17px;
+    float: right;
+    list-style: none;
+    padding: 0;
+    font-size: 17px;
+}
+
+
+.navigation li {
+  display: inline-block;
+  margin-left: 20px;
+
+}
+
+.navigation li:first-child {
+  margin-left: 0;
+}
+
+#l{
+    padding-left: 20px;
+}
+
+.navigation a {
+  font-weight: bold;
+  font-size: 1em;
+  color: black;
+  text-decoration: none;
+}
+
+.navigation a:hover {
+  text-decoration: underline;
+}
+.na{
+   background-color: #4A85E3;
+}
+
+.container{
+    max-width: 100%;
+
+}
+.input-group{
+    padding-top: 35px;
+    width: 79.5%;
+    padding-left: 20.5%;
+    padding-bottom: 20px;
+
+}
+#fr label{
+    padding-left: 30%;
+}
+#t label {
+    padding-left: 30%;
+}
+.big{
+
+}
+.form-control{
+
+    height: 60px;
+}
+#knop{
+    width: 200px;
+    font-size: 20px;
+}
+#knop span{
+    font-weight: bold;
+    padding-left: 5px;
+    color:white;
+}
+#knop img{
+    width: 35px;
+    height: 35px;
+}
+#test{
+    margin-top: 25px;
+}
+.card{
+    margin:15px;
+    border-radius: 10px;
+    box-shadow:
+            0px 0px 10px 5px rgba(0, 0, 0, 0.1);
+}
+
+.container1{
+    padding-top: 30px;
+    padding-left: 20%;
+    width: 80%;
+
+}
+.names{
+    display: block;
+    font-size: 17px;
+    font-weight: bolder;
+    margin: 2px;
+
+}
+.price{
+    position: absolute;
+    top:0;
+    right: 0;
+    font-weight: bold;
+    font-size: 21px;
+    margin-right: 10px;
+    margin-top: 10px;
+    color:#0487B3;
+}
+.card-body button{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border-radius: 5px;
+    margin-right: 7px;
+    background-color: #ff9029;
+    color: #fff;
+    font-size: 20px;
+
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    margin-bottom: 11px;
+    height: 40px;
+}
+.pic1 {
+    margin-right: 5px;
+    margin-top: 5px;
+    width: 20px;
+    height: 20px;
+    float: left;
+}
+.time{
+    position: absolute;
+    bottom: 12%;
+    left: 2%;
+    height: 25px;
+    width: 25px;
+    margin-top: 5px;
+    float: left;
+
+}
+.t{
+    position: absolute;
+    margin-top: 4px;
+    width: 70px;
+    display: block;
+    font-size: 17px;
+    font-weight: bolder;
+    bottom: 12%;
+    left: 6%;
+}
+.card-body{
+    height: 120px;
+
+}
+
+#language-selector1 {
+      font-weight: bold;
+      bottom: 10px;
+      left: 10px;
+      width: 113px;
+      margin-left:20px;
+      font-size: 1em;
+      border: none;
+      color:#40ABCF;
+      background-color: rgba(0, 0, 0, 0);
+      margin-top: 20px;
+    }
+.offcanvas-body ul {
+    margin-right: 80px;
+    margin-top: 20px;
+    float: left;
+    list-style: none;
+    padding: 0;
+
+}
+.offcanvas-body li{
+    margin-left: 20px;
+}
+.offcanvas-body li:first-child{
+    margin-left: 0;
+}
+.offcanvas-body a {
+  font-weight: bold;
+  font-size: 1em;
+  color: black;
+  text-decoration: none;
+}
+.offcanvas-body a:hover {
+  text-decoration: underline;
+}
+@media (max-width: 700px) {
+    .container-fluid button:focus,.container-fluid button:active{
+        box-shadow: none !important;
+
+    }
+    .d-flex p{
+
+    font-size: 18px;
+    }
+    .card-body{
+        display: flex;
+        justify-content: center;
+    }
+    #offcanvasNavbar{
+        width: 100%;
+        height: 100%;
+    }
+
+    #top ul{
+        width: 60%;
+    }
+
+    #top .osob{
+        margin-right: 50px;
+    }
+
+    #top .onas{
+        margin: 0;
+      padding:0;
+        margin-right: 15px;
+    }
+    .pic{
+        width: 60%;
+
+    }
+    #top .person{
+        width: 30px;
+        height: 30px;
+        margin: 0;
+    }
+    #top .us{
+        margin:0;
+        width: 30px;
+        height: 30px;
+    }
+    #top .world{
+        margin: 0;
+        width: 30px;
+        height: 30px;
+        margin-top: 20px;
+
+
+    }
+    .btn-close{
+        margin-right: 0;
+    }
+    .container-fluid button{
+        border: none;
+    }
+
+    #selec{
+        padding-bottom: 50px;
+        margin-right: 20px;
+        float:left;
+
+    }
+    #language-selector1{
+          margin-right: 100px;
+        margin: 0;
+        margin-top: 25px;
+    }
+    .offcanvas-header{
+        padding-right: 50px;
+    }
+    .offcanvas-header img{
+        height: 50px;
+        width: 50px;
+        margin: 0;
+        padding: 0;
+    }
+    .offcanvas-header h5{
+        font-size: 24px;
+        padding-right: 60%;
+    }
+    .pic img{
+        height: 60px;
+        width: 60px;
+        margin:0;
+        margin-bottom: 15px;
+    }
+    .pic span{
+      font-size: 35px;
+      display: inline-block;
+      margin-bottom: 15px;
+      padding-top: 15px;
+      padding-left: 10px;
+    }
+    .row1 h3{
+        display: none;
+    }
+    #top2{
+        display: none;
+    }
+  .navigation {
+    display: block;
+    text-align: center;
+  }
+  .navigation img {
+    display: block;
+    margin: 0 auto;
+  }
+  .navigation span {
+    display: block;
+    margin: 10px auto;
+  }
+  .navigation ul {
+    display: block;
+    text-align: center;
+  }
+  .navigation li {
+    display: block;
+    margin: 5px 0;
+  }
+  #language-selector {
+    display: block;
+    margin: 10px auto;
+  }
+
+ .names{
+     font-size: 17px;
+     width: 140%;
+     padding-top: 10px  ;
+ }
+ .pic1{
+     margin-top: 10px  ;
+     height: 25px;
+     width: 25px;
+ }
+ .test{
+     position: absolute;
+     top:0;
+     left: 0;
+ }
+ .t{
+     padding-left: 10px;
+ }
+ .pic img{
+     width: 100px;
+
+ }
+ .offcanvas-header img{
+     width: 100px;
+ }
+ #knop{
+     width: 30%;
+     font-size: 15px;
+ }
+ #knop img{
+     height: 16px;
+     width: 16px;
+ }
+ .time{
+     position: absolute;
+     left: 0;
+ }
+ .card{
+     width: 80%;
+
+ }
+ .container1{
+     width: 100%;
+ }
+ .r{
+   position: absolute;
+     left: 13%;
+   width: 90%;
+ }
+ .input-group{
+     width: 150%;
+     padding-right: 20px;
+ }
+ .container{
+     padding-right: 38%;
+ }
+
+}
+@media (min-width: 700px){
+    #top{
+        display: none;
+    }
+}
