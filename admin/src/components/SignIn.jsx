@@ -71,11 +71,11 @@ const SignIn = () => {
             <div className="centered-text">
                 <h1>Яка ваша електронна адреса та пароль?</h1>
             </div>
-            <div className="container">
-                <div className="input-group mb-3">
+            <div className="container te">
+                <div className="input-group mb-3 rol">
                     <input 
                         type="text" 
-                        className="form-control" 
+                        className="form-control ert" 
                         placeholder="Електронна адреса" 
                         aria-label="Recipient's username" 
                         aria-describedby="button-addon2"
@@ -87,7 +87,7 @@ const SignIn = () => {
                     />
                     <button 
                         type="button" 
-                        className="btn" 
+                        className="btn ss" 
                         onClick={() => {
                             setGmail("")
                         }}
@@ -95,10 +95,10 @@ const SignIn = () => {
                         <img src={cross} />
                     </button>
                 </div>
-                <div className="input-group mb-3">
+                <div className="input-group mb-3 rol">
                     <input 
                         type={typePassword} 
-                        className="form-control" 
+                        className="form-control ert" 
                         placeholder="Пароль" 
                         aria-label="Recipient's username" 
                         aria-describedby="button-addon2" 
@@ -110,7 +110,7 @@ const SignIn = () => {
                     />
                     <button 
                         type="button" 
-                        className="btn" 
+                        className="btn ss" 
                         onClick={() => {
                             (typePassword == "password") ? setTypePassword("test") : setTypePassword("password")
                         }}
@@ -135,7 +135,7 @@ const SignIn = () => {
             <div className="kn">
                 <button 
                     type="submit" 
-                    className="btn" 
+                    className="btn ss" 
                     style={{ backgroundColor: "#40ABCF", color: "white", fontWeight: "bold" }} 
                     id="knop"
                     onClick={handleButtonClick}
