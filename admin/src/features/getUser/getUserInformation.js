@@ -2,13 +2,13 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const BASE_URL = "http://localhost:8080";
+axios.defaults.withCredentials = true
 
 const initialState = {
-    
+    userInfo: {}
 }
 
 export const getInfo = createAsyncThunk('gets/getsSlice', async () => {
-    console.log("tyt");
     const response = await axios.get(`${BASE_URL}/getUserInfo`, {
         withCredentials: true,
     })
@@ -30,6 +30,8 @@ export const getsSlice = createSlice({
           })
           .addCase(getInfo.fulfilled, (state, action) => {
             console.log("+");
+            console.log(action.payload);
+            state.userInfo = {...action.payload}
           })
           .addCase(getInfo.rejected, (state, action) => {
             console.log("-");

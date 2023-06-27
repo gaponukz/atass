@@ -1,5 +1,6 @@
 import HeaderNavBar from "./components/HeaderNavBar";
 import MainSitePage from "./components/MainSitePage";
+import ResetPassword from "./components/ResetPassword";
 import SignIn from "./components/SignIn";
 import UserProfile from "./components/UserProfile";
 
@@ -11,10 +12,14 @@ function App() {
     <div className="">
       <HeaderNavBar />
       <Routes>
+        {/* site */}
         <Route path="/" element={<MainSitePage />}/>
         <Route path="/about-us" element={<>About Us</>}/>
+        
+        {/* user features */}
         <Route path="/sigin" element={<SignIn />}/>
         <Route path="/user-profile" element={<UserProfile />}/>
+        <Route path="/reset-password" element={<ResetPassword />}/>
       </Routes>
     </div>
   );

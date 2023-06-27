@@ -4,8 +4,9 @@ import { useNavigate } from "react-router-dom";
 
 import {Circles} from "react-loader-spinner"
 
-//import './reg.css'
+import { getInfo } from "../features/getUser/getUserInformation";
 
+import { NavLink } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -17,30 +18,6 @@ import { fetchPosts, changeStatus } from "../features/post/PostSlice";
 const SignIn = () => {
     const postStatus = useSelector((state) => state.post.status);
     const flag = useSelector((state) => state.post.fetchDataFlag);
-    // useEffect(() => {
-    //     const baseUrl = "http://localhost:8080"
-
-    //     fetch(`${baseUrl}/signin`, {
-    //         method: "POST",
-    //         credentials: "include",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //         },
-    //         body: JSON.stringify({
-    //             gmail: "testuser@knu.ua",
-    //             password: "somepassword"
-    //         })
-    //     }).then(function (response) {
-    //         if (response.status == 200) {
-                
-    //             fetch(`${baseUrl}/getUserInfo`, {credentials: "include"}).then(response => response.json()).then(data => {
-    //                 console.log("data",data)
-    //             })
-
-                
-    //         }
-    //     })
-    // }, [])
 
     const navigate = useNavigate();
     const dispatch = useDispatch()
@@ -60,10 +37,13 @@ const SignIn = () => {
         toast.error("Неправильні данні!", { autoClose: 1500 })
     }
     
-    if (flag) {
-        console.log("test");
-        navigate("/user-profile");
-    }
+    useEffect(() => {
+        if (flag) {
+            console.log("test");
+            
+            navigate("/user-profile");
+        }
+    }, [flag])
 
     return (
         <>
@@ -129,7 +109,7 @@ const SignIn = () => {
                     }}
                 />
                 <div className="sil">
-                    <a href="#" >Не пам'ятаю пароль</a>
+                    <NavLink to="/reset-password" >Не пам'ятаю пароль</NavLink>
                 </div>
             </div>
             <div className="kn">

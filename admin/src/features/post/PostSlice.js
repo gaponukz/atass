@@ -10,7 +10,7 @@ const initialState = {
     fetchDataFlag: false
 }
 
-export const fetchPosts = createAsyncThunk('posts/fetchPosts', async ({url, gmail, password, rememberHim}, thunkAPI, dispatch) => {
+export const fetchPosts = createAsyncThunk('posts/fetchPosts', async ({url, gmail, password, rememberHim}) => {
     const response = await axios.post(`${POSTS_URL}/${url}`, {
         withCredentials: true,
         headers: {
@@ -21,6 +21,8 @@ export const fetchPosts = createAsyncThunk('posts/fetchPosts', async ({url, gmai
         rememberHim: rememberHim
     })
     console.log(response);
+    
+
     return response.data
 
 })

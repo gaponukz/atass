@@ -27,17 +27,17 @@ const MainSitePage = () => {
               <div className="input-group" >
                <div className="form-floating mb-3">
                   <input type="text" id="from" className="form-control" placeholder="Звідки?" name="from" autocomplete="off" required/>
-                  <label for="from">Звідки?</label>
+                  <label htmlFor="from">Звідки?</label>
                </div>
                <div className="form-floating mb-3">
                   <input type="text" id="to" className="form-control" name="to" placeholder="Куди?" autocomplete="off" required />
-                  <label for="to">Куди?</label>
+                  <label htmlFor="to">Куди?</label>
                </div>
 
 
                <div className="form-floating mb-3">
                   <input type="date" id="date" class="form-control" name="date" placeholder="Коли?" autocomplete="off" required />
-                  <label for="date">Коли?</label>
+                  <label htmlFor="date">Коли?</label>
                </div>
 
                 <button type="submit" className="btn" style={{backgroundColor: "#40ABCF", color:"white", height: "59px"}} id="knop">
@@ -50,19 +50,19 @@ const MainSitePage = () => {
                 <div className="input-group1" >
                     <div className="form-floating mb-3">
                          <input type="text" id="from1" className="form-control" name="from" placeholder="Звідки?" autocomplete="off" required style={{display: "block"}}/>
-                         <label for="from1">Звідки?</label>
+                         <label htmlFor="from1">Звідки?</label>
                     </div>
                        </div>
                        <div className="input-group1" >
                            <div className="form-floating mb-3">
                          <input type="text" id="to1" class="form-control" name="to" placeholder="Куди?" autocomplete="off" required style={{display: "block"}}/>
-                                <label for="to1">Куди?</label>
+                                <label htmlFor="to1">Куди?</label>
                            </div>
                        </div>
                        <div className="input-group1" >
                            <div className="form-floating mb-3">
                          <input type="date" id="date1" class="form-control" name="date" autocomplete="off" required style={{display: "block"}}/>
-                               <label for="date1">Коли?</label>
+                               <label htmlFor="date1">Коли?</label>
                            </div>
                        </div>
                        <div class="input-group1"  id="small3">
@@ -76,38 +76,38 @@ const MainSitePage = () => {
             </div> 
       </div>
     </main>
-    <div class="row">
-               <div class="col-sm-4">
-                  <div class="d-flex">
-                     <img src={ticket} alt="Image" class="img-fluid mr-3" />
+    <div className="row">
+               <div className="col-sm-4">
+                  <div className="d-flex">
+                     <img src={ticket} alt="Image" className="img-fluid mr-3" />
                      <p>Шукаєте квитки на автобус, які відповідають вашому графіку та бюджету?</p>
                   </div>
                </div>
-               <div class="col-sm-4">
-                  <div class="d-flex">
-                     <img src={worlwide} alt="Image" class="img-fluid mr-3" />
+               <div className="col-sm-4">
+                  <div className="d-flex">
+                     <img src={worlwide} alt="Image" className="img-fluid mr-3" />
                      <p>Попрощайтеся з нескінченними пошуками автобусних квитків. Наша платформа дозволяє забронювати ідеальну подорож.</p>
                   </div>
                </div>
-               <div class="col-sm-4">
-                  <div class="d-flex">
-                     <img src={chat} alt="Image" class="img-fluid mr-3" />
+               <div className="col-sm-4">
+                  <div className="d-flex">
+                     <img src={chat} alt="Image" className="img-fluid mr-3" />
                      <p>Потрібна допомога з бронюванням? Наша команда доступна цілодобово, щоб допомогти вам.</p>
                   </div>
                </div>
             </div>
-            <div class="container-1">
-         <div class="cloud-box">
-            <h2 class="mb-4">Куди ви хочете їхати?</h2>
+            <div className="container-1">
+         <div className="cloud-box">
+            <h2 className="mb-4">Куди ви хочете їхати?</h2>
          </div>
-         <div class="row" style={{paddingBottom: "50px"}} id="card">
-            <div class="col" >
-               <div class="card">
-                  <div class="card-body route_card_body">
-                     <div class="sq">
+         <div className="row" style={{paddingBottom: "50px"}} id="card">
+            <div className="col" >
+               <div className="card">
+                  <div className="card-body route_card_body">
+                     <div className="sq">
                         Київ
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="kirk-icon sc-ktwOSD kPQuM sc-dGAOeH GAPhQ" width="24" height="24" aria-hidden="true">
-                           <g fill="none" stroke="#708C91" stroke-width="2" stroke-miterlimit="10" stroke-linejoin="round" stroke-linecap="round" transform="rotate(180 12 12)">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="kirk-icon sc-ktwOSD kPQuM sc-dGAOeH GAPhQ" width="24" height="24" ariaHidden="true">
+                           <g fill="none" stroke="#708C91" strokeWidth="2" strokeMiterlimit="10" strokeLinejoin="round" strokeLinecap="round" transform="rotate(180 12 12)">
                               <path d="M9 19l-7-7 7-7"></path>
                               <path d="M22 12H2"></path>
                            </g>
@@ -116,19 +116,19 @@ const MainSitePage = () => {
                      </div>
                      <div >
                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="kirk-icon2 sc-ktwOSD kPQuM" width="24" height="24" aria-hidden="true">
-                           <polyline fill="none" stroke="#708C91" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="9 18 15 12 9 6"></polyline>
+                           <polyline fill="none" stroke="#708C91" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" points="9 18 15 12 9 6"></polyline>
                         </svg>
                      </div>
                   </div>
                </div>
             </div>
-            <div class="col">
-               <div class="card">
-                  <div class="card-body route_card_body">
+            <div className="col">
+               <div className="card">
+                  <div className="card-body route_card_body">
                      <div >
                         Варшава
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="kirk-icon sc-ktwOSD kPQuM sc-dGAOeH GAPhQ" width="24" height="24" aria-hidden="true">
-                           <g fill="none" stroke="#708C91" stroke-width="2" stroke-miterlimit="10" stroke-linejoin="round" stroke-linecap="round" transform="rotate(180 12 12)">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="kirk-icon sc-ktwOSD kPQuM sc-dGAOeH GAPhQ" width="24" height="24" aria-hidden="true">
+                           <g fill="none" stroke="#708C91" strokeWidth="2" strokeMiterlimit="10" strokeLinejoin="round" strokeLinecap="round" transform="rotate(180 12 12)">
                               <path d="M9 19l-7-7 7-7"></path>
                               <path d="M22 12H2"></path>
                            </g>
@@ -136,20 +136,20 @@ const MainSitePage = () => {
                         Київ
                      </div>
                      <div >
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="kirk-icon2 sc-ktwOSD kPQuM" width="24" height="24" aria-hidden="true">
-                           <polyline fill="none" stroke="#708C91" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="9 18 15 12 9 6"></polyline>
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="kirk-icon2 sc-ktwOSD kPQuM" width="24" height="24" aria-hidden="true">
+                           <polyline fill="none" stroke="#708C91" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" points="9 18 15 12 9 6"></polyline>
                         </svg>
                      </div>
                   </div>
                </div>
             </div>
-            <div class="col">
-               <div class="card">
-                  <div class="card-body route_card_body">
+            <div className="col">
+               <div className="card">
+                  <div className="card-body route_card_body">
                      <div >
                         Київ
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="kirk-icon sc-ktwOSD kPQuM sc-dGAOeH GAPhQ" width="24" height="24" aria-hidden="true">
-                           <g fill="none" stroke="#708C91" stroke-width="2" stroke-miterlimit="10" stroke-linejoin="round" stroke-linecap="round" transform="rotate(180 12 12)">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="kirk-icon sc-ktwOSD kPQuM sc-dGAOeH GAPhQ" width="24" height="24" aria-hidden="true">
+                           <g fill="none" stroke="#708C91" strokeWidth="2" strokLiterlimit="10" strokeLinejoin="round" strokeLinecap="round" transform="rotate(180 12 12)">
                               <path d="M9 19l-7-7 7-7"></path>
                               <path d="M22 12H2"></path>
                            </g>
@@ -158,7 +158,7 @@ const MainSitePage = () => {
                      </div>
                      <div >
                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="kirk-icon2 sc-ktwOSD kPQuM" width="24" height="24" aria-hidden="true">
-                           <polyline fill="none" stroke="#708C91" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="9 18 15 12 9 6"></polyline>
+                           <polyline fill="none" stroke="#708C91" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" points="9 18 15 12 9 6"></polyline>
                         </svg>
                      </div>
                   </div>
