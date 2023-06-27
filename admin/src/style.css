@@ -33,18 +33,18 @@ nav span{
     font-size: 29px;
     padding-left:10px;
 }
-.container{
+.xx{
     max-width: 100%;
     padding-top: 200px;
 }
 
-.input-group{
+.qq{
     padding-top: 50px;
     width: 90%;
     padding-left: 70px;
 
 }
-.form-control{
+.op{
     height: 60px;
 }
 #language-selector {
@@ -135,7 +135,7 @@ nav span{
 
 }
 
-.input-group img{
+.qq img{
     width: 25px;
     height: 25px;
 }
@@ -226,7 +226,7 @@ nav span{
         display: flex;
         justify-content: center;
     }
-.input-group1{
+.cv{
     margin-bottom: -15.6px;
 }
 .container-fluid button{
@@ -283,7 +283,7 @@ nav span{
     .small{
         margin-right: 20%;
     }
-    .small .form-control{
+    .small .op{
         width: 200%;
     }
     .small #knop{
@@ -426,13 +426,13 @@ nav span{
       width: 15px;
       height: 15px;
   }
-  .form-control{
+  .op{
        box-shadow: none;
       outline:none !important;
       border: none;
       width: 250px;
   }
-  .input-group1{
+  .cv{
       box-shadow: none;
       outline:none;
       border: none;
@@ -440,7 +440,7 @@ nav span{
       width: 50%;
       padding-left: 20px;
   }
-  .form-control:focus{
+  .op:focus{
       box-shadow: none;
       outline: none;
   }
@@ -460,7 +460,7 @@ nav span{
   row1 h2{
       margin-left: 10%;
   }
-  .container{
+  .xx{
       margin-left: 2%;
   }
 }
@@ -482,7 +482,7 @@ nav span{
     .row1 h2{
         margin-left: 3%;
         font-size: 32px;}
-    .form-control{
+    .op{
         width: 150%;
     }
     #knop{

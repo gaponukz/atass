@@ -22,22 +22,22 @@ const MainSitePage = () => {
             <div className="column2">
             </div>
          </div>
-         <div className="container">
+         <div className="container xx">
             <div className="big">
-              <div className="input-group" >
+              <div className="input-group qq" >
                <div className="form-floating mb-3">
-                  <input type="text" id="from" className="form-control" placeholder="Звідки?" name="from" autocomplete="off" required/>
-                  <label htmlFor="from">Звідки?</label>
+                  <input type="text" id="from" className="form-control op" placeholder="Звідки?" name="from" autocomplete="off" required/>
+                  <label for="from">Звідки?</label>
                </div>
                <div className="form-floating mb-3">
-                  <input type="text" id="to" className="form-control" name="to" placeholder="Куди?" autocomplete="off" required />
-                  <label htmlFor="to">Куди?</label>
+                  <input type="text" id="to" className="form-control op" name="to" placeholder="Куди?" autocomplete="off" required />
+                  <label for="to">Куди?</label>
                </div>
 
 
                <div className="form-floating mb-3">
-                  <input type="date" id="date" class="form-control" name="date" placeholder="Коли?" autocomplete="off" required />
-                  <label htmlFor="date">Коли?</label>
+                  <input type="date" id="date" class="form-control op" name="date" placeholder="Коли?" autocomplete="off" required />
+                  <label for="date">Коли?</label>
                </div>
 
                 <button type="submit" className="btn" style={{backgroundColor: "#40ABCF", color:"white", height: "59px"}} id="knop">
@@ -47,25 +47,25 @@ const MainSitePage = () => {
               </div>
             </div>
             <div className="small">
-                <div className="input-group1" >
+                <div className="input-group1 cv" >
                     <div className="form-floating mb-3">
-                         <input type="text" id="from1" className="form-control" name="from" placeholder="Звідки?" autocomplete="off" required style={{display: "block"}}/>
-                         <label htmlFor="from1">Звідки?</label>
+                         <input type="text" id="from1" className="form-control op" name="from" placeholder="Звідки?" autocomplete="off" required style={{display: "block"}}/>
+                         <label for="from1">Звідки?</label>
                     </div>
                        </div>
-                       <div className="input-group1" >
+                       <div className="input-group1 cv" >
                            <div className="form-floating mb-3">
-                         <input type="text" id="to1" class="form-control" name="to" placeholder="Куди?" autocomplete="off" required style={{display: "block"}}/>
-                                <label htmlFor="to1">Куди?</label>
+                         <input type="text" id="to1" class="form-control op" name="to" placeholder="Куди?" autocomplete="off" required style={{display: "block"}}/>
+                                <label for="to1">Куди?</label>
                            </div>
                        </div>
-                       <div className="input-group1" >
+                       <div className="input-group1 cv" >
                            <div className="form-floating mb-3">
-                         <input type="date" id="date1" class="form-control" name="date" autocomplete="off" required style={{display: "block"}}/>
-                               <label htmlFor="date1">Коли?</label>
+                         <input type="date" id="date1" class="form-control op" name="date" autocomplete="off" required style={{display: "block"}}/>
+                               <label for="date1">Коли?</label>
                            </div>
                        </div>
-                       <div class="input-group1"  id="small3">
+                       <div class="input-group1 cv"  id="small3">
                          <button type="submit" className="btn" style={{backgroundColor: "#40ABCF",color:"white", display: "block" }} id="knop">
                            <img src={loop}/>
                            <span>Шукати</span>
