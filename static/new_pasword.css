@@ -123,8 +123,8 @@ nav span{
     padding-top: 5%;
 }
 .form-control{
+    background-color:#E8F0FE;
     height: 60px;
-    background-color:#a6a1b9;
     border-radius: 15px;
 }
 
@@ -163,6 +163,7 @@ nav span{
 .kn{
     text-align: center;
 }
+
 
 
 @media (max-width: 800px) {
@@ -316,6 +317,12 @@ nav span{
    .form-control{
        height: 40px;
        font-size: 13px;
+   }
+    .input-group{
+       width: 100%;
+   }
+    .container{
+       width: 100%;
    }
 }
 
