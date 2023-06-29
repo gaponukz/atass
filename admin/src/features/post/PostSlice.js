@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
 
 
 const POSTS_URL = "http://localhost:8080";
@@ -7,7 +8,7 @@ const POSTS_URL = "http://localhost:8080";
 const initialState = {
     status: "idle", // "idle" | "loading" | "succeeded" | "failed"
     error: false,
-    fetchDataFlag: false
+    fetchDataFlag: false,
 }
 
 export const fetchPosts = createAsyncThunk('posts/fetchPosts', async ({url, gmail, password, rememberHim}) => {
@@ -17,14 +18,11 @@ export const fetchPosts = createAsyncThunk('posts/fetchPosts', async ({url, gmai
             "Content-Type": "application/json",
         },
         gmail: gmail, // "testuser@knu.ua"
-        password: password, // "somepassword"
+        password: password, // "somepass"
         rememberHim: rememberHim
     })
     console.log(response);
-    
-
     return response.data
-
 })
 
 export const postSlice = createSlice({
@@ -33,7 +31,7 @@ export const postSlice = createSlice({
     reducers: {
         changeStatus: (state, action) => {
             state.status = "idle";
-        }
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -47,8 +45,9 @@ export const postSlice = createSlice({
             state.fetchDataFlag = true;
           })
           .addCase(fetchPosts.rejected, (state, action) => {
-            console.log("-");
+            console.log("-", action.payload);
             state.status = "error";
+            toast.error("Неправильні данні!", { autoClose: 1500 })
           });
       },
 })

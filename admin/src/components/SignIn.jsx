@@ -4,8 +4,6 @@ import { useNavigate } from "react-router-dom";
 
 import {Circles} from "react-loader-spinner"
 
-import { getInfo } from "../features/getUser/getUserInformation";
-
 import { NavLink } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -18,6 +16,7 @@ import { fetchPosts, changeStatus } from "../features/post/PostSlice";
 const SignIn = () => {
     const postStatus = useSelector((state) => state.post.status);
     const flag = useSelector((state) => state.post.fetchDataFlag);
+    const count = useSelector((state) => state.post.postCount);
 
     const navigate = useNavigate();
     const dispatch = useDispatch()
@@ -32,10 +31,6 @@ const SignIn = () => {
         dispatch(fetchPosts({url: "signin", gmail: userGmail, password: userPassword, rememberHim: rememberHim}))
     };
 
-    console.log(postStatus);
-    if (postStatus == "error") {
-        toast.error("Неправильні данні!", { autoClose: 1500 })
-    }
     
     useEffect(() => {
         if (flag) {
@@ -63,6 +58,7 @@ const SignIn = () => {
                         onChange={(e) => {
                             setGmail(e.target.value)
                             dispatch(changeStatus())
+
                         }} 
                     />
                     <button 
@@ -70,6 +66,7 @@ const SignIn = () => {
                         className="btn ss" 
                         onClick={() => {
                             setGmail("")
+
                         }}
                     >
                         <img src={cross} />
@@ -106,6 +103,7 @@ const SignIn = () => {
                     checked={rememberHim}
                     onChange={() => {
                         (rememberHim) ? setRememberHim(false) : setRememberHim(true);
+
                     }}
                 />
                 <div className="sil">
