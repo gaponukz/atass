@@ -2,11 +2,12 @@ import { nanoid } from '@reduxjs/toolkit';
 import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { getUniqueRoutes } from '../api';
 
 
 const AllRoutes = () => {
     const routes = useSelector(state => state.createRoute.routes)
-
+    getUniqueRoutes();
     return (
         <div className='p-8'>
             <div className='flex flex-row items-center justify-center'>

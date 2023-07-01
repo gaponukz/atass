@@ -51,12 +51,14 @@ const EditRouteThird = () => {
                 {horizon.map(obg => (<div className="w-[120px]" key={obg.id}>{obg.city}</div>))} 
             </div>
             <hr></hr>
-            <div className="flex flex-col gap-3 font-bold text-xl mt-[20px]">
+            <div className="flex flex-row">
+            <div className="flex flex-col gap-3 font-bold text-xl mt-[10px] w-[80px]">
                                 {vertical.map(obg => (<div className="mb-[15px]" key={obg.id}>{obg.city}</div>))} 
                                 
                             </div>
-            <div className="mt-[35px]">
-            <div className="absolute mt-[-200px] ml-[100px]">
+            <div className="">
+            <div className="absolute mt-auto ml-[30px]">
+                
                 <div className='flex flex-row gap-4'>
                     {horizon.map(obj1 => {
                         return (<div key={obj1.id} className='flex flex-col gap-3 mt-1 ml-3'>
@@ -102,6 +104,7 @@ const EditRouteThird = () => {
                         )
                     })}
                 </div>
+            </div>
             </div>
 
         </div>

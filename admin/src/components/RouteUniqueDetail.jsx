@@ -9,6 +9,7 @@ import ShowInfoDetail from './ShowInfoDetail';
 
 import { useDispatch } from 'react-redux';
 import { changeEditRoute } from '../features/routeEditor/routeEditSlice';
+import { getRouteById } from '../api';
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
@@ -192,6 +193,7 @@ const route = [
 ]
 
 const RouteUniqueDetail = () => {
+    getRouteById("") // зараз id немає по логіці, можеш просто щось своє вставити для тесту, я дороблю
     const routes = useSelector(state => state.createRoute.routes2)
 
     const currentEditRoute = useSelector(state => state.editRoute.currentEditRoute)
