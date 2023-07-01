@@ -17,7 +17,7 @@ function App() {
         <Route path="/about-us" element={<>About Us</>}/>
         
         {/* user features */}
-        <Route path="/sigin" element={<SignIn />}/>
+        <Route path="/sign-in" element={<SignIn />}/>
         <Route path="/user-profile" element={<UserProfile />}/>
         <Route path="/reset-password" element={<ResetPassword />}/>
       </Routes>

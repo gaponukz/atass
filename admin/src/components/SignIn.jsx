@@ -16,7 +16,7 @@ import { fetchPosts, changeStatus } from "../features/post/PostSlice";
 const SignIn = () => {
     const postStatus = useSelector((state) => state.post.status);
     const flag = useSelector((state) => state.post.fetchDataFlag);
-    const count = useSelector((state) => state.post.postCount);
+    // const finalFlagSuccess = useSelector((state) => state.reset.finalFlagSuccess)
 
     const navigate = useNavigate();
     const dispatch = useDispatch()
@@ -31,11 +31,13 @@ const SignIn = () => {
         dispatch(fetchPosts({url: "signin", gmail: userGmail, password: userPassword, rememberHim: rememberHim}))
     };
 
+    // if (finalFlagSuccess) {
+    //     toast.success("Пароль успішно змінено!", { autoClose: 1500 })
+    // }
     
     useEffect(() => {
         if (flag) {
             console.log("test");
-            
             navigate("/user-profile");
         }
     }, [flag])
