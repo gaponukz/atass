@@ -6,6 +6,7 @@ import './style.css';
 //import "./reg_osn.css"
 import { BrowserRouter } from "react-router-dom";
 import './reg.css'
+import './new_pasword.css'
 
 import { store } from './app/store';
 import { Provider } from 'react-redux';

@@ -64,7 +64,7 @@ const HeaderNavBar = () => {
                   <option value="pl">Polski</option>
                </select>
                <li ><NavLink to="/about-us">Про нас</NavLink></li>
-               <li><NavLink to="/sigin">Особистий кабінет</NavLink></li>
+               <li><NavLink to="/sign-in">Особистий кабінет</NavLink></li>
             </ul>
          </nav>
     {/* <main>
