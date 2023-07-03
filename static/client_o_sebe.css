@@ -111,27 +111,6 @@ nav span{
 .container {
    text-align: center;
 }
-.but{
-    width: 100%;
-    text-align: center;
-}
-.button {
-   padding: 10px 20px;
-  display: inline-block;
-  background-color: white;
-  border: none;
-  border-radius: 5px;
-  text-align: center;
-  font-size: 14px;
-  color: #000;
-  margin: 0;
-    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
-  width: 40%;
-}
-
-.button:focus {
-  border-bottom: 2px solid black;
-}
 .nadpis{
     display: flex;
     padding-top: 5%;
@@ -300,8 +279,11 @@ nav span{
    .nadpis{
        width: 80%;
    }
+   .nadpis img{
+       margin-left: 30%;
+   }
    .xxxxx{
-       font-size: 14px;
+       font-size: 16px;
    }
    .test{
        padding-right: 19%;
