@@ -53,11 +53,11 @@ const ResetPassword = () => {
         <h1>Укажіть свою ел. адресу. Ми надішлемо вам посилання, за яким можна створити новий пароль.</h1>
       </div>
       
-      <div className="container">
-        <div className="input-group mb-3">
+      <div className="container uu">
+        <div className="input-group mb-3 nnn">
           <input 
             type="text" 
-            className="form-control" 
+            className="form-control rrr" 
             placeholder="Електронна адреса" 
             aria-label="Recipient's username" 
             aria-describedby="button-addon2"
@@ -67,7 +67,7 @@ const ResetPassword = () => {
             }} 
           />
           <button 
-            className="btn"
+            className="btn qqq"
             onClick={() => {
               setGmail("")
             }} 
@@ -76,10 +76,10 @@ const ResetPassword = () => {
           </button>
         </div>
 
-        <div className="input-group mb-3">
+        <div className="input-group mb-3 nnn">
           <input 
             type="text" 
-            className="form-control" 
+            className="form-control rrr" 
             placeholder="Новий пароль" 
             aria-label="Recipient's username" 
             aria-describedby="button-addon2"
@@ -89,7 +89,7 @@ const ResetPassword = () => {
             }} 
           />
           <button 
-            className="btn"
+            className="btn qqq"
             onClick={() => {
               setPassword("")
             }} 
@@ -98,10 +98,10 @@ const ResetPassword = () => {
           </button>
         </div>
 
-        <div className="input-group mb-3">
+        <div className="input-group mb-3 nnn">
           <input 
             type="text" 
-            className="form-control" 
+            className="form-control rrr" 
             placeholder="Підтвердити пароль" 
             aria-label="Recipient's username" 
             aria-describedby="button-addon2" 
@@ -112,7 +112,7 @@ const ResetPassword = () => {
           />
 
           <button 
-            className="btn" 
+            className="btn qqq" 
             onClick={() => {
               setResetPassword("")
             }}
@@ -123,10 +123,10 @@ const ResetPassword = () => {
 
         {
           (flagSuccess) && (
-        <div className="input-group mb-3">
+        <div className="input-group mb-3 nnn" >
           <input 
             type="text" 
-            className="form-control er" 
+            className="form-control rrr" 
             placeholder="Код" 
             aria-label="Recipient's username" 
             aria-describedby="button-addon2" 
@@ -137,7 +137,7 @@ const ResetPassword = () => {
           />
 
           <button 
-            className="btn" 
+            className="btn qqq"  
             onClick={() => {
               setKeyCode("")
             }}
@@ -153,7 +153,7 @@ const ResetPassword = () => {
         {(flagSuccess) ? (
           <button 
           type="submit" 
-          className="btn" 
+          className="btn qqq" 
           style={{ backgroundColor: "#40ABCF", color: "white", fontWeight: "bold" }} 
           id="knop"
           onClick={handleButtonClickSecond}
@@ -163,7 +163,7 @@ const ResetPassword = () => {
         ) : (
           <button 
           type="submit" 
-          className="btn" 
+          className="btn qqq" 
           style={{ backgroundColor: "#40ABCF", color: "white", fontWeight: "bold" }} 
           id="knop"
           onClick={handleButtonClickFirst}

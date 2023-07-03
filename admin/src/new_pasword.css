@@ -111,28 +111,28 @@ nav span{
 }
 .centered-text {
     padding-top: 2%;
-      text-align: center;
+    text-align: center;
     }
 .centered-text h1{
     font-weight: bold;
     font-size: 40px;
 }
-.te{
+.uu{
     width: 50%;
 }
-.rol{
+.nnn{
     padding-top: 5%;
 }
-.ert{
-    height: 60px;
+.rrr{
     background-color:#E8F0FE;
+    height: 60px;
     border-radius: 15px;
 }
 
-.ss{
-    background-color: #EDEDED;
+.qqq{
+    background-color: #dfdaf2;
 }
-.ss img{
+.qqq img{
     width: 40px;
 }
 
@@ -163,11 +163,12 @@ nav span{
 }
 .kn{
     text-align: center;
-    padding-top: 5%;
 }
 
 
+
 @media (max-width: 800px) {
+
        .container-fluid button:focus,.container-fluid button:active{
         box-shadow: none !important;
 
@@ -293,12 +294,12 @@ nav span{
    .offcanvas-header img{
      width: 100px;
  }
-   .ss img{
+ .qqq img{
        width: 20px;
        height: 20px;
    }
    .centered-text h1{
-       font-size: 27px;
+       font-size: 20px;
    }
    .object{
        font-size: 14px;
@@ -314,9 +315,15 @@ nav span{
        padding-top: 5%;
        font-size: 14px;
    }
-   .ert{
+   .rrr{
        height: 40px;
        font-size: 13px;
+   }
+    .nnn{
+       width: 100%;
+   }
+    .uu{
+       width: 100%;
    }
 }
 
