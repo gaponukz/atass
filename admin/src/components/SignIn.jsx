@@ -111,6 +111,10 @@ const SignIn = () => {
                 <div className="sil">
                     <NavLink to="/reset-password" >Не пам'ятаю пароль</NavLink>
                 </div>
+
+                <div className="sil">
+                    <NavLink to="/sign-up" >Зареєструватись</NavLink>
+                </div>
             </div>
             <div className="kn">
                 <button 

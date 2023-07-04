@@ -7,6 +7,8 @@ import './style.css';
 import { BrowserRouter } from "react-router-dom";
 import './reg.css'
 import './new_pasword.css'
+import './client_o_sebe.css'
+import './reg_osn_new.css'
 
 import { store } from './app/store';
 import { Provider } from 'react-redux';

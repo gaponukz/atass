@@ -29,6 +29,7 @@ const ResetPassword = () => {
 
   
   const handleButtonClickFirst = () => {
+    
     if (password === resetPassword) {
       dispatch(fetchPassword({ url: "resetPassword", gmail: gmail }));
     }

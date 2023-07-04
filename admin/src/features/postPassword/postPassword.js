@@ -56,6 +56,7 @@ export const resetSlice = createSlice({
           })
           .addCase(fetchPassword.rejected, (state, action) => {
             console.log("-");
+            //toast.info("Введіть код", { autoClose: 1500 })
           })
           .addCase(fetchConfirmPassword.pending, (state) => {
             console.log("??");
