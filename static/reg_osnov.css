@@ -161,6 +161,7 @@ nav span{
 
 }
 .kn{
+    padding-top: 4%;
     text-align: center;
 }
 
@@ -329,8 +330,12 @@ nav span{
    .container{
        width: 100%;
    }
+   .object{
+       margin-left: 5%;
+       font-size: 10px;
+   }
    .kn{
-       padding-top: 5%;
+       padding-top: 13%;
    }
 }
 
