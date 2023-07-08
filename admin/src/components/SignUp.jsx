@@ -3,6 +3,7 @@ import { useState } from "react";
 import { fetchSignUp, fetchSignUpConfirm } from "../features/postSignUp/postSignUp";
 
 import { ToastContainer } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
 
 
 const SignUp = () => {
@@ -12,6 +13,11 @@ const SignUp = () => {
     console.log(postStatus);
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    if (finalFlagSuccess) {
+        navigate("/user-profile");
+    }
 
 
     // ui state
@@ -19,7 +25,7 @@ const SignUp = () => {
     const [gmail, setGmail] = useState("");
     const [phone, setPhone] = useState("");
     const [password, setPassword] = useState("");
-    const [confPassword, setConfPassword] = useState();
+    const [confPassword, setConfPassword] = useState("");
     const [code, setCode] = useState("");
     const [allow, setAllow] = useState("");
 

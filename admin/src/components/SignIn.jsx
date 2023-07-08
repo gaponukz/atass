@@ -31,9 +31,7 @@ const SignIn = () => {
         dispatch(fetchPosts({url: "signin", gmail: userGmail, password: userPassword, rememberHim: rememberHim}))
     };
 
-    // if (finalFlagSuccess) {
-    //     toast.success("Пароль успішно змінено!", { autoClose: 1500 })
-    // }
+    
     
     useEffect(() => {
         if (flag) {

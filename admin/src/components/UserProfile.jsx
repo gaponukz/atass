@@ -1,37 +1,43 @@
-import { getInfo } from "../features/getUser/getUserInformation";
+import { getUserId } from "../features/getUser/getUserData";
 import { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import avatar from "./static/images/icons8-avatar-96.png"
 
-import { TextField } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const UserProfile = () => {
-  const userInfo = useSelector((state) => state.get.userInfo);
+  const userInfo = useSelector((state) => state.getUser.data);
+  const err = useSelector((state) => state.getUser.error)
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(getInfo());
+    dispatch(getUserId())
   }, [])
-
-  console.log(userInfo);
-
+  
+  useEffect(() => {
+    if (err === "Request failed with status code 401") {
+      console.log("here");
+      navigate("/sign-in");
+    }
+  }, [err])
+  
   return (
   <>
-    <div class="container">
+    <div className="container">
          </div>
-         <div class="nadpis">
+         <div className="nadpis">
              <p>{userInfo.fullName}</p>
              <img src={avatar}/>
          </div>
-         <div class="test">
-         <a class="xxxxx" href="#">Редагувати</a>
+         <div className="test">
+         <a className="xxxxx" href="#">Редагувати</a>
              </div>
-          <div class="red">
-             <h5 class="sss">{userInfo.gmail}</h5>
-             <h5 class="sss">+{userInfo.phone}</h5>
-
+          <div className="red">
+             <h5 className="sss">{userInfo.gmail}</h5>
+             <h5 className="sss">+{userInfo.phone}</h5>
           </div>
   </>
   )

@@ -5,6 +5,8 @@ import { toast } from 'react-toastify';
 
 
 const POSTS_URL = "http://localhost:8080";
+//axios.defaults.withCredentials = true
+
 
 const initialState = {
   status: "idle-t", // "idle" | "loading" | "succeeded" | "failed"
@@ -65,6 +67,7 @@ export const signUpSlice = createSlice({
       })
       .addCase(fetchSignUpConfirm.fulfilled, (state, action) => {
         console.log("+");
+        state.finalFlagSuccess = true;
       })
       .addCase(fetchSignUpConfirm.rejected, (state, action) => {
         console.log("-");
