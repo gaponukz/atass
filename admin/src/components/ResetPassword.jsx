@@ -58,7 +58,7 @@ const ResetPassword = () => {
         <div className="input-group mb-3 nnn">
           <input 
             type="text" 
-            className="form-control rrr" 
+            className="form-control rrrr" 
             placeholder="Електронна адреса" 
             aria-label="Recipient's username" 
             aria-describedby="button-addon2"
@@ -80,7 +80,7 @@ const ResetPassword = () => {
         <div className="input-group mb-3 nnn">
           <input 
             type="text" 
-            className="form-control rrr" 
+            className="form-control rrrr" 
             placeholder="Новий пароль" 
             aria-label="Recipient's username" 
             aria-describedby="button-addon2"
@@ -102,7 +102,7 @@ const ResetPassword = () => {
         <div className="input-group mb-3 nnn">
           <input 
             type="text" 
-            className="form-control rrr" 
+            className="form-control rrrr" 
             placeholder="Підтвердити пароль" 
             aria-label="Recipient's username" 
             aria-describedby="button-addon2" 
@@ -127,7 +127,7 @@ const ResetPassword = () => {
         <div className="input-group mb-3 nnn" >
           <input 
             type="text" 
-            className="form-control rrr" 
+            className="form-control rrrr" 
             placeholder="Код" 
             aria-label="Recipient's username" 
             aria-describedby="button-addon2" 
