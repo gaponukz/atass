@@ -41,11 +41,11 @@ const SignUp = () => {
     return (
         <>
             <ToastContainer />
-            <div className="container">
-                <div className="input-group mb-3 " >
+            <div className="container pp">
+                <div className="input-group mb-3 rrr" >
                     <input
                         type="text"
-                        className="form-control"
+                        className="form-control pop"
                         placeholder="Ім'я"
                         aria-label="Recipient's username"
                         aria-describedby="button-addon2"
@@ -55,10 +55,10 @@ const SignUp = () => {
                         }}
                     />
                 </div>
-                <div className="input-group mb-3 ">
+                <div className="input-group mb-3 rrr">
                     <input
                         type="text"
-                        className="form-control"
+                        className="form-control pop"
                         placeholder="Пошта"
                         aria-label="Recipient's username"
                         aria-describedby="button-addon2"
@@ -68,10 +68,10 @@ const SignUp = () => {
                         }}
                     />
                 </div>
-                <div className="input-group mb-3">
+                <div className="input-group mb-3 rrr">
                     <input
                         type="text"
-                        className="form-control"
+                        className="form-control pop"
                         placeholder="телефон"
                         aria-label="Recipient's username"
                         aria-describedby="button-addon2"
@@ -81,10 +81,10 @@ const SignUp = () => {
                         }}
                     />
                 </div>
-                <div className="input-group mb-3">
+                <div className="input-group mb-3 rrr">
                     <input
                         type="text"
-                        className="form-control"
+                        className="form-control pop"
                         placeholder="Пароль"
                         aria-label="Recipient's username"
                         aria-describedby="button-addon2"
@@ -94,10 +94,10 @@ const SignUp = () => {
                         }}
                     />
                 </div>
-                <div className="input-group mb-3">
+                <div className="input-group mb-3 rrr">
                     <input
                         type="text"
-                        className="form-control"
+                        className="form-control pop"
                         placeholder="Підтвердити пароль"
                         aria-label="Recipient's username"
                         aria-describedby="button-addon2"
@@ -109,10 +109,10 @@ const SignUp = () => {
                 </div>
 
                 { (flagSuccess) &&
-                    (<div className="input-group mb-3">
+                    (<div className="input-group mb-3 rrr">
                         <input
                             type="text"
-                            className="form-control"
+                            className="form-control pop"
                             placeholder="Код з пошти"
                             aria-label="Recipient's username"
                             aria-describedby="button-addon2"
@@ -142,7 +142,7 @@ const SignUp = () => {
             <div className="kn">
                 { (flagSuccess) ? (
                 <button 
-                    className="btn" 
+                    className="btn vbn" 
                     style={{ backgroundColor: "#40ABCF", color: "white", fontWeight: "bold" }} 
                     id="knop"
                     onClick={handleButtonClickSecond}
