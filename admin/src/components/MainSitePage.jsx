@@ -26,18 +26,18 @@ const MainSitePage = () => {
             <div className="big">
               <div className="input-group qq" >
                <div className="form-floating mb-3">
-                  <input type="text" id="from" className="form-control op" placeholder="Звідки?" name="from" autocomplete="off" required/>
-                  <label for="from">Звідки?</label>
+                  <input type="text" id="from" className="form-control op" placeholder="Звідки?" name="from" autoComplete="off" required/>
+                  <label htmlFor="from">Звідки?</label>
                </div>
                <div className="form-floating mb-3">
-                  <input type="text" id="to" className="form-control op" name="to" placeholder="Куди?" autocomplete="off" required />
-                  <label for="to">Куди?</label>
+                  <input type="text" id="to" className="form-control op" name="to" placeholder="Куди?" autoComplete="off" required />
+                  <label htmlFor="to">Куди?</label>
                </div>
 
 
                <div className="form-floating mb-3">
-                  <input type="date" id="date" class="form-control op" name="date" placeholder="Коли?" autocomplete="off" required />
-                  <label for="date">Коли?</label>
+                  <input type="date" id="date" className="form-control op" name="date" placeholder="Коли?" autoComplete="off" required />
+                  <label htmlFor="date">Коли?</label>
                </div>
 
                 <button type="submit" className="btn" style={{backgroundColor: "#40ABCF", color:"white", height: "59px"}} id="knop">
@@ -49,23 +49,23 @@ const MainSitePage = () => {
             <div className="small">
                 <div className="input-group1 cv" >
                     <div className="form-floating mb-3">
-                         <input type="text" id="from1" className="form-control op" name="from" placeholder="Звідки?" autocomplete="off" required style={{display: "block"}}/>
-                         <label for="from1">Звідки?</label>
+                         <input type="text" id="from1" className="form-control op" name="from" placeholder="Звідки?" autoComplete="off" required style={{display: "block"}}/>
+                         <label htmlFor="from1">Звідки?</label>
                     </div>
                        </div>
                        <div className="input-group1 cv" >
                            <div className="form-floating mb-3">
-                         <input type="text" id="to1" class="form-control op" name="to" placeholder="Куди?" autocomplete="off" required style={{display: "block"}}/>
-                                <label for="to1">Куди?</label>
+                         <input type="text" id="to1" className="form-control op" name="to" placeholder="Куди?" autoComplete="off" required style={{display: "block"}}/>
+                                <label htmlFor="to1">Куди?</label>
                            </div>
                        </div>
                        <div className="input-group1 cv" >
                            <div className="form-floating mb-3">
-                         <input type="date" id="date1" class="form-control op" name="date" autocomplete="off" required style={{display: "block"}}/>
-                               <label for="date1">Коли?</label>
+                         <input type="date" id="date1" className="form-control op" name="date" autoComplete="off" required style={{display: "block"}}/>
+                               <label htmlFor="date1">Коли?</label>
                            </div>
                        </div>
-                       <div class="input-group1 cv"  id="small3">
+                       <div className="input-group1 cv"  id="small3">
                          <button type="submit" className="btn" style={{backgroundColor: "#40ABCF",color:"white", display: "block" }} id="knop">
                            <img src={loop}/>
                            <span>Шукати</span>
@@ -106,7 +106,7 @@ const MainSitePage = () => {
                   <div className="card-body route_card_body">
                      <div className="sq">
                         Київ
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="kirk-icon sc-ktwOSD kPQuM sc-dGAOeH GAPhQ" width="24" height="24" ariaHidden="true">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="kirk-icon sc-ktwOSD kPQuM sc-dGAOeH GAPhQ" width="24" height="24" aria-hidden="true">
                            <g fill="none" stroke="#708C91" strokeWidth="2" strokeMiterlimit="10" strokeLinejoin="round" strokeLinecap="round" transform="rotate(180 12 12)">
                               <path d="M9 19l-7-7 7-7"></path>
                               <path d="M22 12H2"></path>
@@ -115,7 +115,7 @@ const MainSitePage = () => {
                         Варшава
                      </div>
                      <div >
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="kirk-icon2 sc-ktwOSD kPQuM" width="24" height="24" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="kirk-icon2 sc-ktwOSD kPQuM" width="24" height="24" aria-hidden="true">
                            <polyline fill="none" stroke="#708C91" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" points="9 18 15 12 9 6"></polyline>
                         </svg>
                      </div>
@@ -149,15 +149,15 @@ const MainSitePage = () => {
                      <div >
                         Київ
                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="kirk-icon sc-ktwOSD kPQuM sc-dGAOeH GAPhQ" width="24" height="24" aria-hidden="true">
-                           <g fill="none" stroke="#708C91" strokeWidth="2" strokLiterlimit="10" strokeLinejoin="round" strokeLinecap="round" transform="rotate(180 12 12)">
+                           <g fill="none" stroke="#708C91" strokeWidth="2" strokliterlimit="10" strokeLinejoin="round" strokeLinecap="round" transform="rotate(180 12 12)">
                               <path d="M9 19l-7-7 7-7"></path>
                               <path d="M22 12H2"></path>
                            </g>
                         </svg>
                         Львів
-                     </div>
+                         </div>
                      <div >
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="kirk-icon2 sc-ktwOSD kPQuM" width="24" height="24" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="kirk-icon2 sc-ktwOSD kPQuM" width="24" height="24" aria-hidden="true">
                            <polyline fill="none" stroke="#708C91" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" points="9 18 15 12 9 6"></polyline>
                         </svg>
                      </div>

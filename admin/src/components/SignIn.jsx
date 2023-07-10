@@ -1,8 +1,9 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
-import {Circles} from "react-loader-spinner"
+import { Circles } from "react-loader-spinner"
 
 import { NavLink } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
@@ -13,6 +14,14 @@ import icon_eye from "./static/images/icons8-eye-96.png"
 
 import { fetchPosts, changeStatus } from "../features/post/PostSlice";
 
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+const schema = yup.object().shape({
+    email: yup.string().email().required(),
+    password: yup.string().min(4).max(32).required(),
+});
+
 const SignIn = () => {
     const postStatus = useSelector((state) => state.post.status);
     const flag = useSelector((state) => state.post.fetchDataFlag);
@@ -22,17 +31,18 @@ const SignIn = () => {
     const dispatch = useDispatch()
 
     // ui state
-    const [userGmail, setGmail] = useState("");
-    const [userPassword, setPassword] = useState("");
     const [rememberHim, setRememberHim] = useState(false);
     const [typePassword, setTypePassword] = useState("password");
 
-    const handleButtonClick = () => {
-        dispatch(fetchPosts({url: "signin", gmail: userGmail, password: userPassword, rememberHim: rememberHim}))
-    };
+    const { register, handleSubmit, formState: { errors }, resetField, reset } = useForm({
+        resolver: yupResolver(schema),
+    });
+    const onSubmitHandler = (data) => {
+        console.log({ data });
+        dispatch(fetchPosts({ url: "signin", gmail: data.email, password: data.password, rememberHim: rememberHim }))
+        reset()
+    }
 
-    
-    
     useEffect(() => {
         if (flag) {
             console.log("test");
@@ -42,52 +52,142 @@ const SignIn = () => {
 
     return (
         <>
-        <ToastContainer />
+            <ToastContainer />
+            <>
+                {/* <div className="centered-text">
+                    <h1>Яка ваша електронна адреса та пароль?</h1>
+                </div>
+                <div className="container te">
+                    <div className="input-group mb-3 rol">
+                        <input
+                            type="text"
+                            className="form-control ert"
+                            placeholder="Електронна адреса"
+                            aria-label="Recipient's username"
+                            aria-describedby="button-addon2"
+                            value={userGmail}
+                            onChange={(e) => {
+                                setGmail(e.target.value)
+                                dispatch(changeStatus())
+
+                            }}
+    
+                        />
+                        <button
+                            type="button"
+                            className="btn ss"
+                            onClick={() => {
+                                setGmail("");
+                            }}
+                        >
+                            <img src={cross} />
+                        </button>
+                    </div>
+                    <div className="input-group mb-3 rol">
+                        <input
+                            type={typePassword}
+                            className="form-control ert"
+                            placeholder="Пароль"
+                            aria-label="Recipient's username"
+                            aria-describedby="button-addon2"
+                            value={userPassword}
+                            onChange={(e) => {
+                                setPassword(e.target.value)
+                                dispatch(changeStatus())
+                            }}
+                        />
+                        <button
+                            type="button"
+                            className="btn ss"
+                            onClick={() => {
+                                (typePassword == "password") ? setTypePassword("test") : setTypePassword("password")
+                            }}
+                        >
+                            <img src={icon_eye} />
+                        </button>
+                    </div>
+                    <p className="object">Запам'ятати мене</p>
+                    <input
+                        type="checkbox"
+                        id="myCheckbox"
+                        className="object"
+                        checked={rememberHim}
+                        onChange={() => {
+                            (rememberHim) ? setRememberHim(false) : setRememberHim(true);
+
+                        }}
+                    />
+                    <div className="sil">
+                        <NavLink to="/reset-password" >Не пам'ятаю пароль</NavLink>
+                    </div>
+
+                    <div className="sil">
+                        <NavLink to="/sign-up" >Зареєструватись</NavLink>
+                    </div>
+                </div>
+
+                <div className="kn">
+                    <button
+                        type="submit"
+                        className="btn ss"
+                        style={{ backgroundColor: "#40ABCF", color: "white", fontWeight: "bold" }}
+                        id="knop"
+                        onClick={handleButtonClick}
+                        disabled={(postStatus === "loading") ? true : false}
+                    >
+                        {(postStatus === "loading") ? (
+                            <Circles
+                                color="#00FFFF"
+                                height={25}
+                                width={60}
+                                className="m-5"
+                            />
+                        ) : (
+                            <span
+
+                            >Увійти</span>
+                        )}
+                    </button>
+                </div> */}
+            </>
+            <form onSubmit={handleSubmit(onSubmitHandler)}>
             <div className="centered-text">
                 <h1>Яка ваша електронна адреса та пароль?</h1>
             </div>
             <div className="container te">
                 <div className="input-group mb-3 rol">
-                    <input 
-                        type="text" 
-                        className="form-control ert" 
-                        placeholder="Електронна адреса" 
-                        aria-label="Recipient's username" 
+                    <input
+                        type="email"
+                        className="form-control ert"
+                        placeholder="Електронна адреса"
+                        aria-label="Recipient's username"
                         aria-describedby="button-addon2"
-                        value={userGmail}
-                        onChange={(e) => {
-                            setGmail(e.target.value)
-                            dispatch(changeStatus())
-
-                        }} 
+                        {...register("email")}
                     />
-                    <button 
-                        type="button" 
-                        className="btn ss" 
+                    <button
+                        type="button"
+                        className="btn ss"
                         onClick={() => {
-                            setGmail("")
-
+                            resetField("email");
                         }}
                     >
                         <img src={cross} />
                     </button>
                 </div>
+                <p>{errors.email?.message}</p>
                 <div className="input-group mb-3 rol">
-                    <input 
-                        type={typePassword} 
-                        className="form-control ert" 
-                        placeholder="Пароль" 
-                        aria-label="Recipient's username" 
-                        aria-describedby="button-addon2" 
-                        value={userPassword}
-                        onChange={(e) => {
-                            setPassword(e.target.value)
-                            dispatch(changeStatus())
-                        }}
+                    <input
+                        type={typePassword}
+                        className="form-control ert"
+                        placeholder="Пароль"
+                        aria-label="Recipient's username"
+                        aria-describedby="button-addon2"
+                        {...register("password")}
                     />
-                    <button 
-                        type="button" 
-                        className="btn ss" 
+                    
+                    <button
+                        type="button"
+                        className="btn ss"
                         onClick={() => {
                             (typePassword == "password") ? setTypePassword("test") : setTypePassword("password")
                         }}
@@ -95,11 +195,12 @@ const SignIn = () => {
                         <img src={icon_eye} />
                     </button>
                 </div>
+                <p>{errors.password?.message}</p>
                 <p className="object">Запам'ятати мене</p>
-                <input 
-                    type="checkbox" 
-                    id="myCheckbox" 
-                    className="object" 
+                <input
+                    type="checkbox"
+                    id="myCheckbox"
+                    className="object"
                     checked={rememberHim}
                     onChange={() => {
                         (rememberHim) ? setRememberHim(false) : setRememberHim(true);
@@ -114,13 +215,13 @@ const SignIn = () => {
                     <NavLink to="/sign-up" >Зареєструватись</NavLink>
                 </div>
             </div>
+
             <div className="kn">
-                <button 
-                    type="submit" 
-                    className="btn ss" 
-                    style={{ backgroundColor: "#40ABCF", color: "white", fontWeight: "bold" }} 
+                <button
+                    type="submit"
+                    className="btn ss"
+                    style={{ backgroundColor: "#40ABCF", color: "white", fontWeight: "bold" }}
                     id="knop"
-                    onClick={handleButtonClick}
                     disabled={(postStatus === "loading") ? true : false}
                 >
                     {(postStatus === "loading") ? (
@@ -130,13 +231,14 @@ const SignIn = () => {
                             width={60}
                             className="m-5"
                         />
-                        ) : ( 
-                            <span
-                                
-                                >Увійти</span> 
-                            )}
+                    ) : (
+                        <span
+
+                        >Увійти</span>
+                    )}
                 </button>
             </div>
+            </form>
         </>
     )
 }

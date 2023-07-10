@@ -1,9 +1,24 @@
 import { useSelector, useDispatch } from "react-redux"
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { fetchSignUp, fetchSignUpConfirm } from "../features/postSignUp/postSignUp";
 
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
+
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+
+const schema = yup.object().shape({
+    name: yup.string().min(2).max(32).required(),
+    email: yup.string().email().required(),
+    password: yup.string().min(4).max(32).required(),
+    confPassword: yup.string().min(4).max(32).required(),
+    phoneNumber: yup.string().matches(phoneRegExp, 'Phone number is not valid'),
+
+});
 
 
 const SignUp = () => {
@@ -19,28 +34,51 @@ const SignUp = () => {
         navigate("/user-profile");
     }
 
-
     // ui state
-    const [name, setName] = useState("");
-    const [gmail, setGmail] = useState("");
-    const [phone, setPhone] = useState("");
-    const [password, setPassword] = useState("");
-    const [confPassword, setConfPassword] = useState("");
+    // const [name, setName] = useState("");
+    // const [gmail, setGmail] = useState("");
+    // const [phone, setPhone] = useState("");
+    // const [password, setPassword] = useState("");
+    // const [confPassword, setConfPassword] = useState("");
     const [code, setCode] = useState("");
-    const [allow, setAllow] = useState("");
+    const [allow, setAllow] = useState(false);
 
+    const { register, handleSubmit, formState: { errors }, resetField, reset } = useForm({
+        resolver: yupResolver(schema),
+    });
+    
+    const onSubmitHandler = (data) => {
+        console.log({ data });
+        if (flagSuccess) {
+            if (data.password !== data.confPassword) 
+                toast.error("Підтвердьте пароль!", { autoClose: 1500 })
+            else 
+                dispatch(fetchSignUpConfirm({ url: "confirmRegistration", gmail: data.email, password: data.password, fullName: data.name, phone: data.phoneNumber, allowsAdvertisement: allow, key: code }))
+        }
+        else {
+            if (data.password !== data.confPassword) 
+                toast.error("Підтвердьте пароль!", { autoClose: 1500 })
+            else 
+                dispatch(fetchSignUp({ url: "signup", gmail: data.email }))
+            
+        }
 
-    const handleButtonClickFirst = () => {
-        dispatch(fetchSignUp({ url: "signup", gmail: gmail }))
+        // reset()
     }
 
-    const handleButtonClickSecond = () => {
-        dispatch(fetchSignUpConfirm({ url: "confirmRegistration", gmail: gmail, password: password, fullName: name, phone: phone, allowsAdvertisement: allow, key: code }))
-    }
+
+    // const handleButtonClickFirst = () => {
+    //     dispatch(fetchSignUp({ url: "signup", gmail: gmail }))
+    // }
+
+    // const handleButtonClickSecond = () => {
+    //     dispatch(fetchSignUpConfirm({ url: "confirmRegistration", gmail: gmail, password: password, fullName: name, phone: phone, allowsAdvertisement: allow, key: code }))
+    // }
 
     return (
         <>
             <ToastContainer />
+            <form onSubmit={handleSubmit(onSubmitHandler)}>
             <div className="container">
                 <div className="input-group mb-3 " >
                     <input
@@ -49,10 +87,11 @@ const SignUp = () => {
                         placeholder="Ім'я"
                         aria-label="Recipient's username"
                         aria-describedby="button-addon2"
-                        value={name}
-                        onChange={(e) => {
-                            setName(e.target.value)
-                        }}
+                        // value={name}
+                        // onChange={(e) => {
+                        //   setName(e.target.value)
+                        // }}
+                        {...register("name")}
                     />
                 </div>
                 <div className="input-group mb-3 ">
@@ -62,10 +101,11 @@ const SignUp = () => {
                         placeholder="Пошта"
                         aria-label="Recipient's username"
                         aria-describedby="button-addon2"
-                        value={gmail}
-                        onChange={(e) => {
-                            setGmail(e.target.value)
-                        }}
+                        // value={gmail}
+                        // onChange={(e) => {
+                        //     setGmail(e.target.value)
+                        // }}
+                        {...register("email")}
                     />
                 </div>
                 <div className="input-group mb-3">
@@ -75,10 +115,11 @@ const SignUp = () => {
                         placeholder="телефон"
                         aria-label="Recipient's username"
                         aria-describedby="button-addon2"
-                        value={phone}
-                        onChange={(e) => {
-                            setPhone(e.target.value)
-                        }}
+                        // value={phone}
+                        // onChange={(e) => {
+                        //     setPhone(e.target.value)
+                        // }}
+                        {...register("phoneNumber")}
                     />
                 </div>
                 <div className="input-group mb-3">
@@ -88,10 +129,11 @@ const SignUp = () => {
                         placeholder="Пароль"
                         aria-label="Recipient's username"
                         aria-describedby="button-addon2"
-                        value={password}
-                        onChange={(e) => {
-                            setPassword(e.target.value)
-                        }}
+                        // value={password}
+                        // onChange={(e) => {
+                        //     setPassword(e.target.value)
+                        // }}
+                        {...register("password")}
                     />
                 </div>
                 <div className="input-group mb-3">
@@ -101,10 +143,12 @@ const SignUp = () => {
                         placeholder="Підтвердити пароль"
                         aria-label="Recipient's username"
                         aria-describedby="button-addon2"
-                        value={confPassword}
-                        onChange={(e) => {
-                            setConfPassword(e.target.value)
-                        }}
+                        // value={confPassword}
+                        // onChange={(e) => {
+                        //     setConfPassword(e.target.value)
+                        // }}
+                        {...register("confPassword")}
+
                     />
                 </div>
 
@@ -140,7 +184,7 @@ const SignUp = () => {
             </div>
 
             <div className="kn">
-                { (flagSuccess) ? (
+                {/* { (flagSuccess) ? (
                 <button 
                     className="btn" 
                     style={{ backgroundColor: "#40ABCF", color: "white", fontWeight: "bold" }} 
@@ -158,8 +202,19 @@ const SignUp = () => {
                         <span>Зареєструвати</span>
                     </button>
                     ) }
+                 */}
+                 <button 
+                    className="btn" 
+                    style={{ backgroundColor: "#40ABCF", color: "white", fontWeight: "bold" }} 
+                    id="knop"
+                    type="submit"
+                >
+                    <span>Зареєструвати</span>
+                </button>
                 
             </div>
+
+            </form>
         </>
     )
 }
