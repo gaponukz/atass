@@ -88,11 +88,11 @@ const ResetPassword = () => {
       <form onSubmit={handleSubmit(onSubmitHandler)}>
       <div className="container uu">
         <div className="input-group mb-3 nnn">
-          <input
-            type="text"
-            className="form-control rrr"
-            placeholder="Електронна адреса"
-            aria-label="Recipient's username"
+          <input 
+            type="text" 
+            className="form-control rrrr" 
+            placeholder="Електронна адреса" 
+            aria-label="Recipient's username" 
             aria-describedby="button-addon2"
             // value={gmail}
             // onChange={(e) => {
@@ -103,13 +103,12 @@ const ResetPassword = () => {
           <button
             className="btn qqq"
             onClick={() => {
-              resetField("email");
-            }}
+              resetField("email")
+            }} 
           >
             <img src={cross} />
           </button>
         </div>
-
         <div className="input-group mb-3 nnn">
           <input
             type="text"
@@ -160,18 +159,18 @@ const ResetPassword = () => {
 
         {
           (flagSuccess) && (
-            <div className="input-group mb-3 nnn" >
-              <input
-                type="text"
-                className="form-control rrr"
-                placeholder="Код"
-                aria-label="Recipient's username"
-                aria-describedby="button-addon2"
-                value={keyCode}
-                onChange={(e) => {
-                  setKeyCode(e.target.value)
-                }}
-              />
+        <div className="input-group mb-3 nnn" >
+          <input 
+            type="text" 
+            className="form-control rrrr" 
+            placeholder="Код" 
+            aria-label="Recipient's username" 
+            aria-describedby="button-addon2" 
+            value={keyCode}
+            onChange={(e) => {
+              setKeyCode(e.target.value)
+            }}
+          />
 
               <button
                 className="btn qqq"

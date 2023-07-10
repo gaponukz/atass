@@ -46,21 +46,21 @@ const SignUp = () => {
     const { register, handleSubmit, formState: { errors }, resetField, reset } = useForm({
         resolver: yupResolver(schema),
     });
-    
+
     const onSubmitHandler = (data) => {
         console.log({ data });
         if (flagSuccess) {
-            if (data.password !== data.confPassword) 
+            if (data.password !== data.confPassword)
                 toast.error("Підтвердьте пароль!", { autoClose: 1500 })
-            else 
+            else
                 dispatch(fetchSignUpConfirm({ url: "confirmRegistration", gmail: data.email, password: data.password, fullName: data.name, phone: data.phoneNumber, allowsAdvertisement: allow, key: code }))
         }
         else {
-            if (data.password !== data.confPassword) 
+            if (data.password !== data.confPassword)
                 toast.error("Підтвердьте пароль!", { autoClose: 1500 })
-            else 
+            else
                 dispatch(fetchSignUp({ url: "signup", gmail: data.email }))
-            
+
         }
 
         // reset()
@@ -79,114 +79,116 @@ const SignUp = () => {
         <>
             <ToastContainer />
             <form onSubmit={handleSubmit(onSubmitHandler)}>
-            <div className="container">
-                <div className="input-group mb-3 " >
-                    <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Ім'я"
-                        aria-label="Recipient's username"
-                        aria-describedby="button-addon2"
-                        // value={name}
-                        // onChange={(e) => {
-                        //   setName(e.target.value)
-                        // }}
-                        {...register("name")}
-                    />
-                </div>
-                <div className="input-group mb-3 ">
-                    <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Пошта"
-                        aria-label="Recipient's username"
-                        aria-describedby="button-addon2"
-                        // value={gmail}
-                        // onChange={(e) => {
-                        //     setGmail(e.target.value)
-                        // }}
-                        {...register("email")}
-                    />
-                </div>
-                <div className="input-group mb-3">
-                    <input
-                        type="text"
-                        className="form-control"
-                        placeholder="телефон"
-                        aria-label="Recipient's username"
-                        aria-describedby="button-addon2"
-                        // value={phone}
-                        // onChange={(e) => {
-                        //     setPhone(e.target.value)
-                        // }}
-                        {...register("phoneNumber")}
-                    />
-                </div>
-                <div className="input-group mb-3">
-                    <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Пароль"
-                        aria-label="Recipient's username"
-                        aria-describedby="button-addon2"
-                        // value={password}
-                        // onChange={(e) => {
-                        //     setPassword(e.target.value)
-                        // }}
-                        {...register("password")}
-                    />
-                </div>
-                <div className="input-group mb-3">
-                    <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Підтвердити пароль"
-                        aria-label="Recipient's username"
-                        aria-describedby="button-addon2"
-                        // value={confPassword}
-                        // onChange={(e) => {
-                        //     setConfPassword(e.target.value)
-                        // }}
-                        {...register("confPassword")}
 
-                    />
-                </div>
-
-                { (flagSuccess) &&
-                    (<div className="input-group mb-3">
+            <div className="container pp">
+                
+                    <div className="input-group mb-3 rrr" >
                         <input
                             type="text"
-                            className="form-control"
-                            placeholder="Код з пошти"
+                            className="form-control pop"
+                            placeholder="Ім'я"
                             aria-label="Recipient's username"
                             aria-describedby="button-addon2"
-                            value={code}
-                            onChange={(e) => {
-                                setCode(e.target.value)
+                            // value={name}
+                            // onChange={(e) => {
+                            //   setName(e.target.value)
+                            // }}
+                            {...register("name")}
+                        />
+                    </div>
+                    <div className="input-group mb-3 rrr">
+                        <input
+                            type="text"
+                            className="form-control pop"
+                            placeholder="Пошта"
+                            aria-label="Recipient's username"
+                            aria-describedby="button-addon2"
+                            // value={gmail}
+                            // onChange={(e) => {
+                            //     setGmail(e.target.value)
+                            // }}
+                            {...register("email")}
+                        />
+                    </div>
+                    <div className="input-group mb-3 rrr">
+                        <input
+                            type="text"
+                            className="form-control pop"
+                            placeholder="телефон"
+                            aria-label="Recipient's username"
+                            aria-describedby="button-addon2"
+                            // value={phone}
+                            // onChange={(e) => {
+                            //     setPhone(e.target.value)
+                            // }}
+                            {...register("phoneNumber")}
+                        />
+                    </div>
+                    <div className="input-group mb-3 rrr">
+                        <input
+                            type="text"
+                            className="form-control pop"
+                            placeholder="Пароль"
+                            aria-label="Recipient's username"
+                            aria-describedby="button-addon2"
+                            // value={password}
+                            // onChange={(e) => {
+                            //     setPassword(e.target.value)
+                            // }}
+                            {...register("password")}
+                        />
+                    </div>
+                    <div className="input-group mb-3 rrr">
+                        <input
+                            type="text"
+                            className="form-control pop"
+                            placeholder="Підтвердити пароль"
+                            aria-label="Recipient's username"
+                            aria-describedby="button-addon2"
+                            // value={confPassword}
+                            // onChange={(e) => {
+                            //     setConfPassword(e.target.value)
+                            // }}
+                            {...register("confPassword")}
+
+                        />
+                    </div>
+
+                    {(flagSuccess) &&
+                        (<div className="input-group mb-3 rrr">
+                            <input
+                                type="text"
+                                className="form-control pop"
+                                placeholder="Код з пошти"
+                                aria-label="Recipient's username"
+                                aria-describedby="button-addon2"
+                                value={code}
+                                onChange={(e) => {
+                                    setCode(e.target.value)
+                                }}
+                            />
+                        </div>)
+                    }
+
+                    <div>
+                        <p className="object">Дозволити надсилати рекламу на почту</p>
+                        <input
+                            type="checkbox"
+                            id="myCheckbox"
+                            className="object"
+                            checked={allow}
+                            onChange={() => {
+                                (allow) ? setAllow(false) : setAllow(true);
+
                             }}
                         />
-                    </div>)
-                }
-
-                <div>
-                    <p className="object">Дозволити надсилати рекламу на почту</p>
-                    <input 
-                        type="checkbox" 
-                        id="myCheckbox" 
-                        className="object" 
-                        checked={allow}
-                        onChange={() => {
-                            (allow) ? setAllow(false) : setAllow(true);
-
-                        }}
-                    />
-                </div>
+                    </div>
             </div>
 
             <div className="kn">
                 {/* { (flagSuccess) ? (
                 <button 
-                    className="btn" 
+                    className="btn vbn" 
                     style={{ backgroundColor: "#40ABCF", color: "white", fontWeight: "bold" }} 
                     id="knop"
                     onClick={handleButtonClickSecond}
@@ -203,18 +205,18 @@ const SignUp = () => {
                     </button>
                     ) }
                  */}
-                 <button 
-                    className="btn" 
-                    style={{ backgroundColor: "#40ABCF", color: "white", fontWeight: "bold" }} 
+                <button
+                    className="btn"
+                    style={{ backgroundColor: "#40ABCF", color: "white", fontWeight: "bold" }}
                     id="knop"
                     type="submit"
                 >
                     <span>Зареєструвати</span>
                 </button>
-                
+
             </div>
 
-            </form>
+        </form >
         </>
     )
 }
