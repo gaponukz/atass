@@ -36,7 +36,7 @@ const SignUp = () => {
 
     // ui state
     // const [name, setName] = useState("");
-    // const [gmail, setGmail] = useState("");
+    const [gmail, setGmail] = useState("");
     // const [phone, setPhone] = useState("");
     // const [password, setPassword] = useState("");
     // const [confPassword, setConfPassword] = useState("");
@@ -58,9 +58,10 @@ const SignUp = () => {
         else {
             if (data.password !== data.confPassword)
                 toast.error("Підтвердьте пароль!", { autoClose: 1500 })
-            else
+            else {
                 dispatch(fetchSignUp({ url: "signup", gmail: data.email }))
-
+                setGmail(data.email)
+            }
         }
 
         // reset()
@@ -217,6 +218,21 @@ const SignUp = () => {
             </div>
 
         </form >
+                 {/* EDIT */}
+        {(flagSuccess) && ( 
+                <div className="kn">
+                <button 
+                    className="btn"
+                    style={{ backgroundColor: "#40ABCF", color: "white", fontWeight: "bold" }}
+                    id="knop"
+                    onClick={() => {
+                        dispatch(fetchSignUp({ url: "signup", gmail: gmail }))
+                    }}
+                >
+                    <span>Відправити код ще раз</span>
+                </button>
+                </div>
+            )}
         </>
     )
 }

@@ -1,3 +1,4 @@
+import EditProfile from "./components/EditProfile";
 import HeaderNavBar from "./components/HeaderNavBar";
 import MainSitePage from "./components/MainSitePage";
 import ResetPassword from "./components/ResetPassword";
@@ -22,6 +23,7 @@ function App() {
         <Route path="/sign-up" element={<SignUp />}/>
         <Route path="/user-profile" element={<UserProfile />}/>
         <Route path="/reset-password" element={<ResetPassword />}/>
+        <Route path="/edit-profile" element={<EditProfile />}/>
       </Routes>
     </div>
   );

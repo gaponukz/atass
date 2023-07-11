@@ -1,5 +1,6 @@
 import { getUserId } from "../features/getUser/getUserData";
 import { useEffect } from "react";
+import { NavLink } from "react-router-dom"
 
 import { useDispatch, useSelector } from "react-redux";
 import avatar from "./static/images/icons8-avatar-96.png"
@@ -33,7 +34,7 @@ const UserProfile = () => {
              <img src={avatar}/>
          </div>
          <div className="test">
-         <a className="xxxxx" href="#">Редагувати</a>
+         <NavLink className="xxxxx" to="/edit-profile">Редагувати</NavLink>
              </div>
           <div className="red">
              <h5 className="sss">{userInfo.gmail}</h5>
