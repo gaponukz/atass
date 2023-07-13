@@ -1,4 +1,5 @@
-import { getUserId } from "../features/getUser/getUserData";
+import { getUserId, logUserOut } from "../features/getUser/getUserData";
+import { chageFlagStatusFalse } from "../features/post/PostSlice";
 import { useEffect } from "react";
 import { NavLink } from "react-router-dom"
 
@@ -10,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 const UserProfile = () => {
   const userInfo = useSelector((state) => state.getUser.data);
   const err = useSelector((state) => state.getUser.error)
+  const logout = useSelector((state) => state.getUser.logout)
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -17,30 +19,46 @@ const UserProfile = () => {
   useEffect(() => {
     dispatch(getUserId())
   }, [])
-  
+
+  const handleButtonCLick = () => {
+    dispatch(logUserOut())
+  }
+
   useEffect(() => {
     if (err === "Request failed with status code 401") {
       console.log("here");
       navigate("/sign-in");
     }
   }, [err])
-  
+
+  useEffect(() => {
+    if (logout) {
+      console.log("here1");
+      dispatch(chageFlagStatusFalse())
+      navigate("/sign-in");
+    }
+  }, [logout])
+
   return (
-  <>
-    <div className="container">
-         </div>
-         <div className="nadpis">
-             <p>{userInfo.fullName}</p>
-             <img src={avatar}/>
-         </div>
-         <div className="test">
-         <NavLink className="xxxxx" to="/edit-profile">Редагувати</NavLink>
-             </div>
-          <div className="red">
-             <h5 className="sss">{userInfo.gmail}</h5>
-             <h5 className="sss">+{userInfo.phone}</h5>
-          </div>
-  </>
+    <>
+      <div className="container">
+      </div>
+      <div className="nadpis">
+        <p>{userInfo.fullName}</p>
+        <img src={avatar} />
+      </div>
+      <div className="test">
+        <NavLink className="xxxxx" to="/edit-profile">Редагувати</NavLink>
+      </div>
+      <div className="red">
+        <h5 className="sss">{userInfo.gmail}</h5>
+        <h5 className="sss">+{userInfo.phone}</h5>
+      </div>
+
+      <button
+        onClick={handleButtonCLick}
+      >Log out</button>
+    </>
   )
 }
 

@@ -61,6 +61,8 @@ export const signUpSlice = createSlice({
       })
       .addCase(fetchSignUp.rejected, (state, action) => {
         console.log("-");
+        console.log(action.error.message);
+        toast.info("Вже є такий користувач", {autoClose: 1500})
       })
       .addCase(fetchSignUpConfirm.pending, (state) => {
         console.log("?");

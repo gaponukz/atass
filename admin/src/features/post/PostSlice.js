@@ -32,6 +32,10 @@ export const postSlice = createSlice({
         changeStatus: (state, action) => {
             state.status = "idle";
         },
+        chageFlagStatusFalse: (state, action) => {
+            console.log("ch fl st");
+            state.fetchDataFlag = false;
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -52,6 +56,6 @@ export const postSlice = createSlice({
       },
 })
 
-export const { changeStatus } = postSlice.actions;
+export const { changeStatus, chageFlagStatusFalse } = postSlice.actions;
 
 export default postSlice.reducer;

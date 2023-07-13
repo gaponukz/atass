@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from 'react-toastify';
 
 import cross from "./static/images/cross.png";
+import icon_eye from "./static/images/icons8-eye-96.png"
 
 import { fetchPassword, fetchConfirmPassword } from "../features/postPassword/postPassword";
 import { useNavigate } from "react-router-dom";
@@ -31,6 +32,8 @@ const ResetPassword = () => {
   const [gmail, setGmail] = useState(""); // skrynyk.vlad@gmail.com
   const [password, setPassword] = useState("");
   const [resetPassword, setResetPassword] = useState("");
+  const [typePassword, setTypePassword] = useState("password");
+  const [typeresetPassword, setTypeResetPassword] = useState("password");
   const [keyCode, setKeyCode] = useState("");
 
   if (finalFlagSuccess) {
@@ -94,10 +97,6 @@ const ResetPassword = () => {
             placeholder="Електронна адреса" 
             aria-label="Recipient's username" 
             aria-describedby="button-addon2"
-            // value={gmail}
-            // onChange={(e) => {
-            //   setGmail(e.target.value)
-            // }}
             {...register("email")}
           />
           <button
@@ -111,25 +110,21 @@ const ResetPassword = () => {
         </div>
         <div className="input-group mb-3 nnn">
           <input
-            type="text"
+            type={typePassword}
             className="form-control rrrr"
             placeholder="Новий пароль"
             aria-label="Recipient's username"
             aria-describedby="button-addon2"
-            // value={password}
-            // onChange={(e) => {
-            //   setPassword(e.target.value)
-            // }}
             {...register("password")}
 
           />
           <button
             className="btn qqq"
             onClick={() => {
-              resetField("password")
-            }}
+              (typePassword == "password") ? setTypePassword("test") : setTypePassword("password")
+          }}
           >
-            <img src={cross} />
+            <img src={icon_eye} />
           </button>
         </div>
 
@@ -140,10 +135,6 @@ const ResetPassword = () => {
             placeholder="Підтвердити пароль"
             aria-label="Recipient's username"
             aria-describedby="button-addon2"
-            // value={resetPassword}
-            // onChange={(e) => {
-            //   setResetPassword(e.target.value)
-            // }}
             {...register("confPassword")}
           />
 
@@ -153,7 +144,7 @@ const ResetPassword = () => {
               resetField("confPassword")
             }}
           >
-            <img src={cross} />
+            <img src={icon_eye} />
           </button>
         </div>
 
@@ -186,27 +177,6 @@ const ResetPassword = () => {
       </div>
 
       <div className="kn">
-        {/* {(flagSuccess) ? (
-          <button
-            type="submit"
-            className="btn qqq"
-            style={{ backgroundColor: "#40ABCF", color: "white", fontWeight: "bold" }}
-            id="knop"
-            onClick={handleButtonClickSecond}
-          >
-            <span>Надіслати</span>
-          </button>
-        ) : (
-          <button
-            type="submit"
-            className="btn qqq"
-            style={{ backgroundColor: "#40ABCF", color: "white", fontWeight: "bold" }}
-            id="knop"
-            onClick={handleButtonClickFirst}
-          >
-            <span>Надіслати</span>
-          </button>
-        )} */}
         <button
             type="submit"
             className="btn qqq"
