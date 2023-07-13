@@ -33,7 +33,7 @@ const ResetPassword = () => {
   const [password, setPassword] = useState("");
   const [resetPassword, setResetPassword] = useState("");
   const [typePassword, setTypePassword] = useState("password");
-  const [typeresetPassword, setTypeResetPassword] = useState("password");
+  const [typeResetPassword, setTypeResetPassword] = useState("password");
   const [keyCode, setKeyCode] = useState("");
 
   if (finalFlagSuccess) {
@@ -130,7 +130,7 @@ const ResetPassword = () => {
 
         <div className="input-group mb-3 nnn">
           <input
-            type="text"
+            type={typeResetPassword}
             className="form-control rrrr"
             placeholder="Підтвердити пароль"
             aria-label="Recipient's username"
@@ -141,7 +141,7 @@ const ResetPassword = () => {
           <button
             className="btn qqq"
             onClick={() => {
-              resetField("confPassword")
+              (typeResetPassword == "password") ? setTypeResetPassword("test") : setTypeResetPassword("password")
             }}
           >
             <img src={icon_eye} />
