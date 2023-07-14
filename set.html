@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Центрированный див с лейблами и инпутами</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="static/set.css">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Roboto+Mono:wght@200&family=Shantell+Sans:wght@300&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+<!-- <style> 
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+
+.container {
+    text-align: left;
+    height: 70%;
+    padding: 20px;
+    background-color: #fff;
+    
+  }
+
+.form-group {
+    margin-bottom: 20px;
+  }
+
+.form-group label {
+    display: block;
+    
+    margin-bottom: 5px;
+    margin-left: 25%;
+  }
+.btn-container {
+    display: flex;
+    width: 80% ;
+    margin-left: 25%;
+  }
+.form-control{ 
+  height: 60px;
+  background-color:#E8F0FE;
+  border-radius: 15px;
+}
+.input-group{
+    margin-left:25%;
+    text-align: center;
+    
+    width: 45%;
+  }
+
+
+.btn {
+
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+
+.btn-container .btn:first-child {
+    margin-right: 35%;
+  }
+  input.apple-switch {
+
+    position: relative;
+    -webkit-appearance: none;
+    outline: none;
+    width: 50px;
+    height: 30px;
+    background-color: #fff;
+    border: 1px solid #D9DADC;
+    border-radius: 50px;
+    box-shadow: inset -20px 0 0 0 #fff;
+  }
+  
+  input.apple-switch:after {
+    content: "";
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    background: transparent;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    box-shadow: 2px 4px 6px rgba(0,0,0,0.2);
+  }
+  
+  input.apple-switch:checked {
+    box-shadow: inset 20px 0 0 0 #4e6ad1;
+    border-color: #4e6ad1;
+  }
+  
+  input.apple-switch:checked:after {
+    left: 20px;
+    box-shadow: -2px 4px 3px rgba(0,0,0,0.05);
+  }
+  .rek{
+    display: flex;
+  }
+  .ni{
+    margin-right: 5%;
+  }
+  .sui{
+    width: 25%;
+  }
+  .nad{
+    padding-bottom: 1%;
+    font-size: 30px;
+    font-weight: bold;
+  }
+  .but2{
+    margin-left: 35%;
+  }
+  @media (max-width: 800px) {
+    .input-group{
+      width: 80%;
+      margin-left: 5%;
+    }
+    .form-group label{
+      margin-left: 5%;
+    }
+    .btn-container{
+      margin-left: 3%;
+    }
+    .btn-container .btn:first-child {
+      margin-right: 40%;
+    }
+    .sui{
+      width: 179%;
+    }
+
+  }
+ </style>-->
+</head>
+<body>
+  <div class="container">
+    <div class="form-group">
+      <label for="name" class="nad">Настройки</label>
+      <label for="name">First name:</label>
+                    <div class="input-group mb-3 ">
+       <input type="text" class="form-control" placeholder="Пошта" aria-label="Recipient's username" aria-describedby="button-addon2" value="Иван" >
+           </div>
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <div class="input-group mb-3 ">
+        <input type="text" class="form-control" placeholder="Пошта" aria-label="Recipient's username" aria-describedby="button-addon2" value="Иван@@@@" >
+            </div>
+    </div>
+    <div class="form-group rek">
+      <label for="email" class="sui">Разрешить рассылку:</label>
+      <div class="input-group mb-3 ni ">
+        <input class="apple-switch" type="checkbox">
+            </div>
+    </div>
+    <div class="btn-container">
+      <div class="but1">
+      <button class="btn">Отправить</button>
+    </div>
+    <div class="but2">
+      <button class="btn">Назад</button>
+    </div>
+    </div>
+
+  
+  </div>
+</body>
+</html>
