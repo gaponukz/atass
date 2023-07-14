@@ -1,4 +1,3 @@
-import axios from "axios"
 import { useState } from "react"
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
@@ -30,12 +29,6 @@ const EditProfile = () => {
   // ui state
   const [check, setCheck] = useState(false);
 
-  // const response = axios.post("http://localhost:8080/updateUserInfo", {
-  //   fullName: "skrynyk vlad", // "testuser@knu.ua"
-  //   phone: "0994613617666", // "somepass"
-  //   allowsAdvertisement: false
-  // })
-  // console.log(response);
   const onSubmitHandler = (data) => {
     console.log(data);
     dispatch(editUserData({fullName: data.name, phone: data.phoneNumber, allowsAdvertisement: check}))
@@ -88,9 +81,7 @@ const EditProfile = () => {
             <div className="but1">
               <button
                 className="btn oi"
-                onClick={() => {
-
-                }}
+                type="submit"
               >Отправить</button>
             </div>
             <div className="but2">
