@@ -72,6 +72,7 @@ export const signUpSlice = createSlice({
         state.finalFlagSuccess = true;
       })
       .addCase(fetchSignUpConfirm.rejected, (state, action) => {
+        toast.error("Пароль невірний", { autoClose: 2000 })
         console.log("-");
       })
   },

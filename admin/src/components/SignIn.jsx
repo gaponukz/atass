@@ -55,103 +55,6 @@ const SignIn = () => {
     return (
         <>
             <ToastContainer />
-            <>
-                {/* <div className="centered-text">
-                    <h1>Яка ваша електронна адреса та пароль?</h1>
-                </div>
-                <div className="container te">
-                    <div className="input-group mb-3 rol">
-                        <input
-                            type="text"
-                            className="form-control ert"
-                            placeholder="Електронна адреса"
-                            aria-label="Recipient's username"
-                            aria-describedby="button-addon2"
-                            value={userGmail}
-                            onChange={(e) => {
-                                setGmail(e.target.value)
-                                dispatch(changeStatus())
-
-                            }}
-    
-                        />
-                        <button
-                            type="button"
-                            className="btn ss"
-                            onClick={() => {
-                                setGmail("");
-                            }}
-                        >
-                            <img src={cross} />
-                        </button>
-                    </div>
-                    <div className="input-group mb-3 rol">
-                        <input
-                            type={typePassword}
-                            className="form-control ert"
-                            placeholder="Пароль"
-                            aria-label="Recipient's username"
-                            aria-describedby="button-addon2"
-                            value={userPassword}
-                            onChange={(e) => {
-                                setPassword(e.target.value)
-                                dispatch(changeStatus())
-                            }}
-                        />
-                        <button
-                            type="button"
-                            className="btn ss"
-                            onClick={() => {
-                                (typePassword == "password") ? setTypePassword("test") : setTypePassword("password")
-                            }}
-                        >
-                            <img src={icon_eye} />
-                        </button>
-                    </div>
-                    <p className="object">Запам'ятати мене</p>
-                    <input
-                        type="checkbox"
-                        id="myCheckbox"
-                        className="object"
-                        checked={rememberHim}
-                        onChange={() => {
-                            (rememberHim) ? setRememberHim(false) : setRememberHim(true);
-
-                        }}
-                    />
-                    <div className="sil">
-                        <NavLink to="/reset-password" >Не пам'ятаю пароль</NavLink>
-                    </div>
-
-                    <div className="sil">
-                        <NavLink to="/sign-up" >Зареєструватись</NavLink>
-                    </div>
-                </div>
-
-                <div className="kn">
-                    <button
-                        type="submit"
-                        className="btn ss"
-                        style={{ backgroundColor: "#40ABCF", color: "white", fontWeight: "bold" }}
-                        id="knop"
-                        onClick={handleButtonClick}
-                        disabled={(postStatus === "loading") ? true : false}
-                    >
-                        {(postStatus === "loading") ? (
-                            <Circles
-                                color="#00FFFF"
-                                height={25}
-                                width={60}
-                                className="m-5"
-                            />
-                        ) : (
-                            <span
-
-                            >Увійти</span>
-                        )}
-                    </button>
-                </div> */}
-            </>
             <form onSubmit={handleSubmit(onSubmitHandler)}>
             <div className="centered-text">
                 <h1>Яка ваша електронна адреса та пароль?</h1>
@@ -177,6 +80,7 @@ const SignIn = () => {
                     </button>
                 </div>
                 <p>{errors.email?.message}</p>
+                <p>{}</p>
                 <div className="input-group mb-3 rol">
                     <input
                         type={typePassword}
