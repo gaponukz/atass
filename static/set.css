@@ -17,11 +17,11 @@ body {
     
   }
 
-.form-group {
+.xpo {
     margin-bottom: 20px;
   }
 
-.form-group label {
+.xpo label {
     display: block;
     
     margin-bottom: 5px;
@@ -32,12 +32,12 @@ body {
     width: 80% ;
     margin-left: 25%;
   }
-  .form-group .form-control{ 
+  .xpo .zxc{ 
   height: 60px;
   background-color:#E8F0FE;
   border-radius: 15px;
 }
-.form-group .input-group{
+.xpo .rey{
     margin-left:25%;
     text-align: center;
     
@@ -45,7 +45,7 @@ body {
   }
 
 
-.btn-container .btn {
+  .btn-container .oi {
 
     padding: 10px 20px;
     background-color: #007bff;
@@ -55,7 +55,7 @@ body {
     cursor: pointer;
   }
 
-.btn-container .btn:first-child {
+.btn-container .oi:first-child {
     margin-right: 35%;
   }
   input.apple-switch {
@@ -110,17 +110,17 @@ body {
     margin-left: 35%;
   }
   @media (max-width: 800px) {
-    .form-group .input-group{
+    .xpo .rey{
       width: 80%;
       margin-left: 5%;
     }
-    .form-group label{
+    .xpo label{
       margin-left: 5%;
     }
     .btn-container{
       margin-left: 3%;
     }
-    .btn-container .btn:first-child {
+    .btn-container .oi:first-child {
       margin-right: 40%;
     }
     .sui{
