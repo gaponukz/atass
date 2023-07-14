@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { editUserData } from "../features/getUser/getUserData";
 import { ToastContainer } from 'react-toastify';
@@ -17,9 +17,15 @@ const schema = yup.object().shape({
 });
 
 const EditProfile = () => {
+  const userInfo = useSelector((state) => state.getUser.data);
+  console.log(userInfo);
 
   const { register, handleSubmit, formState: { errors }, resetField, reset } = useForm({
     resolver: yupResolver(schema),
+    defaultValues: {
+      name: userInfo.fullName,
+      phoneNumber: userInfo.phone
+    }
   });
 
   // helper
@@ -28,6 +34,7 @@ const EditProfile = () => {
 
   // ui state
   const [check, setCheck] = useState(false);
+  const [test, setTest] = useState("test");
 
   const onSubmitHandler = (data) => {
     console.log(data);
@@ -46,7 +53,6 @@ const EditProfile = () => {
               <input
                 type="text"
                 className="form-control zxc"
-                placeholder="Name"
                 aria-label="Recipient's username"
                 aria-describedby="button-addon2"
                 {...register("name")}
@@ -59,7 +65,6 @@ const EditProfile = () => {
               <input
                 type="text"
                 className="form-control zxc"
-                placeholder="Phone"
                 aria-label="Recipient's username"
                 aria-describedby="button-addon2"
                 {...register("phoneNumber")}
