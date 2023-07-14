@@ -116,19 +116,19 @@ nav span{
     padding-top: 5%;
 }
 .nadpis p{
-    margin-left: 24%;
+    margin-left: 29%;
     font-size: 30px;
     padding-top: 2%;
 }
 .nadpis img{
-    margin-left: 50%;
+    margin-left: 35%;
     width: 100px;
     height: 100px;
 }
 .red{
     padding-top: 1%;
     font-size: 18px;
-    margin-right: 46%;
+    margin-right: 36%;
     font-weight: bold;
 
 }
@@ -136,7 +136,7 @@ nav span{
     padding-top: 2%;
 }
 .xxxxx{
-    margin-left: 24%;
+    margin-left: 29%;
     font-size: 18px;
     font-weight: bold;
     text-decoration: none;
@@ -146,11 +146,19 @@ nav span{
     padding-left: 45%;
 
 }
+.butttt{
+    margin-top: 4%;
+    margin-left: 29%;
+}
+
 @media (max-width: 800px) {
 
        .container-fluid button:focus,.container-fluid button:active{
         box-shadow: none !important;
 
+    }
+    .butttt{
+        margin-left:22%;
     }
     #offcanvasNavbar{
         width: 100%;

@@ -66,7 +66,7 @@ const MainSitePage = () => {
                            </div>
                        </div>
                        <div className="input-group1 cv"  id="small3">
-                         <button type="submit" className="btn" style={{backgroundColor: "#40ABCF",color:"white", display: "block" }} id="knop">
+                         <button type="submit" className="btn noq" style={{backgroundColor: "#40ABCF",color:"white", display: "block" }} id="knop">
                            <img src={loop}/>
                            <span>Шукати</span>
                          </button>

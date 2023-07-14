@@ -127,7 +127,7 @@ const SignIn = () => {
                     type="submit"
                     className="btn ss"
                     style={{ backgroundColor: "#40ABCF", color: "white", fontWeight: "bold" }}
-                    id="knop"
+                    
                     disabled={(postStatus === "loading") ? true : false}
                 >
                     {(postStatus === "loading") ? (

@@ -44,20 +44,23 @@ const UserProfile = () => {
       <div className="container">
       </div>
       <div className="nadpis">
-        <p>{userInfo.fullName}</p>
+        <p>Женя</p>
         <img src={avatar} />
       </div>
       <div className="test">
         <NavLink className="xxxxx" to="/edit-profile">Редагувати</NavLink>
       </div>
       <div className="red">
-        <h5 className="sss">{userInfo.gmail}</h5>
-        <h5 className="sss">+{userInfo.phone}</h5>
+        <h5 className="sss">dsadasdas@gmailcom</h5>
+        <h5 className="sss">+0951594543</h5>
       </div>
-
+      <div className="butttt">
       <button
-        onClick={handleButtonCLick}
-      >Log out</button>
+        className="btn ty"
+        style={{ backgroundColor: "#40ABCF", color: "white", fontWeight: "bold" }}
+        type="submit">
+        <span>Log out</span>
+                </button></div>
     </>
   )
 }
