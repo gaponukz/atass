@@ -12,11 +12,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
 const schema = yup.object().shape({
-    name: yup.string().min(2).max(32).required(),
-    email: yup.string().email().required(),
-    password: yup.string().min(4).max(32).required(),
-    confPassword: yup.string().min(4).max(32).required(),
-    phoneNumber: yup.string().matches(phoneRegExp, 'Phone number is not valid'),
+    name: yup.string().min(2, "Заповніть поле: Ім'я Прізвище").max(32, "Нажаль надто довгий запис, спробуйте скоротити").required(),
+    email: yup.string().email("Електронна адреса некоректна").required("Заповніть поле: пошта"),
+    password: yup.string().min(4, "Щонайменше 4 символи").max(32, "Надто великий пароль").required("Заповніть поле: пароль"),
+    confPassword: yup.string().min(4, "Щонайменше 4 символи").max(32, "Надто великий пароль").required("Заповніть поле: підтвердити пароль"),
+    phoneNumber: yup.string().matches(phoneRegExp, 'Заповніть поле: телефон'),
 
 });
 
@@ -35,20 +35,19 @@ const SignUp = () => {
     }
 
     // ui state
-    // const [name, setName] = useState("");
     const [gmail, setGmail] = useState("");
-    // const [phone, setPhone] = useState("");
-    // const [password, setPassword] = useState("");
-    // const [confPassword, setConfPassword] = useState("");
     const [code, setCode] = useState("");
     const [allow, setAllow] = useState(false);
+    const lowerCaseLetters = /[a-z]/g;
+    const upperCaseLetters = /[A-Z]/g;
+    const numbers = /[0-9]/g;
 
     const { register, handleSubmit, formState: { errors }, resetField, reset } = useForm({
         resolver: yupResolver(schema),
     });
 
     const onSubmitHandler = (data) => {
-        console.log({ data });
+        
         if (flagSuccess) {
             if (data.password !== data.confPassword)
                 toast.error("Підтвердьте пароль!", { autoClose: 1500 })
@@ -56,12 +55,28 @@ const SignUp = () => {
                 dispatch(fetchSignUpConfirm({ url: "confirmRegistration", gmail: data.email, password: data.password, fullName: data.name, phone: data.phoneNumber, allowsAdvertisement: allow, key: code }))
         }
         else {
+
             if (data.password !== data.confPassword)
                 toast.error("Підтвердьте пароль!", { autoClose: 1500 })
-            else {
-                dispatch(fetchSignUp({ url: "signup", gmail: data.email }))
-                setGmail(data.email)
+            else if ((data.name.split(" ").length !== 2) || data.name.split(" ")[1] === "") {
+                toast.info("Введіть повне ім'я прізвище!", { autoClose: 1500 })
             }
+            else if (data.phoneNumber.includes(" ")) {
+                toast.error("Неправильно введено номер\nПриклад: 09912312323", { autoClose: 1500 })
+            }
+            else if (!data.password.match(lowerCaseLetters) || 
+                     !data.password.match(upperCaseLetters) ||
+                     !data.password.match(numbers)) {
+                toast.error("Ненадійний пароль", { autoClose: 1500 })
+            }
+            else {
+                console.log({ data });
+            }
+            // else {
+            //     dispatch(fetchSignUp({ url: "signup", gmail: data.email }))
+            //     setGmail(data.email)
+            // }
+            
         }
 
         // reset()
@@ -87,7 +102,7 @@ const SignUp = () => {
                         <input
                             type="text"
                             className="form-control pop"
-                            placeholder="Ім'я"
+                            placeholder="Ім'я Прізвище"
                             aria-label="Recipient's username"
                             aria-describedby="button-addon2"
                             // value={name}
@@ -97,6 +112,7 @@ const SignUp = () => {
                             {...register("name")}
                         />
                     </div>
+                    {errors.name?.message}
                     <div className="input-group mb-3 rrr">
                         <input
                             type="text"
@@ -111,6 +127,7 @@ const SignUp = () => {
                             {...register("email")}
                         />
                     </div>
+                    {errors.email?.message}
                     <div className="input-group mb-3 rrr">
                         <input
                             type="text"
@@ -125,6 +142,7 @@ const SignUp = () => {
                             {...register("phoneNumber")}
                         />
                     </div>
+                    {errors.phoneNumber?.message}
                     <div className="input-group mb-3 rrr">
                         <input
                             type="text"
@@ -139,6 +157,7 @@ const SignUp = () => {
                             {...register("password")}
                         />
                     </div>
+                    {errors.password?.message}
                     <div className="input-group mb-3 rrr">
                         <input
                             type="text"
@@ -154,7 +173,7 @@ const SignUp = () => {
 
                         />
                     </div>
-
+                    {errors.confPassword?.message}
                     {(flagSuccess) &&
                         (<div className="input-group mb-3 rrr">
                             <input
