@@ -1,6 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+import { toast } from 'react-toastify';
+
+
 const BASE_URL = "http://localhost:8080";
 axios.defaults.withCredentials = true
 
@@ -16,6 +19,18 @@ export const logUserOut = createAsyncThunk("data/logUserOut", async () => {
     console.log(response.data);
 
     return response.data
+})
+
+export const editUserData = createAsyncThunk("data/editUserData", async ({fullName, phone, allowsAdvertisement}) => {
+    console.log("here", fullName, phone, allowsAdvertisement);
+    const response = axios.post(`${BASE_URL}/updateUserInfo`, {
+    fullName: fullName,
+    phone: phone, // "somepass"
+    allowsAdvertisement: allowsAdvertisement
+    })
+    console.log(response.data);
+    return response.data
+
 })
 
 const dataSlice = createSlice({
@@ -55,6 +70,16 @@ const dataSlice = createSlice({
                 state.logout = true;
             })
             .addCase(logUserOut.rejected, (state, action) => {
+                console.log("-", action.error.message);
+            })
+            .addCase(editUserData.pending, (state) => {
+                console.log("?");
+            })
+            .addCase(editUserData.fulfilled, (state, action) => {
+                console.log("+", action.payload);
+                toast.success("Данні оновлено", {autoClose: 1500})
+            })
+            .addCase(editUserData.rejected, (state, action) => {
                 console.log("-", action.error.message);
             })
     }

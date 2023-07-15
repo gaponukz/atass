@@ -1,0 +1,130 @@
+body {
+     font-family: Arial, sans-serif;
+     background-color: #fff;
+     margin: 0;
+     padding: 0;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     height: 100vh;
+   }
+ 
+ .container {
+     text-align: left;
+     height: 70%;
+     padding: 20px;
+     background-color: #fff;
+     
+   }
+ 
+ .xpo {
+     margin-bottom: 20px;
+   }
+ 
+ .xpo label {
+     display: block;
+     
+     margin-bottom: 5px;
+     margin-left: 25%;
+   }
+ .btn-container {
+     display: flex;
+     width: 80% ;
+     margin-left: 25%;
+   }
+   .xpo .zxc{ 
+   height: 60px;
+   background-color:#E8F0FE;
+   border-radius: 15px;
+ }
+ .xpo .rey{
+     margin-left:25%;
+     text-align: center;
+     
+     width: 45%;
+   }
+ 
+ 
+   .btn-container .oi {
+ 
+     padding: 10px 20px;
+     background-color: #007bff;
+     color: #fff;
+     border: none;
+     border-radius: 3px;
+     cursor: pointer;
+   }
+ 
+ .btn-container .oi:first-child {
+     margin-right: 35%;
+   }
+   input.apple-switch {
+ 
+     position: relative;
+     -webkit-appearance: none;
+     outline: none;
+     width: 50px;
+     height: 30px;
+     background-color: #fff;
+     border: 1px solid #D9DADC;
+     border-radius: 50px;
+     box-shadow: inset -20px 0 0 0 #fff;
+   }
+   
+   input.apple-switch:after {
+     content: "";
+     position: absolute;
+     top: 1px;
+     left: 1px;
+     background: transparent;
+     width: 26px;
+     height: 26px;
+     border-radius: 50%;
+     box-shadow: 2px 4px 6px rgba(0,0,0,0.2);
+   }
+   
+   input.apple-switch:checked {
+     box-shadow: inset 20px 0 0 0 #4e6ad1;
+     border-color: #4e6ad1;
+   }
+   
+   input.apple-switch:checked:after {
+     left: 20px;
+     box-shadow: -2px 4px 3px rgba(0,0,0,0.05);
+   }
+   .rek{
+     display: flex;
+   }
+   .ni{
+     margin-right: 5%;
+   }
+   .sui{
+     width: 25%;
+   }
+   .nad{
+     padding-bottom: 1%;
+     font-size: 30px;
+     font-weight: bold;
+   }
+   .but2{
+     margin-left: 35%;
+   }
+   @media (max-width: 800px) {
+     .xpo .rey{
+       width: 80%;
+       margin-left: 5%;
+     }
+     .xpo label{
+       margin-left: 5%;
+     }
+     .btn-container{
+       margin-left: 3%;
+     }
+     .btn-container .oi:first-child {
+       margin-right: 40%;
+     }
+     .sui{
+       width: 179%;
+     }
+ 
+   }

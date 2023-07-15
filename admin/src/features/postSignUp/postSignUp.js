@@ -62,7 +62,7 @@ export const signUpSlice = createSlice({
       .addCase(fetchSignUp.rejected, (state, action) => {
         console.log("-");
         console.log(action.error.message);
-        toast.info("Вже є такий користувач", {autoClose: 2500})
+        toast.error("Вже є такий користувач", {autoClose: 2500})
       })
       .addCase(fetchSignUpConfirm.pending, (state) => {
         console.log("?");
@@ -72,7 +72,7 @@ export const signUpSlice = createSlice({
         state.finalFlagSuccess = true;
       })
       .addCase(fetchSignUpConfirm.rejected, (state, action) => {
-        toast.error("Пароль невірний", { autoClose: 2000 })
+        toast.error("Код невірний", { autoClose: 2000 })
         console.log("-");
       })
   },
