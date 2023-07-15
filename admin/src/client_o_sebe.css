@@ -108,7 +108,7 @@ nav span{
 .container-fluid button{
     padding-bottom: 17px;
 }
-.container {
+.yyyy {
    text-align: center;
 }
 .nadpis{
@@ -288,7 +288,9 @@ nav span{
        width: 80%;
    }
    .nadpis img{
-       margin-left: 30%;
+       width: 60px;
+       height: 60px; 
+       margin-left: 20%;
    }
    .xxxxx{
        font-size: 16px;

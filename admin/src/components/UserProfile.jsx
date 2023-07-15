@@ -41,10 +41,10 @@ const UserProfile = () => {
 
   return (
     <>
-      <div className="container">
+      <div className="container yyyy">
       </div>
       <div className="nadpis">
-        <p>{userInfo.fullName}</p>
+        <p>Женя</p>
         <img src={avatar} />
       </div>
       <div className="test">

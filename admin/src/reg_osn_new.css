@@ -169,6 +169,15 @@ nav span{
 .rrr{
     margin-bottom: 5px;
 }
+.silka{
+    width: 50%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    font-weight: bold;
+    margin-right: 80%;
+    font-size: 20px;
+    text-decoration: none;
+}
 @media (max-width: 800px) {
        .container-fluid button:focus,.container-fluid button:active{
         box-shadow: none !important;
@@ -337,6 +346,11 @@ nav span{
    }
    .kn{
        padding-top: 13%;
+   }
+   .silka{
+    font-size: 10px;
+    width: 80%;
+    margin-right: 75%;
    }
 }
 

@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import icon_eye from "./static/images/icons8-eye-96.png"
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
@@ -156,6 +157,16 @@ const SignUp = () => {
                             // }}
                             {...register("password")}
                         />
+                         <button
+                        type="button"
+                        className="btn ss"
+                        onClick={() => {
+                            resetField("email");
+                        }}
+                    >
+                        <img src={icon_eye} />
+                    </button>
+                        
                     </div>
                     {errors.password?.message}
                     <div className="input-group mb-3 rrr">
@@ -171,7 +182,17 @@ const SignUp = () => {
                             // }}
                             {...register("confPassword")}
 
+
                         />
+                        <button
+                        type="button"
+                        className="btn ss"
+                        onClick={() => {
+                            resetField("email");
+                        }}
+                    >
+                        <img src={icon_eye} />
+                    </button>
                     </div>
                     {errors.confPassword?.message}
                     {(flagSuccess) &&
@@ -189,8 +210,12 @@ const SignUp = () => {
                             />
                         </div>)
                     }
+                    <div class="silka">
+                    <a href="#" class="silka">she raz</a>
+                    </div>
 
                     <div>
+                      
                         <p className="object">Дозволити надсилати рекламу на почту</p>
                         <input
                             type="checkbox"
@@ -203,8 +228,8 @@ const SignUp = () => {
                             }}
                         />
                     </div>
+                    
             </div>
-
             <div className="kn">
                 {/* { (flagSuccess) ? (
                 <button 
@@ -225,6 +250,7 @@ const SignUp = () => {
                     </button>
                     ) }
                  */}
+            
                 <button
                     className="btn"
                     style={{ backgroundColor: "#40ABCF", color: "white", fontWeight: "bold" }}

@@ -109,13 +109,15 @@
        margin-left: 5%;
      }
      .btn-container{
+      width: 55%;
        margin-left: 3%;
      }
      .btn-container .oi:first-child {
-       margin-right: 40%;
-     }
+      margin-right: 40%;
+    }
      .sui{
        width: 179%;
      }
+     
  
    }

@@ -157,9 +157,12 @@ nav span{
     font-size: 20px;
 
 }
+
+
 .sil a{
     text-decoration: none; /* Убирает подчеркивание ссылки */
     border-bottom: none; /* Убирает дефис под словом */
+   
 
 }
 .kn{
