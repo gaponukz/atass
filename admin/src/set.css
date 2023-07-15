@@ -1,15 +1,6 @@
-body {
-     font-family: Arial, sans-serif;
-     background-color: #fff;
-     margin: 0;
-     padding: 0;
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     height: 100vh;
-   }
+
  
- .container {
+ .rety {
      text-align: left;
      height: 70%;
      padding: 20px;

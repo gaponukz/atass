@@ -45,7 +45,7 @@ const EditProfile = () => {
     <>
       <ToastContainer />
       <form onSubmit={handleSubmit(onSubmitHandler)}>
-        <div className="container">
+        <div className="container rety">
           <div className="form-group xpo">
             <label htmlFor="name" className="nad">Настройки</label>
             <label htmlFor="name">First name:</label>
