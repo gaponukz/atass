@@ -467,8 +467,8 @@ nav span{
 @media(min-width:767px) {
     #top{
      padding-right: 80px;
-     background-color: #6388e0;
-     display: none;
+     
+     
  }
   .small {
     display:none;
