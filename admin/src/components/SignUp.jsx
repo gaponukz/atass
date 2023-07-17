@@ -72,13 +72,13 @@ const SignUp = () => {
                      !data.password.match(numbers)) {
                 toast.error("Ненадійний пароль", { autoClose: 1500 })
             }
-            else {
-                console.log({ data });
-            }
             // else {
-            //     dispatch(fetchSignUp({ url: "signup", gmail: data.email }))
-            //     setGmail(data.email)
+            //     console.log({ data });
             // }
+            else {
+                dispatch(fetchSignUp({ url: "signup", gmail: data.email }))
+                setGmail(data.email)
+            }
             
         }
 
