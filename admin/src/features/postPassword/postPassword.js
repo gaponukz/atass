@@ -56,7 +56,9 @@ export const resetSlice = createSlice({
           })
           .addCase(fetchPassword.rejected, (state, action) => {
             console.log("-");
-            //toast.info("Введіть код", { autoClose: 1500 })
+            if (action.error.message === "Request failed with status code 404") {
+              toast.error("Такого користувача не існує", { autoClose: 1500 })
+            }
           })
           .addCase(fetchConfirmPassword.pending, (state) => {
             console.log("??");

@@ -62,7 +62,10 @@ export const signUpSlice = createSlice({
       .addCase(fetchSignUp.rejected, (state, action) => {
         console.log("-");
         console.log(action.error.message);
-        toast.error("Вже є такий користувач", {autoClose: 2500})
+        if (action.error.message === "Request failed with status code 409") {
+          toast.error("Вже є такий користувач", {autoClose: 2500})
+        }
+        
       })
       .addCase(fetchSignUpConfirm.pending, (state) => {
         console.log("?");

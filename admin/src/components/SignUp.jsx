@@ -39,6 +39,8 @@ const SignUp = () => {
     const [gmail, setGmail] = useState("");
     const [code, setCode] = useState("");
     const [allow, setAllow] = useState(false);
+    const [typePassword, setTypePassword] = useState("password");
+    const [typeConfPassword, setTypeConfPassword] = useState("password");
     const lowerCaseLetters = /[a-z]/g;
     const upperCaseLetters = /[A-Z]/g;
     const numbers = /[0-9]/g;
@@ -83,15 +85,6 @@ const SignUp = () => {
         // reset()
     }
 
-
-    // const handleButtonClickFirst = () => {
-    //     dispatch(fetchSignUp({ url: "signup", gmail: gmail }))
-    // }
-
-    // const handleButtonClickSecond = () => {
-    //     dispatch(fetchSignUpConfirm({ url: "confirmRegistration", gmail: gmail, password: password, fullName: name, phone: phone, allowsAdvertisement: allow, key: code }))
-    // }
-
     return (
         <>
             <ToastContainer />
@@ -106,10 +99,6 @@ const SignUp = () => {
                             placeholder="Ім'я Прізвище"
                             aria-label="Recipient's username"
                             aria-describedby="button-addon2"
-                            // value={name}
-                            // onChange={(e) => {
-                            //   setName(e.target.value)
-                            // }}
                             {...register("name")}
                         />
                     </div>
@@ -121,10 +110,6 @@ const SignUp = () => {
                             placeholder="Пошта"
                             aria-label="Recipient's username"
                             aria-describedby="button-addon2"
-                            // value={gmail}
-                            // onChange={(e) => {
-                            //     setGmail(e.target.value)
-                            // }}
                             {...register("email")}
                         />
                     </div>
@@ -136,32 +121,24 @@ const SignUp = () => {
                             placeholder="телефон"
                             aria-label="Recipient's username"
                             aria-describedby="button-addon2"
-                            // value={phone}
-                            // onChange={(e) => {
-                            //     setPhone(e.target.value)
-                            // }}
                             {...register("phoneNumber")}
                         />
                     </div>
                     {errors.phoneNumber?.message}
                     <div className="input-group mb-3 rrr">
                         <input
-                            type="text"
+                            type={typePassword}
                             className="form-control pop"
                             placeholder="Пароль"
                             aria-label="Recipient's username"
                             aria-describedby="button-addon2"
-                            // value={password}
-                            // onChange={(e) => {
-                            //     setPassword(e.target.value)
-                            // }}
                             {...register("password")}
                         />
                          <button
                         type="button"
                         className="btn ss"
                         onClick={() => {
-                            resetField("email");
+                            (typePassword == "password") ? setTypePassword("test") : setTypePassword("password")
                         }}
                     >
                         <img src={icon_eye} />
@@ -171,24 +148,18 @@ const SignUp = () => {
                     {errors.password?.message}
                     <div className="input-group mb-3 rrr">
                         <input
-                            type="text"
+                            type={typeConfPassword}
                             className="form-control pop"
                             placeholder="Підтвердити пароль"
                             aria-label="Recipient's username"
                             aria-describedby="button-addon2"
-                            // value={confPassword}
-                            // onChange={(e) => {
-                            //     setConfPassword(e.target.value)
-                            // }}
                             {...register("confPassword")}
-
-
                         />
                         <button
                         type="button"
                         className="btn ss"
                         onClick={() => {
-                            resetField("email");
+                            (typeConfPassword == "password") ? setTypeConfPassword("test") : setTypeConfPassword("password")
                         }}
                     >
                         <img src={icon_eye} />

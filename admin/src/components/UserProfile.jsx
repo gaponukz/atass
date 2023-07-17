@@ -44,7 +44,7 @@ const UserProfile = () => {
       <div className="container yyyy">
       </div>
       <div className="nadpis">
-        <p>Женя</p>
+        <p>{userInfo.fullName}</p>
         <img src={avatar} />
       </div>
       <div className="test">

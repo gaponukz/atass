@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -18,6 +18,8 @@ const schema = yup.object().shape({
 
 const EditProfile = () => {
   const userInfo = useSelector((state) => state.getUser.data);
+  const logout = useSelector((state) => state.getUser.logout)
+  console.log(logout);
   console.log(userInfo);
 
   const { register, handleSubmit, formState: { errors }, resetField, reset } = useForm({
@@ -33,9 +35,12 @@ const EditProfile = () => {
   const dispatch = useDispatch();
 
   // ui state
-  const [check, setCheck] = useState(false);
-  const [test, setTest] = useState("test");
+  const [check, setCheck] = useState(userInfo.allowsAdvertisement);
 
+  useEffect(() => {
+    navigate("/sign-in")
+  }, [logout])
+  
   const onSubmitHandler = (data) => {
     console.log(data);
     dispatch(editUserData({fullName: data.name, phone: data.phoneNumber, allowsAdvertisement: check}))

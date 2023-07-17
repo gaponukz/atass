@@ -61,26 +61,6 @@ const ResetPassword = () => {
     // reset()
   }
 
-
-  // const handleButtonClickFirst = () => {
-
-  //   if (password === resetPassword) {
-  //     dispatch(fetchPassword({ url: "resetPassword", gmail: gmail }));
-  //   }
-  //   else {
-  //     toast.error("Підтвердьте новий пароль", { autoClose: 1500 })
-  //   }
-  // }
-
-  // const handleButtonClickSecond = () => {
-  //   if (password === resetPassword) {
-  //     dispatch(fetchConfirmPassword({ url: "confirmResetPassword", gmail: gmail, newPassword: password, key: keyCode }))
-  //   }
-  //   else {
-  //     toast.error("Підтвердьте новий пароль", { autoClose: 1500 })
-  //   }
-  // }
-
   return (
     <>
       <ToastContainer />
@@ -101,6 +81,7 @@ const ResetPassword = () => {
           />
           <button
             className="btn qqq"
+            type="button"
             onClick={() => {
               resetField("email")
             }} 
@@ -120,6 +101,7 @@ const ResetPassword = () => {
           />
           <button
             className="btn qqq"
+            type="button"
             onClick={() => {
               (typePassword == "password") ? setTypePassword("test") : setTypePassword("password")
           }}
@@ -140,6 +122,7 @@ const ResetPassword = () => {
 
           <button
             className="btn qqq"
+            type="button"
             onClick={() => {
               (typeResetPassword == "password") ? setTypeResetPassword("test") : setTypeResetPassword("password")
             }}
@@ -165,6 +148,7 @@ const ResetPassword = () => {
 
               <button
                 className="btn qqq"
+                type="button"
                 onClick={() => {
                   setKeyCode("")
                 }}
