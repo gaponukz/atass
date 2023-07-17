@@ -240,7 +240,7 @@ const SignUp = () => {
                 <button 
                     className="btn"
                     style={{ backgroundColor: "#40ABCF", color: "white", fontWeight: "bold" }}
-                    id="knop"
+                    
                     onClick={() => {
                         dispatch(fetchSignUp({ url: "signup", gmail: gmail }))
                     }}
