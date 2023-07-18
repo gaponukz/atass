@@ -1,12 +1,12 @@
 import typing
 import abc
 
-from src.logic.entities import Path
-from src.logic.entities import Route
-from src.logic.entities import HashId
-from src.logic.entities import ShortRoute
-from src.logic.entities import RoutePrototype
-from src.logic.entities import DatetimeObject
+from src.business.entities import Path
+from src.business.entities import Route
+from src.business.entities import HashId
+from src.business.entities import ShortRoute
+from src.business.entities import RoutePrototype
+from src.business.entities import DatetimeObject
 
 class IService(abc.ABC):
     '''

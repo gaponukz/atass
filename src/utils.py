@@ -1,6 +1,6 @@
 import typing
 import datetime
-from src.logic import entities
+from src.business import entities
 
 class RouteToShortRouteAdapter(entities.ShortRoute):
     def __init__(self, route: entities.Route, count: int = 0):

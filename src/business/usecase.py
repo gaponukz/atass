@@ -1,10 +1,8 @@
-__all__ = 'Service',
-
 import uuid
 import typing
 import datetime
 from src import utils
-from src.logic import entities
+from src.business import entities
 
 from fastapi import Depends
 from loguru import logger

@@ -2,8 +2,8 @@ from fastapi import APIRouter
 from fastapi import Depends
 from loguru import logger
 
-from src.logic import usecase
-from src.logic import entities
+from src.business import usecase
+from src.business import entities
 
 router = APIRouter()
 logger.add("logging/admin.log")

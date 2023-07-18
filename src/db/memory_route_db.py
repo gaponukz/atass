@@ -2,7 +2,7 @@ import typing
 
 from src.interfaces import IRouteDataBase
 from src.utils import FilterComparatorTemplate
-from src.logic.entities import Route
+from src.business.entities import Route
 
 class MemoryRouteDataBase(IRouteDataBase, FilterComparatorTemplate):
     def __init__(self):

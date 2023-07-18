@@ -3,9 +3,9 @@ from fastapi import APIRouter
 from fastapi import HTTPException
 from loguru import logger
 
-from src.logic import usecase
-from src.logic import entities
-from src.logic import errors
+from src.business import usecase
+from src.business import entities
+from src.business import errors
 
 from src import dto
 

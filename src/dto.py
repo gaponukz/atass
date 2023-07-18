@@ -1,5 +1,5 @@
 import pydantic
-from src.logic import entities
+from src.business import entities
 
 class AddRoutesDTO(pydantic.BaseModel):
     route_prototype: entities.RoutePrototype
