@@ -7,7 +7,7 @@ from src.business import usecase
 from src.business import entities
 from src.business import errors
 
-from src import dto
+from src.business import dto
 
 router = APIRouter()
 logger.add("logging/admin.log")

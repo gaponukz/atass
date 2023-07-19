@@ -7,3 +7,4 @@ server.log
 logging
 db.json
 atass_routes
+.pytest_cache
