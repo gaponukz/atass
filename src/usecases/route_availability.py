@@ -30,7 +30,7 @@ class RouteAvailabilityUseCase:
         if not self._is_actual_route(route):
             return []
 
-        sits: dict[HashId, dict[HashId, int]] = self._get_route_sits(all_spots)
+        sits: dict[HashId, dict[HashId, int]] = self._get_route_sits(all_spots, route.passengers)
 
         for start_spot, end_spot in self._iter_different_spots(all_spots):   
             if not all((
@@ -54,7 +54,7 @@ class RouteAvailabilityUseCase:
 
         return results
 
-    def _get_route_sits(all_spots: list[Spot], passengers: list[Passenger]) -> dict[HashId, dict[HashId, int]]:
+    def _get_route_sits(self, all_spots: list[Spot], passengers: list[Passenger]) -> dict[HashId, dict[HashId, int]]:
         sits = {
             all_spots[i].id: {
                 all_spots[j].id: 0 for j in range(i+1, len(all_spots))

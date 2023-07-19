@@ -43,6 +43,7 @@ class ViewRoutesUseCase:
 
     def _shorten_route(self, route: Route) -> ShortRoute:
         return ShortRoute(
-            move_from=route.move_from.place.copy(),
-            move_to=route.move_to.place.copy()
+            move_from=route.move_from.place.model_copy(),
+            move_to=route.move_to.place.model_copy(),
+            count=0
         )
