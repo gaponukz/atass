@@ -50,7 +50,7 @@ const SignUp = () => {
     });
 
     const onSubmitHandler = (data) => {
-        
+
         if (flagSuccess) {
             if (data.password !== data.confPassword)
                 toast.error("Підтвердьте пароль!", { autoClose: 1500 })
@@ -67,9 +67,9 @@ const SignUp = () => {
             else if (data.phoneNumber.includes(" ")) {
                 toast.error("Неправильно введено номер\nПриклад: 09912312323", { autoClose: 1500 })
             }
-            else if (!data.password.match(lowerCaseLetters) || 
-                     !data.password.match(upperCaseLetters) ||
-                     !data.password.match(numbers)) {
+            else if (!data.password.match(lowerCaseLetters) ||
+                !data.password.match(upperCaseLetters) ||
+                !data.password.match(numbers)) {
                 toast.error("Ненадійний пароль", { autoClose: 1500 })
             }
             // else {
@@ -79,7 +79,7 @@ const SignUp = () => {
                 dispatch(fetchSignUp({ url: "signup", gmail: data.email }))
                 setGmail(data.email)
             }
-            
+
         }
 
         // reset()
@@ -90,8 +90,8 @@ const SignUp = () => {
             <ToastContainer />
             <form onSubmit={handleSubmit(onSubmitHandler)}>
 
-            <div className="container pp">
-                
+                <div className="container pp">
+
                     <div className="input-group mb-3 rrr" >
                         <input
                             type="text"
@@ -134,16 +134,16 @@ const SignUp = () => {
                             aria-describedby="button-addon2"
                             {...register("password")}
                         />
-                         <button
-                        type="button"
-                        className="btn ss"
-                        onClick={() => {
-                            (typePassword == "password") ? setTypePassword("test") : setTypePassword("password")
-                        }}
-                    >
-                        <img src={icon_eye} />
-                    </button>
-                        
+                        <button
+                            type="button"
+                            className="btn ss"
+                            onClick={() => {
+                                (typePassword == "password") ? setTypePassword("test") : setTypePassword("password")
+                            }}
+                        >
+                            <img src={icon_eye} />
+                        </button>
+
                     </div>
                     {errors.password?.message}
                     <div className="input-group mb-3 rrr">
@@ -156,14 +156,14 @@ const SignUp = () => {
                             {...register("confPassword")}
                         />
                         <button
-                        type="button"
-                        className="btn ss"
-                        onClick={() => {
-                            (typeConfPassword == "password") ? setTypeConfPassword("test") : setTypeConfPassword("password")
-                        }}
-                    >
-                        <img src={icon_eye} />
-                    </button>
+                            type="button"
+                            className="btn ss"
+                            onClick={() => {
+                                (typeConfPassword == "password") ? setTypeConfPassword("test") : setTypeConfPassword("password")
+                            }}
+                        >
+                            <img src={icon_eye} />
+                        </button>
                     </div>
                     {errors.confPassword?.message}
                     {(flagSuccess) &&
@@ -181,12 +181,24 @@ const SignUp = () => {
                             />
                         </div>)
                     }
-                    <div class="silka">
-                    <a href="#" class="silka">she raz</a>
-                    </div>
+
+                    {(flagSuccess) && (
+                        <div className="silka secod">
+                            <a
+                                className="silka aaaa"
+
+                                onClick={() => {
+                                    dispatch(fetchSignUp({ url: "signup", gmail: gmail }))
+                                }}
+                            >
+                                <span>Відправити код ще раз</span>
+                            </a>
+                        </div>
+                    )}
+                    
 
                     <div>
-                      
+
                         <p className="object">Дозволити надсилати рекламу на почту</p>
                         <input
                             type="checkbox"
@@ -199,56 +211,23 @@ const SignUp = () => {
                             }}
                         />
                     </div>
-                    
-            </div>
-            <div className="kn">
-                {/* { (flagSuccess) ? (
-                <button 
-                    className="btn vbn" 
-                    style={{ backgroundColor: "#40ABCF", color: "white", fontWeight: "bold" }} 
-                    id="knop"
-                    onClick={handleButtonClickSecond}
-                >
-                    <span>Зареєструвати</span>
-                </button>) : (
-                    <button 
-                        className="btn" 
-                        style={{ backgroundColor: "#40ABCF", color: "white", fontWeight: "bold" }} 
-                        id="knop"
-                        onClick={handleButtonClickFirst}
+
+                </div>
+                <div className="kn">
+                    <button
+                        className="btn"
+                        style={{ backgroundColor: "#40ABCF", color: "white", fontWeight: "bold" }}
+
+                        type="submit"
                     >
                         <span>Зареєструвати</span>
                     </button>
-                    ) }
-                 */}
-            
-                <button
-                    className="btn"
-                    style={{ backgroundColor: "#40ABCF", color: "white", fontWeight: "bold" }}
-                    
-                    type="submit"
-                >
-                    <span>Зареєструвати</span>
-                </button>
 
-            </div>
-
-        </form >
-                 {/* EDIT */}
-        {(flagSuccess) && ( 
-                <div className="kn">
-                <button 
-                    className="btn"
-                    style={{ backgroundColor: "#40ABCF", color: "white", fontWeight: "bold" }}
-                    
-                    onClick={() => {
-                        dispatch(fetchSignUp({ url: "signup", gmail: gmail }))
-                    }}
-                >
-                    <span>Відправити код ще раз</span>
-                </button>
                 </div>
-            )}
+
+            </form >
+            {/* EDIT */}
+
         </>
     )
 }

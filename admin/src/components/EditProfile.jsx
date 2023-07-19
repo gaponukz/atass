@@ -18,9 +18,8 @@ const schema = yup.object().shape({
 
 const EditProfile = () => {
   const userInfo = useSelector((state) => state.getUser.data);
-  const logout = useSelector((state) => state.getUser.logout)
-  console.log(logout);
-  console.log(userInfo);
+  const authorized = useSelector((state) => state.getUser.authorized);
+  console.log(authorized);
 
   const { register, handleSubmit, formState: { errors }, resetField, reset } = useForm({
     resolver: yupResolver(schema),
@@ -38,8 +37,9 @@ const EditProfile = () => {
   const [check, setCheck] = useState(userInfo.allowsAdvertisement);
 
   useEffect(() => {
-    navigate("/sign-in")
-  }, [logout])
+    if (!authorized)
+      navigate("/sign-in")
+  }, [authorized])
   
   const onSubmitHandler = (data) => {
     console.log(data);

@@ -1,4 +1,4 @@
-import { getUserId, logUserOut } from "../features/getUser/getUserData";
+import { changeAuthorized, getUserId, logUserOut } from "../features/getUser/getUserData";
 import { chageFlagStatusFalse } from "../features/post/PostSlice";
 import { useEffect } from "react";
 import { NavLink } from "react-router-dom"
@@ -35,6 +35,7 @@ const UserProfile = () => {
     if (logout) {
       console.log("here1");
       dispatch(chageFlagStatusFalse())
+      dispatch(changeAuthorized(false))
       navigate("/sign-in");
     }
   }, [logout])

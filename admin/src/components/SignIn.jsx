@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { changeLogout } from "../features/getUser/getUserData";
+import { changeAuthorized, changeLogout } from "../features/getUser/getUserData";
 
 import { Circles } from "react-loader-spinner"
 
@@ -48,6 +48,7 @@ const SignIn = () => {
         if (flag) {
             console.log("test");
             dispatch(changeLogout())
+            dispatch(changeAuthorized(true))
             navigate("/user-profile");
         }
     }, [flag])

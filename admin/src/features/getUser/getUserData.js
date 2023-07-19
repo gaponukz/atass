@@ -39,11 +39,15 @@ const dataSlice = createSlice({
       data: {},
       loading: false,
       error: null,
-      logout: false
+      logout: false,
+      authorized: false
     },
     reducers: {
         changeLogout: (state, action) => {
             state.logout = false;
+        },
+        changeAuthorized: (state, action) => {
+            state.authorized = action.payload;
         }
     },
     extraReducers: (builder) => {
@@ -85,5 +89,5 @@ const dataSlice = createSlice({
     }
 })
 
-export const { changeLogout } = dataSlice.actions;
+export const { changeLogout, changeAuthorized } = dataSlice.actions;
 export default dataSlice.reducer;
