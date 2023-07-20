@@ -47,7 +47,8 @@ const dataSlice = createSlice({
       loading: false,
       error: null,
       logout: false,
-      authorized: false
+      authorized: false,
+      flag: false
     },
     reducers: {
         changeLogout: (state, action) => {
@@ -102,6 +103,9 @@ const dataSlice = createSlice({
             })
             .addCase(refreshUser.rejected, (state, action) => {
                 console.log("-", action.error.message);
+                if (action.error.message === "Request failed with status code 401") {
+                    state.flag = true;
+                }
             })
     }
 })

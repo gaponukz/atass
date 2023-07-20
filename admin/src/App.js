@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import EditProfile from "./components/EditProfile";
 import HeaderNavBar from "./components/HeaderNavBar";
 import MainSitePage from "./components/MainSitePage";
@@ -9,8 +9,29 @@ import SignUp from "./components/SignUp";
 import UserProfile from "./components/UserProfile";
 
 import {  Routes, Route, Navigate } from "react-router-dom";
+import { useEffect } from "react";
+import { refreshUser } from "./features/getUser/getUserData";
 
 function App() {
+  const authorized = useSelector((state) => state.getUser.authorized);
+  const flag = useSelector((state) => state.getUser.flag);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    let interval = setInterval(() => {
+      if (authorized && !flag) {
+        console.log("SEND REFRESH");
+        // dispatch(refreshUser())
+      }
+    }, 4000);
+    
+    return () => {
+      clearInterval(interval);
+    };
+
+  }, [authorized, flag])
+  
   
   return (
     <div className="">

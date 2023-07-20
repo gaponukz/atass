@@ -1,4 +1,4 @@
-import { changeAuthorized, getUserId, logUserOut, refreshUser } from "../features/getUser/getUserData";
+import { changeAuthorized, getUserId, logUserOut } from "../features/getUser/getUserData";
 import { chageFlagStatusFalse } from "../features/post/PostSlice";
 import { useEffect } from "react";
 import { NavLink } from "react-router-dom"
@@ -62,12 +62,6 @@ const UserProfile = () => {
         onClick={handleButtonCLick}>
         <span>Log out</span>
                 </button></div>
-
-        <button
-          onClick={() => {
-            dispatch(refreshUser())
-          }}
-        >Test</button>
     </>
   )
 }
