@@ -42,7 +42,12 @@ export const resetSlice = createSlice({
     name: "reset",
     initialState,
     reducers: {
-        
+        changeFlagSuccess: (state, action) => {
+          state.flagSuccess = action.payload
+        },
+        changeFinalFlagSuccess: (state, action) => {
+          state.finalFlagSuccess = action.payload;
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -68,11 +73,14 @@ export const resetSlice = createSlice({
             state.finalFlagSuccess = true
           })
           .addCase(fetchConfirmPassword.rejected, (state, action) => {
+            if (action.error.message === "Request failed with status code 400") {
+              toast.error("Неправильний код", { autoClose: 1500 })
+            }
             console.log("--");
           });
       },
 })
 
-export const { } = resetSlice.actions;
+export const { changeFlagSuccess, changeFinalFlagSuccess } = resetSlice.actions;
 
 export default resetSlice.reducer;

@@ -7,7 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import cross from "./static/images/cross.png";
 import icon_eye from "./static/images/icons8-eye-96.png"
 
-import { fetchPassword, fetchConfirmPassword } from "../features/postPassword/postPassword";
+import { fetchPassword, fetchConfirmPassword, changeFinalFlagSuccess, changeFlagSuccess } from "../features/postPassword/postPassword";
 import { useNavigate } from "react-router-dom";
 
 import * as yup from "yup";
@@ -36,9 +36,14 @@ const ResetPassword = () => {
   const [typeResetPassword, setTypeResetPassword] = useState("password");
   const [keyCode, setKeyCode] = useState("");
 
-  if (finalFlagSuccess) {
-    navigate("/sign-in")
-  }
+  useEffect(() => {
+    if (finalFlagSuccess) {
+      navigate("/sign-in");
+      dispatch(changeFinalFlagSuccess(false))
+      dispatch(changeFlagSuccess(false))
+    }
+  }, [finalFlagSuccess])
+  
 
   const { register, handleSubmit, formState: { errors }, resetField, reset } = useForm({
     resolver: yupResolver(schema),

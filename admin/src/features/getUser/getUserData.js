@@ -33,6 +33,13 @@ export const editUserData = createAsyncThunk("data/editUserData", async ({fullNa
 
 })
 
+export const refreshUser = createAsyncThunk("data/refreshUser", async () => {
+    const response = await axios.get(`${BASE_URL}/refresh`)
+    console.log(response.data);
+
+    return response.data
+})
+
 const dataSlice = createSlice({
     name: 'data',
     initialState: {
@@ -84,6 +91,16 @@ const dataSlice = createSlice({
                 toast.success("Данні оновлено", {autoClose: 1500})
             })
             .addCase(editUserData.rejected, (state, action) => {
+                console.log("-", action.error.message);
+            })
+            .addCase(refreshUser.pending, (state) => {
+                console.log("?");
+            })
+            .addCase(refreshUser.fulfilled, (state, action) => {
+                console.log("+", action.payload);
+                toast.success("Данні оновлено", {autoClose: 1500})
+            })
+            .addCase(refreshUser.rejected, (state, action) => {
                 console.log("-", action.error.message);
             })
     }
