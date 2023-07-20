@@ -20,17 +20,16 @@ function App() {
 
   useEffect(() => {
     let interval = setInterval(() => {
-      if (authorized && !flag) {
-        console.log("SEND REFRESH");
-        // dispatch(refreshUser())
+      if (!flag) {
+        dispatch(refreshUser())
       }
-    }, 4000);
+    }, 2000);
     
     return () => {
       clearInterval(interval);
     };
 
-  }, [authorized, flag])
+  }, [flag])
   
   
   return (
