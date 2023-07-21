@@ -61,8 +61,8 @@ class Spot(pydantic.BaseModel):
         super().__init__(**data)
 
 class Passenger(User):
-    moving_from: Spot
-    moving_towards: Spot
+    moving_from_id: HashId
+    moving_towards_id: HashId
     id: HashId = str(uuid.uuid4())
 
 class Route(_RouteBase):
@@ -79,7 +79,6 @@ class Path(pydantic.BaseModel):
     move_to: Spot
     price: int
     root_route_id: HashId
-    passengers: list[Passenger] = []
     id: HashId = str(uuid.uuid4())
 
 class ShortRoute(pydantic.BaseModel):
