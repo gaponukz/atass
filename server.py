@@ -1,3 +1,3 @@
-from tests.unit.route_availability_test import generate_all_pathes_test
+from tests.unit.add_routes_test import create_routes_from_prototype_test
 
-generate_all_pathes_test()
+create_routes_from_prototype_test()

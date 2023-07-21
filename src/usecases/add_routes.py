@@ -17,13 +17,13 @@ class AddRoutesUseCase:
     
     def create_routes_from_prototype(self, dto: AddRoutesDTO):
         for route in self._generate_copies(dto):
-            self._db.add_route(route)
+            self._db.create(route)
 
     def _generate_copies(self, dto: AddRoutesDTO) -> list[Route]:
         routes: list[Route] = []
 
         for datetime_pair in dto.datetimes:
-            new_route = self._route_from_prototype(dto.route_prototype.copy(deep=True), datetime_pair)
+            new_route = self._route_from_prototype(dto.route_prototype.model_copy(deep=True), datetime_pair)
 
             ids_replacements: dict[HashId, HashId] = {}
             new_prices: PricesSchema = {}
@@ -57,9 +57,9 @@ class AddRoutesUseCase:
         return routes
     
     def _route_from_prototype(self, prototype: RoutePrototype, date: DatetimeObject) -> Route:
-        new_route = prototype.dict()
+        new_route = prototype.model_dump()
         new_route['move_from']['date'] = date['from']
-        new_route['move_to']['date'] = date['to']
+        new_route['move_to']['date'] = date['to'] + datetime.timedelta(minutes=prototype.move_to.from_start)
 
         for i in range(len(prototype.sub_spots)):
             new_route['sub_spots'][i]['date'] = date['from'] + datetime.timedelta(minutes=prototype.sub_spots[i].from_start)
