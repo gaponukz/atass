@@ -13,7 +13,6 @@ import { useEffect } from "react";
 import { refreshUser } from "./features/getUser/getUserData";
 
 function App() {
-  const authorized = useSelector((state) => state.getUser.authorized);
   const flag = useSelector((state) => state.getUser.flag);
 
   const dispatch = useDispatch();
@@ -21,7 +20,8 @@ function App() {
   useEffect(() => {
     let interval = setInterval(() => {
       if (!flag) {
-        dispatch(refreshUser())
+        // dispatch(refreshUser())
+        console.log("SEND REFRESH");
       }
     }, 2000);
     

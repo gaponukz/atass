@@ -9,7 +9,7 @@ axios.defaults.withCredentials = true
 
 export const getUserId = createAsyncThunk("data/getUserId", async () => {
     const response = await axios.get(`${BASE_URL}/getUserInfo`)
-    console.log(response.data);
+    // console.log(response.data);
 
     return response.data
 })
@@ -48,7 +48,7 @@ const dataSlice = createSlice({
       error: null,
       logout: false,
       authorized: false,
-      flag: false
+      flag: false,
     },
     reducers: {
         changeLogout: (state, action) => {
@@ -56,6 +56,12 @@ const dataSlice = createSlice({
         },
         changeAuthorized: (state, action) => {
             state.authorized = action.payload;
+        },
+        changeStatusError: (state, action) => {
+            state.error = action.payload;
+        },
+        changeCheck: (state, action) => {
+            state.check = action.payload
         }
     },
     extraReducers: (builder) => {
@@ -110,5 +116,5 @@ const dataSlice = createSlice({
     }
 })
 
-export const { changeLogout, changeAuthorized } = dataSlice.actions;
+export const { changeLogout, changeAuthorized, changeStatusError } = dataSlice.actions;
 export default dataSlice.reducer;
