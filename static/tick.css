@@ -62,7 +62,8 @@
 
 .events time { 
   position: relative;
-  padding: 0 1.5em;  }
+  padding: 0 1.5em;
+  }
 
 .events time::after { 
    content: "";
@@ -96,9 +97,11 @@
 .events strong {
    display: block;
    font-weight: bolder;
+   width: 110%;
 }
 
-.events { margin: 1em; width: 50%; }
+.events { margin: 1em; width: 50%;
+  margin-left: 10%; }
 .events, 
 .events *::before, 
 .events *::after { box-sizing: border-box; font-family: arial; }
@@ -133,14 +136,26 @@
 }
 .butto{
   padding-top: 3%;
-  margin-right: 45%;
+  margin-right: 27%;
 }
 .te{
   
   text-align: left;
   
 }
+.for_s{
+  text-decoration: none; 
+  float:right;
+  color:black;
+}
+
 @media (max-width: 800px){
+  .test_s{
+    position: absolute;
+    margin-top: 10%;
+    margin-left: 5%;
+    width: 70%;
+  }
   
   .container{
     padding-top: 5%;
@@ -150,6 +165,9 @@
     margin: 1em;
     width: 80%;
     margin-left: -40%; /* Добавляем это правило для сдвига содержимого влево */
+  }
+  .events time{
+     margin-left: 0%;
   }
   .horiz{
     border-radius: 0;
@@ -174,6 +192,34 @@
   }
   .dop{
     width: 100%;
-    margin-left: 10%;
+    margin-left: 20%;
   }
 }
+@media (min-width: 400px) and (max-width: 600px){
+  .events time{
+    margin-left: 10%;
+ }
+
+  .test_s{
+   width: 65%;
+  }
+}
+@media (min-width: 500px) and (max-width: 600px){
+  .test_s{
+    margin-top: 5%;
+   width: 60%;
+  }
+}
+@media (min-width: 600px) and (max-width: 700px){
+  .test_s{
+    margin-top: 5%;
+   width: 40%;
+  }
+}
+@media (min-width: 700px) and (max-width: 800px){
+  .test_s{
+    margin-top: 0%;
+   width: 40%;
+  }
+}
+
