@@ -5,7 +5,7 @@ import pydantic
 
 from dotenv import load_dotenv
 from src.interfaces import IRouteDataBase
-from src.logic.entities import Route
+from src.business.entities import Route
 
 load_dotenv()
 

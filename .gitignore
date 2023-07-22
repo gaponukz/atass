@@ -6,3 +6,5 @@ server.log
 .mypy_cache
 logging
 db.json
+atass_routes
+.pytest_cache

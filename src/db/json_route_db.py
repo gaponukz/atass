@@ -6,8 +6,8 @@ import dateutil.parser
 
 from src.interfaces import IRouteDataBase
 from src.utils import FilterComparatorTemplate
-from src.logic.entities import Route
-from src.logic import errors
+from src.business.entities import Route
+from src.business import errors
 
 def _datetime_parser(json_dict):
     for key, value in json_dict.items():
