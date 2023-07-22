@@ -20,8 +20,8 @@ function App() {
   useEffect(() => {
     let interval = setInterval(() => {
       if (!flag) {
-        // dispatch(refreshUser())
-        console.log("SEND REFRESH");
+        dispatch(refreshUser())
+        // console.log("SEND REFRESH");
       }
     }, 2000);
     
